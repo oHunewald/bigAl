@@ -29,6 +29,8 @@ group :test do
   gem 'capybara', '1.1.2'
 end
 
+gem 'devise', '1.5.4'
+
 group :production do
   gem 'pg', '0.12.2'
 end
