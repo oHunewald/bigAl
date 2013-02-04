@@ -3,10 +3,18 @@
     <div class="container">
       <%= link_to "Big AL", root_path, id: "logo" %>
       <nav>
-        <ul class="nav pull-right">
+        <ul class="nav pull-middle">
           <li><%= link_to "Home",    root_path %></li>
           <li><%= link_to "Help",    help_path %></li>
-          <li><%= link_to "Sign in", '#' %></li>
+        </ul>
+        <ul class="nav pull-right">
+      	  <% if user_signed_in? %>
+		    <li>Signed in as <%= current_user.name %>.</li>
+		    <li><%= link_to "Edit profile", edit_user_registration_path, :method => :get %></li>
+		    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>		    
+		  <% else %>
+			<li><%= link_to "sign in", new_user_session_path %></li>
+		  <% end %>        	
         </ul>
       </nav>
     </div>

@@ -4,7 +4,7 @@
   <h2>
     NGS Data Managment System 
   </h2>
-
-  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
-
+	<% if !user_signed_in? %>
+	  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+	<% end %>
 </div>
