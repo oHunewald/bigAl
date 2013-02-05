@@ -13,6 +13,8 @@ describe User do
   it { should respond_to(:encrypted_password) }
   it { should be_valid }
   
+  it { should respond_to(:projects) }
+  
   describe "when password is not present" do
     before { @user.password = " " }
     it { should_not be_valid }

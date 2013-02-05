@@ -1,5 +1,6 @@
 BigAl::Application.routes.draw do
   
+
   devise_for :users
 
   authenticated :user do
@@ -7,8 +8,13 @@ BigAl::Application.routes.draw do
   end
 
   root to: 'static_pages#home'
+
+  resources :projects
   
-  resources :users
+  resources :users do
+    resources :projects  
+  end
+  
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'

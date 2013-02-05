@@ -1,0 +1,7 @@
+
+<% @projects.each do |project| %>
+	<li>
+		<%= link_to project.name, project %> <%= project.created_at.to_date%>
+	</li>
+<%end%>
+

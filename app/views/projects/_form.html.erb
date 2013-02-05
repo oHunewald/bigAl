@@ -1,0 +1,7 @@
+<%= form_for [@user, @project] do |f| %>
+  
+  <div class="field">
+    <%= f.text_area :name, placeholder: "Create new Project..." %>
+  </div>
+  <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+<% end %>
