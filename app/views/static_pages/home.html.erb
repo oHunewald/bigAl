@@ -3,9 +3,44 @@
 
   <h2>
     NGS Data Managment System 
-  </h2>
+  </h2>   
+
 	<% if !user_signed_in? %>
+	  <%= link_to image_tag("Actions-project-open-icon.png"), projects_path%>
+	  <br />
+	  <br />
+	  <hr>
+	  <br />
 	  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
 	<% end %>
-
+	<% if user_signed_in? %>
+		<table id="mainNav" class="display">
+			<thead>
+				<tr>
+					<th>
+						All Projects
+					</th>
+					<th>
+						My Projects
+					</th>
+					<th>
+						Plan Experiment
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<%= link_to image_tag("Actions-project-open-icon.png"), projects_path%>		
+					</td>
+					<td>
+						<%= link_to image_tag("project-plan-icon.png"), projects_path%>
+					</td>
+					<td>
+						<%= link_to image_tag("ion-torrent.png"), projects_path%>
+					</td>
+				</tr>		
+			</tbody>
+		</table>		
+	<% end %>
 </div>
