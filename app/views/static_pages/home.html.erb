@@ -34,10 +34,10 @@
 						<%= link_to image_tag("Actions-project-open-icon.png"), projects_path%>		
 					</td>
 					<td>
-						<%= link_to image_tag("project-plan-icon.png"), projects_path%>
+						<%= link_to image_tag("project-plan-icon.png"), user_path(current_user)%>
 					</td>
 					<td>
-						<%= link_to image_tag("ion-torrent.png"), projects_path%>
+						<%= link_to image_tag("ion-torrent.png"), new_project_path%>
 					</td>
 				</tr>		
 			</tbody>
