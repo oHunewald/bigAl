@@ -11,6 +11,11 @@ BigAl::Application.routes.draw do
 
   resources :projects
   
+  resources :states do
+    resources :projects
+  end
+    
+  
   resources :users do
     resources :projects  
   end

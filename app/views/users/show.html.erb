@@ -1,26 +1,3 @@
 <h1>My NGS Projects</h1>
 
-<table id="projects" class="display">
-	<thead>
-		<tr>
-			<th>
-				Project Name
-			</th>
-			<th>
-				Created at
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @projects.each do |project| %>
-		<tr>
-			<td>
-				<%= link_to project.name, project %>		
-			</td>
-			<td>
-				<%= project.created_at.to_date%>		
-			</td>
-		</tr>		
-		<%end%>
-	</tbody>
-</table>
+<%= render 'layouts/projects_table' %>

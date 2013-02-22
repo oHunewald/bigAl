@@ -1,5 +1,37 @@
-<p>Name: <%= @project.name %></p>
-<p>Owner: <%= @project.user.name %></p>
-<p>Created at: <%= @project.created_at.to_date %></p>
-<%= link_to "Edit Project", edit_project_path(@project) %>
-<%= link_to "Show all Projects", projects_path %>
+<div class="container">
+
+<aside>
+	<p><%= link_to "Edit Project", edit_project_path(@project) %></p>
+	<p><%= link_to "Add Miane Information", edit_project_path(@project) %></p>	
+</aside>
+<section>
+	<article>
+		<hgroup>
+			<h3>Project details:</h3>
+		</hgroup>		
+		<p>Name: <%= @project.name %></p>
+		<p>State: <%= @project.state %></p>
+		<p>Owner: <%= @project.user.name %></p>
+		<p>Created at: <%= @project.created_at.to_date %></p>	
+	</article>
+	<hr />
+	<article>
+			<h3>Change Project State</h3>
+		<p>
+		<p>
+			<%= form_for [@project] do |f| %>
+			<%= f.select :state, [["Incomplete", "Incomplete"],
+								["wait for approval", "wait for approval"], 
+								["ready", "ready"],
+								["processing", "processing"],
+								["finished", "finished"],
+								["closed", "closed"],
+								["ready", "ready"],
+								["on hold", "on hold"]] %>
+			<%= f.submit %>
+			<% end %>
+		</p>			
+		</p>
+	</article>	
+</section>
+</div>

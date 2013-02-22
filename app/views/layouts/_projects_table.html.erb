@@ -1,0 +1,30 @@
+<table id="projects" class="display">
+	<thead>
+		<tr>
+			<th>
+				Project Name
+			</th>
+			<th>
+				Created at
+			</th>
+			<th>
+				Project State
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @projects.each do |project| %>
+		<tr>
+			<td>
+				<%= link_to project.name, project %>		
+			</td>
+			<td>
+				<%= project.created_at.to_date%>		
+			</td>
+			<td>
+				<%= project.state %>		
+			</td>			
+		</tr>		
+		<%end%>
+	</tbody>
+</table>

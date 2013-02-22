@@ -116,3 +116,12 @@ footer {
   margin-top: 45px;
   @include box_sizing;
 }
+
+/* SIDEBAR ------------------------------------------ */
+ 
+aside {
+  width: 300px;
+  padding: 0 15px;
+  margin: 0 0 10px 0;
+  float: left;
+}
