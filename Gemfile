@@ -41,6 +41,8 @@ end
 
 gem 'will_paginate'
 
+gem 'wicked'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

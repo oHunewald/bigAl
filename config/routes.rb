@@ -1,5 +1,4 @@
 BigAl::Application.routes.draw do
-  
 
   devise_for :users
 
@@ -9,7 +8,10 @@ BigAl::Application.routes.draw do
 
   root to: 'static_pages#home'
 
-  resources :projects
+  resources :projects do
+    resources :mianes
+    
+  end
   
   resources :states do
     resources :projects

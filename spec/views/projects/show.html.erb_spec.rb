@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe "projects/show.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+	subject { page }
+
+	before { visit user_project_path(@project) }
+
+	it { should have_selector('h1', text: 'Big AL')}
+
+
 end

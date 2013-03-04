@@ -2,7 +2,9 @@
 
 <aside>
 	<p><%= link_to "Edit Project", edit_project_path(@project) %></p>
-	<p><%= link_to "Add Miane Information", edit_project_path(@project) %></p>	
+	<% if !@project.miane %>
+		<p><%= link_to "Miane Information Wizard", new_project_miane_path(@project) %></p>	
+	<% end %>
 </aside>
 <section>
 	<article>

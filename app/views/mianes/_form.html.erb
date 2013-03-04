@@ -1,0 +1,82 @@
+<style type="text/css">
+    body { font-family:Lucida Sans, Arial, Helvetica, Sans-Serif; font-size:13px; margin:20px;}
+    #main { width:960px; margin: 0px auto; border:solid 1px #b2b3b5; -moz-border-radius:10px; padding:20px; background-color:#f6f6f6;}
+    #header { text-align:center; border-bottom:solid 1px #b2b3b5; margin: 0 0 20px 0; }
+    fieldset { border:none; width:320px;}
+    legend { font-size:18px; margin:0px; padding:10px 0px; color:#b0232a; font-weight:bold;}
+    label { display:block; margin:15px 0 5px;}
+    input[type=text], input[type=password] { width:300px; padding:5px; border:solid 1px #000;}
+    .prev, .next { background-color:#b0232a; padding:5px 10px; color:#fff; text-decoration:none;}
+    .prev:hover, .next:hover { background-color:#000; text-decoration:none;}
+    .prev { float:left;}
+    .next { float:right;}
+    #steps { list-style:none; width:100%; overflow:hidden; margin:0px; padding:0px;}
+    #steps li {font-size:24px; float:left; padding:10px; color:#b0b1b3;}
+    #steps li span {font-size:11px; display:block;}
+    #steps li.current { color:#000;}
+    #makeWizard { background-color:#b0232a; color:#fff; padding:5px 10px; text-decoration:none; font-size:18px;}
+    #makeWizard:hover { background-color:#000;}
+</style>
+
+<hr/>
+<script type="text/javascript" src="formToWizard.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#SignupForm").formToWizard({ submitButton: 'SaveAccount' })
+    });
+</script>
+  
+<div class="container">
+
+<aside>
+	We kindly request the information below. <br/>
+	You are happily invited to discuss your project beforehand. <br/>
+A discussion beforehand is meant to save a lot of time which has to be invested afterwards, in case necessary information was missing to start the analysis. Additionally, it would be important to figure out if the data analysis you are looking forward can be accomplished at all by the experiment you are going to do (imagine you make experiments and it turns out afterwards that the analysis you would like to do requires more data or samples – a lot of time, man power and money is lost). Furthermore, the data are existing even if a member of a lab might leave, so that it is absolutely essential to have the basic data documentation as requested below for possible future tasks (e.g. re-analysis).	
+</aside>
+<section>
+
+
+
+    <%= form_for [@project, @miane], :html => {:id => "SignupForm"} do |f| %>
+
+    <fieldset>
+        <legend>Aims of the Project</legend>
+    	<p><%= f.text_area :aims, placeholder: "Enter the aim of the project" %></p>
+    	<p><%= f.text_area :expected_result, placeholder: "What result do you expect?"%></p>
+    </fieldset>        	
+    <fieldset>
+        <legend>Alternatives</legend>
+    	<p><%= f.text_area :why_ngs, placeholder: "Why a NGS experiment?" %></p>
+    	<p><%= f.text_area :possible_alternative, placeholder: "Is there a possible alternative?" %></p>
+        
+    </fieldset> 
+    <fieldset>
+        <legend>Approach</legend>                
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  Genome wide
+</label>
+<label class="radio">
+  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+  Amplicon
+</label>        
+    
+        
+    </fieldset> 
+    <fieldset>
+        <legend>Control</legend>    	
+    	<p><%= f.text_area :positive_control, placeholder: "Positive control?" %></p>
+        <p><%= f.text_area :negative_control, placeholder: "Negative control?" %></p>
+    </fieldset> 
+
+<!--
+    <p>
+        <input id="SaveAccount" type="button" value="Submit form" />
+    </p>
+-->
+    <%= f.submit %>
+
+    <% end %>
+</section>
+
+</div>

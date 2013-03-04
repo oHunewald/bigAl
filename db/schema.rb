@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220144412) do
+ActiveRecord::Schema.define(:version => 20130226094449) do
+
+  create_table "mianes", :force => true do |t|
+    t.string   "aims"
+    t.string   "expected_result"
+    t.string   "why_ngs"
+    t.string   "possible_alternative"
+    t.string   "approach"
+    t.string   "positive_control"
+    t.string   "negative_control"
+    t.string   "replicates"
+    t.string   "reference_dataset"
+    t.string   "possible_pittfalls"
+    t.string   "needs_qc"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "project_id"
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "name"
