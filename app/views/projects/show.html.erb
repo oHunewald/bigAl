@@ -1,22 +1,27 @@
 <div class="container">
 
 <aside>
+
+	<article>
+		<hgroup>
+			<h2>Project details:</h2>
+		</hgroup>		
+		<p style="color: #6E6E6E">Name: <%= @project.name %></p>
+		<p style="color: #6E6E6E">State: <%= @project.state %></p>
+		<p style="color: #6E6E6E">Owner: <%= @project.user.name %></p>
+		<p style="color: #6E6E6E">Created at: <%= @project.created_at.to_date %></p>	
+	</article>
+	<hr />
 	<p><%= link_to "Edit Project", edit_project_path(@project) %></p>
 	<% if !@project.miane %>
 		<p><%= link_to "Miane Information Wizard", new_project_miane_path(@project) %></p>	
+
+		
 	<% end %>
-</aside>
-<section>
-	<article>
-		<hgroup>
-			<h3>Project details:</h3>
-		</hgroup>		
-		<p>Name: <%= @project.name %></p>
-		<p>State: <%= @project.state %></p>
-		<p>Owner: <%= @project.user.name %></p>
-		<p>Created at: <%= @project.created_at.to_date %></p>	
-	</article>
-	<hr />
+	<%else if @project.miane and @project.state == "Incomplete"%>
+			<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>	
+	<%end%>
+	<hr/>	
 	<article>
 			<h3>Change Project State</h3>
 		<p>
@@ -34,6 +39,110 @@
 			<% end %>
 		</p>			
 		</p>
-	</article>	
+	</article>		
+</aside>
+<section>
+	<% if @project.miane %>
+	<article>
+		<h2>Miane Information</h2>
+		<table id="mianes" class="display">
+			<tbody>
+
+				<tr bgcolor="#F2F2F2">
+					<td>
+						Aim:		
+					</td>
+					<td>
+						<%= @project.miane.aims%>		
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Expected Result?:		
+					</td>
+					<td>
+						<%= @project.miane.expected_result%>		
+					</td>
+				</tr>
+				<tr bgcolor="#F2F2F2">
+					<td>
+						Why do you need NGS?:		
+					</td>
+					<td>
+						<%= @project.miane.why_ngs%>		
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Is there a possible Alternative?:		
+					</td>
+					<td>
+						<%= @project.miane.approach%>		
+					</td>
+				</tr>
+
+				<tr bgcolor="#F2F2F2">
+					<td>
+						Approach?:		
+					</td>
+					<td>
+						<%= @project.miane.approach%>		
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Positive Control?:		
+					</td>
+					<td>
+						<%= @project.miane.positive_control%>		
+					</td>
+				</tr>	
+
+				<tr bgcolor="#F2F2F2">
+					<td>
+						Negative Control?:		
+					</td>
+					<td>
+						<%= @project.miane.negative_control%>		
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						Replicates?:		
+					</td>
+					<td>
+						<%= @project.miane.replicates%>		
+					</td>
+				</tr>
+
+				<tr bgcolor="#F2F2F2">
+					<td>
+						Possible Pitfalls?:		
+					</td>
+					<td>
+						<%= @project.miane.possible_pittfalls%>		
+					</td>
+				</tr>																				
+				<tr>
+					<td>
+						Needs for Quality Control?:		
+					</td>
+					<td>
+						<%= @project.miane.needs_qc%>		
+					</td>
+				</tr>								
+
+			</tbody>
+		</table>		
+
+	</article>
+	<% else %>
+		<article>
+			<h1 style="color: #FF0000">No MIANE information exists !</h1>
+		</article>
+	<% end %>
 </section>
 </div>

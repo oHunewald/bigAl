@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   
   def create
     @project = current_user.projects.build(params[:project])
-    @project.state = "incomplete"
+    @project.state = "Incomplete"
     if @project.save
       flash[:notice] = "Project has been created!"
       redirect_to [@user, @project]

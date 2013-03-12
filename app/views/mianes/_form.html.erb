@@ -18,7 +18,6 @@
     #makeWizard:hover { background-color:#000;}
 </style>
 
-<hr/>
 <script type="text/javascript" src="formToWizard.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -28,52 +27,56 @@
   
 <div class="container">
 
-<aside>
-	We kindly request the information below. <br/>
+	We kindly request the information below. 
 	You are happily invited to discuss your project beforehand. <br/>
 A discussion beforehand is meant to save a lot of time which has to be invested afterwards, in case necessary information was missing to start the analysis. Additionally, it would be important to figure out if the data analysis you are looking forward can be accomplished at all by the experiment you are going to do (imagine you make experiments and it turns out afterwards that the analysis you would like to do requires more data or samples – a lot of time, man power and money is lost). Furthermore, the data are existing even if a member of a lab might leave, so that it is absolutely essential to have the basic data documentation as requested below for possible future tasks (e.g. re-analysis).	
-</aside>
+<hr/>
 <section>
-
-
 
     <%= form_for [@project, @miane], :html => {:id => "SignupForm"} do |f| %>
 
     <fieldset>
         <legend>Aims of the Project</legend>
-    	<p><%= f.text_area :aims, placeholder: "Enter the aim of the project" %></p>
+        <p><%= f.label "Aim" %></p>
+    	<p><%= f.text_area :aims, placeholder: "Please describe the aim of your project" %></p>
+        <p><%= f.label "Expected Result" %></p>
     	<p><%= f.text_area :expected_result, placeholder: "What result do you expect?"%></p>
     </fieldset>        	
     <fieldset>
         <legend>Alternatives</legend>
+        <p><%= f.label "Why do you plan a NGS Experiment?" %></p>
     	<p><%= f.text_area :why_ngs, placeholder: "Why a NGS experiment?" %></p>
-    	<p><%= f.text_area :possible_alternative, placeholder: "Is there a possible alternative?" %></p>
-        
+        <p><%= f.label "Is there an alternative?" %></p>
+    	<p><%= f.text_area :possible_alternative, placeholder: "Is there a possible alternative?" %></p>        
     </fieldset> 
     <fieldset>
-        <legend>Approach</legend>                
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-  Genome wide
-</label>
-<label class="radio">
-  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-  Amplicon
-</label>        
-    
-        
+        <legend>Approach</legend>
+        <p><%= f.label "Genome Wide" %></p>
+        <p><%= f.radio_button :approach, 'genome' %></p>
+        <p><%= f.label "Amplicon" %></p>
+        <p><%= f.radio_button :approach, 'amplicon' %></p>
     </fieldset> 
     <fieldset>
-        <legend>Control</legend>    	
+        <legend>Controls</legend>    	
+        <p><%= f.label "Positive Control" %></p>
     	<p><%= f.text_area :positive_control, placeholder: "Positive control?" %></p>
+        <p><%= f.label "Negative Control" %></p>
         <p><%= f.text_area :negative_control, placeholder: "Negative control?" %></p>
     </fieldset> 
-
-<!--
-    <p>
-        <input id="SaveAccount" type="button" value="Submit form" />
-    </p>
--->
+    <fieldset>
+        <legend>Replicates and Data Sets</legend>       
+        <p><%= f.label "Replicates?" %></p> 
+        <p><%= f.text_area :replicates, placeholder: "Do you use Replicates?" %></p>
+        <p><%= f.label "Do you have a Reference Dataset?" %></p>
+        <p><%= f.text_area :reference_dataset, placeholder: "Please copy and paste in here" %></p>
+    </fieldset>
+    <fieldset>
+        <legend>Extended Information</legend>       
+        <p><%= f.label "Possible Pittfals?" %></p> 
+        <p><%= f.text_area :possible_pittfalls, placeholder: "Can you think of possible Pittfals?" %></p>
+        <p><%= f.label "Quality Control" %></p>
+        <p><%= f.text_area :needs_qc, placeholder: "Do you have any needs concerning quality control?" %></p>
+    </fieldset>
     <%= f.submit %>
 
     <% end %>

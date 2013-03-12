@@ -3,6 +3,10 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_one :miane
   validates :user_id, presence: true
+
+  def change_state(state)
+  	@state = state
+  end
     
   
 end

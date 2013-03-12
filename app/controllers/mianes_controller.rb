@@ -2,19 +2,14 @@ class MianesController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :find_project
 
-	def new
-		
+	def new		
 		@miane = @project.build_miane
 	end
 
 	def create
-
 		@miane = @project.build_miane(params[:miane])
-		#@miane = @Miane.new(params[:miane])
-		#@project.miane = miane
-		logger.debug params
-		logger.debug "*************************************"
-		logger.debug @miane
+		@project.state = "wait for approval"
+		@project.save
 		if @miane.save
 			flash[:notice] = "Successfully created..."
 			logger.debug "saved"
@@ -23,9 +18,18 @@ class MianesController < ApplicationController
 			flash[:alert] = "Failed..."
 			logger.debug "not saved"
 			render :action => "new"
-
-
 		end
+	end
+
+	def edit
+		@miane = @project.miane	
+	end
+
+	def update
+		@project.miane.update_attributes(params[:miane])
+		@project.state = "wait for approval"
+		@project.save
+		redirect_to @project
 	end
 
 	private
