@@ -6,6 +6,11 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def not_approved_projects
+    @projects = Project.find_not_approved
+    render :action => "index"
+  end
+
   def show
     @project = Project.find(params[:id])
     

@@ -8,5 +8,8 @@ class Project < ActiveRecord::Base
   	@state = state
   end
     
+  def self.find_not_approved
+  	self.find(:all, :conditions => {:state => 'wait for approval'})
+  end
   
 end

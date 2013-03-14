@@ -1,0 +1,17 @@
+<%= form_for [@user] do |f| %>
+  
+  <div class="field">
+    <%= f.text_field :name, placeholder: "Name..." %>
+
+	<p>
+
+		<%= f.select :role, [["NgsUser", "NgsUser"],
+							["Moderator", "Moderator"], 
+							["Admin", "Admin"]] %>
+
+		
+	</p>
+
+  </div>
+  <%= f.submit %>
+<% end %>

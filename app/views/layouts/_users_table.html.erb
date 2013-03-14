@@ -1,0 +1,30 @@
+<table id="users" class="display">
+	<thead>
+		<tr>
+			<th>
+				User Name:
+			</th>
+			<th>
+				Role:
+			</th>
+			<th>
+				Created at:
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td>
+				<%= link_to user.name, user %>	
+			</td>
+			<td>
+				<%= user.role %>		
+			</td>
+			<td>
+				<%= user.created_at %>		
+			</td>
+		</tr>		
+		<%end%>
+	</tbody>
+</table>
