@@ -20,4 +20,9 @@ describe Project do
     before { @project.user_id = nil }
     it { should_not be_valid }
   end
+
+  describe "with blank name" do
+    before { @project.name = " " }
+    it { should_not be_valid }
+  end
 end

@@ -7,7 +7,7 @@ describe "User pages" do
   
   describe "sign in" do
     
-    before { visit new_user_session_path}
+    before { visit new_user_session_path }
     
     describe "with valid information" do
       let(:user) {FactoryGirl.create(:user)}
@@ -24,6 +24,22 @@ describe "User pages" do
       it { should_not have_link('Sign in', href: new_user_session_path) }  
       it { should_not have_button('Sign in') }
     end
+
+    describe "with invalid information" do
+      let(:user) {FactoryGirl.create(:user)}
+
+      before do
+        user.password = " "
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+
+        it { should_not have_selector('li', text: user.name) }
+        it { should_not have_link('Sign_out', href: destroy_user_session_path) }
+        it { should have_link('Sign in', href: new_user_session_path) }
+      end
+    
+    end
+
   end  
 end
 
