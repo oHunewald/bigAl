@@ -1,18 +1,19 @@
 <div class="container">
 
-<aside>
+<aside class="myAside">
 
 	<article>
 		<hgroup>
 			<h2>Project details:</h2>
 		</hgroup>		
-		<p style="color: #6E6E6E">Name: <%= @project.name %></p>
-		<p style="color: #6E6E6E">State: <%= @project.state %></p>
-		<p style="color: #6E6E6E">Owner: <%= @project.user.name %></p>
-		<p style="color: #6E6E6E">Created at: <%= @project.created_at.to_date %></p>	
+		<p>Name: <%= @project.name %></p>
+		<p>State: <%= @project.state %></p>
+		<p>Owner: <%= @project.user.name %></p>
+		<p>Created at: <%= @project.created_at.to_date %></p>	
 	</article>
 	<hr />
 	<p><%= link_to "Edit Project", edit_project_path(@project) %></p>
+	<p><%= link_to "Create new Sample", new_project_sample_path(@project) %></p>
 	<% if !@project.miane %>
 		<p><%= link_to "Miane Information Wizard", new_project_miane_path(@project) %></p>	
 
@@ -24,6 +25,7 @@
 	<hr/>
 	<% if user_signed_in? and current_user.role == 'Moderator' %>	
 	<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>	
+
 	<article>
 			<h3>Change Project State</h3>
 		<p>
@@ -48,11 +50,11 @@
 	<% if @project.miane %>
 	<article>
 		<h2>Miane Information</h2>
-		<table id="mianes" class="display">
-			<tbody>
+		<table id="miane" class="alternateTable">
+			<tbody class="mytBody">
 
-				<tr bgcolor="#F2F2F2">
-					<td>
+				<tr class="alt">
+					<td width="30%">
 						Aim:		
 					</td>
 					<td>
@@ -60,16 +62,16 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
-						Expected Result?:		
+					<td width="30%">
+						Expected Result:		
 					</td>
 					<td>
 						<%= @project.miane.expected_result%>		
 					</td>
 				</tr>
-				<tr bgcolor="#F2F2F2">
-					<td>
-						Why do you need NGS?:		
+				<tr class="alt">
+					<td width="30%">
+						Why do you need NGS:		
 					</td>
 					<td>
 						<%= @project.miane.why_ngs%>		
@@ -77,17 +79,17 @@
 				</tr>
 
 				<tr>
-					<td>
-						Is there a possible Alternative?:		
+					<td width="30%">
+						Is there a possible Alternative:		
 					</td>
 					<td>
 						<%= @project.miane.approach%>		
 					</td>
 				</tr>
 
-				<tr bgcolor="#F2F2F2">
-					<td>
-						Approach?:		
+				<tr class="alt">
+					<td width="30%">
+						Approach:		
 					</td>
 					<td>
 						<%= @project.miane.approach%>		
@@ -95,17 +97,17 @@
 				</tr>
 
 				<tr>
-					<td>
-						Positive Control?:		
+					<td width="30%">
+						Positive Control:		
 					</td>
 					<td>
 						<%= @project.miane.positive_control%>		
 					</td>
 				</tr>	
 
-				<tr bgcolor="#F2F2F2">
-					<td>
-						Negative Control?:		
+				<tr class="alt">
+					<td width="30%">
+						Negative Control:		
 					</td>
 					<td>
 						<%= @project.miane.negative_control%>		
@@ -113,25 +115,25 @@
 				</tr>
 
 				<tr>
-					<td>
-						Replicates?:		
+					<td width="30%">
+						Replicates:		
 					</td>
 					<td>
 						<%= @project.miane.replicates%>		
 					</td>
 				</tr>
 
-				<tr bgcolor="#F2F2F2">
-					<td>
-						Possible Pitfalls?:		
+				<tr class="alt">
+					<td width="30%">
+						Possible Pitfalls:		
 					</td>
 					<td>
 						<%= @project.miane.possible_pittfalls%>		
 					</td>
 				</tr>																				
 				<tr>
-					<td>
-						Needs for Quality Control?:		
+					<td width="30%">
+						Needs for Quality Control:		
 					</td>
 					<td>
 						<%= @project.miane.needs_qc%>		
@@ -143,9 +145,12 @@
 
 	</article>
 	<% else %>
-		<article>
-			<h1 style="color: #FF0000">No MIANE information exists !</h1>
+		<article class="vim">
+			<h1>No MIANE information exists !</h1>
 		</article>
 	<% end %>
+</section>
+<section>
+	<%= render 'layouts/samples_table' %>
 </section>
 </div>

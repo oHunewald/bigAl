@@ -126,10 +126,30 @@ footer {
 /* SIDEBAR ------------------------------------------ */
  
 aside {
-  width: 300px;
+  width: 200px;
   padding: 0 15px;
   margin: 0 0 10px 0;
   float: left;
+
+
+}
+
+.myAside {
+
+  h2 {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-align: left;
+    font-weight: normal;
+    color: #696969;
+  }
+
+  width: 300px;
+  padding: 0 10px;
+  margin: 0 0 10px 0;
+  float: left;
+  color: #696969  
 }
 
 #error_explanation {
@@ -145,6 +165,40 @@ aside {
   @extend .error;
  }
 
+.vim {
+
+  h1 {
+  padding-top: 50px;
+  font-size: 2em;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: red;
+  }
+}
+
+
 .td[value="Incomplete"] {
-    color: red;
+      color: red;
+  }
+
+
+.alternateTable {
+
+  tr.alt td 
+  {
+  
+  background-color:#EAF2D3;
+
+  }
+
+  tr td {
+    
+    color:#696969;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+  }
+
+
 }

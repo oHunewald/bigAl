@@ -1,0 +1,11 @@
+<%= form_for [@project, @sample] do |f| %>
+	<div class="field">
+		<p>Name:</p>
+		<p><%= f.text_field :name, placeholder: "Sample Name..." %></p>
+		<p>Size:</p>
+		<p><%= f.text_field :size, placeholder: "Sample Size..." %></p>
+		<p>Quantity:</p>
+		<p><%= f.text_field :quantity, placeholder: "Quantity..." %></p>
+	</div>
+	<%= f.submit %>
+<% end %>

@@ -1,5 +1,7 @@
 BigAl::Application.routes.draw do
 
+  get "samples/new"
+
   devise_for :users
 
   authenticated :user do
@@ -10,7 +12,7 @@ BigAl::Application.routes.draw do
 
   resources :projects do
     resources :mianes
-    
+    resources :samples
   end
   
   resources :states do

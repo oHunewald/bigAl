@@ -1,0 +1,30 @@
+<table id="samples" class="display">
+	<thead>
+		<tr>
+			<th>
+				Sample Name
+			</th>
+			<th>
+				Size
+			</th>
+			<th>
+				Quantity
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= @samples.each do |sample| %>
+			<tr>
+				<td>
+					<%= link_to sample.name, project_sample_path(@project, sample) %>
+				</td>
+				<td>
+					<%= sample.size %>
+				</td>
+				<td>
+					<%= sample.quantity %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
