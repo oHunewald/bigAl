@@ -10,6 +10,9 @@
 			<th>
 				Quantity
 			</th>
+			<th>
+
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -23,6 +26,10 @@
 				</td>
 				<td>
 					<%= sample.quantity %>
+				</td>
+				<td>
+					<%= link_to 'Del', project_sample_path(@project, sample), 
+						:confirm => 'Are you sure?', :method => :delete %>
 				</td>
 			</tr>
 		<% end %>

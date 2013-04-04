@@ -19,15 +19,43 @@ class SamplesController < ApplicationController
 
 	def create
 		 @project = Project.find(params[:project_id])
-		 @sample =  @project.samples.build(params[:sample])
+		 
+		 #@number = params[:extraparam.value]
 
-		 if @sample.save
-		 	flash[:notice] = "Sample has been created!"
-		 	redirect_to [@project]
-		 else
-		 	flash[:alert] = "Sample has not been created!"
-		 	render :action => "new"
+		 # if params[:extraparam] =="amount"
+		 # 	logger.debug "it works"
+		 # else
+		 # 	logger.debug "it doesn't work"
+
+		 # end
+
+		 # if params[:name] == "46464"
+		 # 	@number = params[:name].to_i
+		 # 	logger.debug "it works with text fields directly"
+		 # 	logger.debug @number
+		 # else
+		 # 	logger.debug "it doesn't work"
+
+		 # end
+
+		 @number = params[:amount].to_i
+
+		 for n in 1..@number do
+		 	@sample =  @project.samples.build(params[:sample])
+		 	@sample.name = @sample.name + "_" + n.to_s
+		 	@sample.save
 		 end
+
+		 redirect_to [@project]
+
+		 # if @sample.save
+		 # 	flash[:notice] = "Sample has been created!"
+		 # 	redirect_to [@project]
+		 # else
+		 # 	flash[:alert] = "Sample has not been created!"
+		 # 	render :action => "new"
+		 # end
+
 	end
 
 	def show
@@ -46,5 +74,12 @@ class SamplesController < ApplicationController
 		@sample.update_attributes(params[:sample])
 		flash[:notice] = "Successfully updated..."
 		redirect_to [@project, @sample]
+	end
+
+	def destroy
+		@project = Project.find(params[:project_id])
+		@project.samples.find(params[:id]).destroy
+		redirect_to [@project]
+
 	end
 end
