@@ -1,18 +1,26 @@
 BigAl::Application.routes.draw do
 
+  get "libraries/index"
+
+  get "libraries/new"
+
+  get "librarys/index"
+
   get "samples/new"
 
   devise_for :users
 
   authenticated :user do
-    root to: 'static_pages#home'
+    root to: 'static_pages#news'
   end
 
   root to: 'static_pages#home'
 
   resources :projects do
     resources :mianes
-    resources :samples
+    resources :samples do
+      resources :libraries
+    end
   end
   
   resources :states do

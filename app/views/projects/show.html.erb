@@ -22,7 +22,7 @@
 	<%else if @project.miane and @project.state == "Incomplete"%>
 			<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>	
 	<%end%>
-	<hr/>
+
 	<% if user_signed_in? and current_user.role == 'Moderator' %>	
 	<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>	
 
@@ -150,6 +150,7 @@
 		</article>
 	<% end %>
 </section>
+<hr/>
 <section>
 	<%= render 'layouts/samples_table' %>
 </section>

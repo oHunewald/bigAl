@@ -32,7 +32,9 @@ textarea {
 
 }
 
-
+.left {
+    float: left;    
+}
 
 .center {
   text-align: center;
@@ -187,9 +189,7 @@ aside {
 
   tr.alt td 
   {
-  
   background-color:#EAF2D3;
-
   }
 
   tr td {
@@ -199,6 +199,15 @@ aside {
     padding-bottom: 2px;
     padding-left: 8px;
   }
+}
+
+#myTwoColumn {
 
 
+  aside {
+    width: 300px;
+    padding: 0 15px;
+    margin: 0 0 10px 0;
+    float: left;
+  }  
 }

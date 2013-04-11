@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403073155) do
+ActiveRecord::Schema.define(:version => 20130408074039) do
+
+  create_table "libraries", :force => true do |t|
+    t.string   "number"
+    t.string   "size_pcr"
+    t.integer  "exp_size_incl_adaptors"
+    t.integer  "size_with_adaptors"
+    t.integer  "pmol"
+    t.integer  "desired_concentration"
+    t.float    "mix_1"
+    t.float    "mix_2"
+    t.integer  "sample_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
 
   create_table "mianes", :force => true do |t|
     t.string   "aims"

@@ -1,0 +1,61 @@
+<table id="libraries" class="display">
+	<thead>
+		<tr>
+			<th>
+				Library Number
+			</th>
+			<th>
+				Size PCR Product
+			</th>
+			<th>
+				Exp. Size incl. Adaptors
+			</th>
+			<th>
+				Size with Adaptors
+			</th>
+			<th>
+				pmol/L (run1)
+			</th>
+			<th>
+				Desired Concentration pmol/L
+			</th>
+			<th>	
+				1ul of Sample
+			</th>	
+			<th>
+				5ul of Sample
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @libraries.each do |library| %>
+			<tr>
+				<td>
+					<%= link_to library.number, 
+						project_sample_library_path(@project, @sample, library)%>
+				</td>
+				<td>
+					<%= library.size_pcr %>
+				</td>
+				<td>
+					<%= library.exp_size_incl_adaptors %>
+				</td>
+				<td>
+					<%= library.size_with_adaptors %>
+				</td>
+				<td>
+					<%= library.pmol %>
+				</td>
+				<td>
+					<%= library.desired_concentration %>
+				</td>
+				<td>
+					<%= library.mix_1 %>
+				</td>
+				<td>
+					<%= library.mix_2 %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

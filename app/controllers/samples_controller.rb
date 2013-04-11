@@ -61,6 +61,7 @@ class SamplesController < ApplicationController
 	def show
 		@project = Project.find(params[:project_id])
 		@sample =  @project.samples.find(params[:id])
+		@libraries = @sample.libraries
 	end
 
 	def edit

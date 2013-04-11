@@ -16,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<%= @samples.each do |sample| %>
+		<% @samples.each do |sample| %>
 			<tr>
 				<td>
 					<%= link_to sample.name, project_sample_path(@project, sample) %>
@@ -28,8 +28,10 @@
 					<%= sample.quantity %>
 				</td>
 				<td>
+					<% if !sample.libraries.any?%>
 					<%= link_to 'Del', project_sample_path(@project, sample), 
 						:confirm => 'Are you sure?', :method => :delete %>
+					<% end %>
 				</td>
 			</tr>
 		<% end %>

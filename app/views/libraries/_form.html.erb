@@ -1,0 +1,25 @@
+<%= form_for [@project, @sample, @library] do |f| %>
+	<div id="myTwoColumn">
+			<aside>
+				<p>Name:</p>
+				<p><%= f.text_field :number %></p>
+				<p>Size PCR Product:</p>
+				<p><%= f.text_field :size_pcr %></p>
+				<p>Exp. Size including Adaptors:</p>
+				<p><%= f.text_field :exp_size_incl_adaptors %></p>
+				<p>Size with Adaptors:</p>
+				<p><%= f.text_field :size_with_adaptors %></p>			
+			</aside>		
+			<article>
+				<p>pmol/L (run1):</p>
+				<p><%= f.text_field :pmol %></p>
+				<p>Desired concentration pmol/L for pooling:</p>
+				<p><%= f.text_field :desired_concentration %></p>
+				<p>1ul of Sample in x ul low TE:</p>
+				<p><%= f.text_field :mix_1 %></p>
+				<p>5ul of Sample in x ul low TE:</p>
+				<p><%= f.text_field :mix_2 %></p>
+			</article>
+	</div>
+	<%= f.submit %>
+<% end %>

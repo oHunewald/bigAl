@@ -3,6 +3,8 @@ class Sample < ActiveRecord::Base
 
   belongs_to :project
 
+  has_many :libraries
+
   validates :project_id, presence: true
   validates :name, presence: true
   validates :size, presence: true

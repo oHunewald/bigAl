@@ -1,0 +1,26 @@
+<h2>Library</h2>
+<hr/>
+<div id="myTwoColumn">
+		<aside>
+			<p>Name:</p>
+			<p><%= @library.number %></p>
+			<p>Size PCR Product:</p>
+			<p><%= @library.size_pcr %></p>
+			<p>Exp. Size including Adaptors:</p>
+			<p><%= @library.exp_size_incl_adaptors %></p>
+			<p>Size with Adaptors:</p>
+			<p><%= @library.size_with_adaptors %></p>			
+		</aside>		
+		<article>
+			<p>pmol/L (run1):</p>
+			<p><%= @library.pmol %></p>
+			<p>Desired concentration pmol/L for pooling:</p>
+			<p><%= @library.desired_concentration %></p>
+			<p>1ul of Sample in x ul low TE:</p>
+			<p><%= @library.mix_1 %></p>
+			<p>5ul of Sample in x ul low TE:</p>
+			<p><%= @library.mix_2 %></p>
+		</article>
+</div>
+<p><%= link_to "Edit Library", 
+	edit_project_sample_library_path(@project, @sample, @library) %></p>
