@@ -1,10 +1,10 @@
 BigAl::Application.routes.draw do
 
+  root to: 'static_pages#home'
+
   get "libraries/index"
 
   get "libraries/new"
-
-  get "librarys/index"
 
   get "samples/new"
 
@@ -14,13 +14,18 @@ BigAl::Application.routes.draw do
     root to: 'static_pages#news'
   end
 
-  root to: 'static_pages#home'
+  
 
   resources :projects do
     resources :mianes
     resources :samples do
       resources :libraries
     end
+  end
+
+  resources :templates do
+    resources :libraries
+
   end
   
   resources :states do
@@ -30,6 +35,7 @@ BigAl::Application.routes.draw do
   
   resources :users do
     resources :projects  
+    resources :templates
   end
   
 
@@ -37,6 +43,9 @@ BigAl::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/not_approved_projects' => 'projects#not_approved_projects',
         :as => 'not_approved_projects'
+
+  match '/update_libraries', to: 'templates#update_libraries', 
+        :as => 'update_libraries'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,66 @@
+<table id="templates" class="display">
+	<thead>
+		<tr>
+			<th>
+				Ot kit used:
+			</th>
+			<th>
+				pmol/L
+			</th>
+			<th>
+				pmol/L pool
+			</th>
+			<th>
+				pooling
+			</th>
+			<th>
+				qbit before es
+			</th>
+			<th>
+				qbit after es
+			</th>
+			<th>
+				tdf
+			</th>
+			<th>
+				tdf pool
+			</th>
+			<th>
+				comment
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @templates.each do |template| %>
+			<tr>
+				<td>
+					<%= template.ot_kit_used %>
+				</td>
+				<td>
+					<%= template.pmol_l %>
+				</td>
+				<td>
+					<%= template.pmol_l_pool %>
+				</td>
+				<td>
+					<%= template.pooling %>
+				</td>
+				<td>
+					<%= template.qbit_before_es %>
+				</td>
+				<td>
+					<%= template.qbit_after_es %>
+				</td>
+				<td>
+					<%= template.tdf %>
+				</td>
+				<td>
+					<%= template.tdf_pool %>
+				</td>
+				<td>
+					<%= template.commit %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

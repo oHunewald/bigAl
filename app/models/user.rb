@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name, :email, :case_sensitive => false
   
   has_many :projects
-
+  has_many :templates
+  has_many :libraries
 
   private
     def init_role

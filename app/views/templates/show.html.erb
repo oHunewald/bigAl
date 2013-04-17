@@ -1,0 +1,91 @@
+<h2>Template</h2>
+<hr/>
+<div id="myTwoColumn">
+	<aside>
+		<p>Template for user:</p>
+		<p><%= @user.name %></p>
+		<p>Ot kit used:</p>
+		<p><%= @template.ot_kit_used %></p>
+		<p>pmol/L:</p>
+		<p><%= @template.pmol_l%></p>
+		<p>pmol/L pool:</p>
+		<p><%= @template.pmol_l_pool %></p>
+		<p>Pooling:</p>
+		<p><%= @template.pooling %></p>
+	</aside>
+	<article>
+		<p>Qubit after ES:</p>
+		<p><%= @template.qbit_after_es %></p>
+		<p>Qubit before ES:</p>
+		<p><%= @template.qbit_before_es %></p>		
+		<p>TDF:</p>
+		<p><%= @template.tdf %></p>
+		<p>TDF pool:</p>
+		<p><%= @template.tdf_pool %></p>		
+		<p>Comment:</p>
+		<p><%= @template.commit %></p>
+		<p>Done by:</p>
+		<p><%= @responsible.name %></p>
+	</article>
+	<hr/>
+<table>
+	<thead>
+		<tr>
+			<th>
+				Library Number
+			</th>
+			<th>
+				Size PCR Product
+			</th>
+			<th>
+				Exp. Size incl. Adaptors
+			</th>
+			<th>
+				Size with Adaptors
+			</th>
+			<th>
+				pmol/L (run1)
+			</th>
+			<th>
+				Desired Concentration pmol/L
+			</th>
+			<th>	
+				1ul of Sample
+			</th>	
+			<th>
+				5ul of Sample
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @libraries.each do |library| %>
+			<tr>
+				<td>
+					<%= library.number%>
+				</td>
+				<td>
+					<%= library.size_pcr %>
+				</td>
+				<td>
+					<%= library.exp_size_incl_adaptors %>
+				</td>
+				<td>
+					<%= library.size_with_adaptors %>
+				</td>
+				<td>
+					<%= library.pmol %>
+				</td>
+				<td>
+					<%= library.desired_concentration %>
+				</td>
+				<td>
+					<%= library.mix_1 %>
+				</td>
+				<td>
+					<%= library.mix_2 %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>

@@ -23,7 +23,8 @@ class LibrariesController < ApplicationController
   	@project = Project.find(params[:project_id])
   	@sample = @project.samples.find(params[:sample_id])
 
-  	@library = @sample.libraries.build(params[:library])  	
+  	@library = @sample.libraries.build(params[:library])  
+    @library.user_id = current_user.id	
 
   	if @library.save
   		flash[:notice] = "Successfully created..."

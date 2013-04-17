@@ -1,0 +1,46 @@
+<%= form_for [@user, @template] do |f| %>
+	<div id="myTwoColumn">
+		<aside>
+			<p>Create Template for:</p>
+			<p>
+			<%= 
+			  select_tag :first_select, 
+			      options_from_collection_for_select(@users, "id", "name"), # your options for this select box
+			      :'data-remote' => 'true', # important for UJS
+			      :'data-url' => url_for(:controller => 'templates', :action => 'update_libraries'), # we get the data from here!
+			      :'data-type' => 'json', # tell jQuery to parse the response as JSON!
+			      :'prompt' => 'Please select User'
+			%>
+			</p>			
+			<p>Ot kit used:</p>
+			<p><%= f.text_field :ot_kit_used %></p>
+			<p>pmol/L:</p>
+			<p><%= f.text_field :pmol_l %></p>
+			<p>pmol/L pool:</p>
+			<p><%= f.text_field :pmol_l_pool %></p>
+			<p>Pooling:</p>
+			<p><%= f.text_field :pooling %></p>
+		</aside>
+		<article>
+			<p>Qubit after ES:</p>
+			<p><%= f.text_field :qbit_after_es %></p>
+			<p>Qubit before ES:</p>
+			<p><%= f.text_field :qbit_before_es %></p>		
+			<p>TDF:</p>
+			<p><%= f.text_field :tdf %></p>
+			<p>TDF pool:</p>
+			<p><%= f.text_field :tdf_pool %></p>		
+			<p>Comment:</p>
+			<p><%= f.text_area :commit %></p>
+			<p>Select Libraries:</p>
+			<%= 
+			   select_tag :second_select, # name of selectbox
+			       "<option>Please select something from first select!</option>",
+			       :multiple => true, :size => 10
+			%>
+			</p>
+		</article>
+	</div>
+	<%= f.submit %>
+<% end %>
+

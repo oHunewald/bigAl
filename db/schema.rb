@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408074039) do
+ActiveRecord::Schema.define(:version => 20130416112844) do
 
   create_table "libraries", :force => true do |t|
     t.string   "number"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20130408074039) do
     t.integer  "sample_id"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.integer  "user_id"
+    t.integer  "template_id"
   end
 
   create_table "mianes", :force => true do |t|
@@ -59,6 +61,22 @@ ActiveRecord::Schema.define(:version => 20130408074039) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "project_id"
+  end
+
+  create_table "templates", :force => true do |t|
+    t.string   "ot_kit_used"
+    t.float    "pmol_l"
+    t.string   "tdf"
+    t.date     "pooling"
+    t.float    "pmol_l_pool"
+    t.string   "tdf_pool"
+    t.string   "qbit_before_es"
+    t.string   "qbit_after_es"
+    t.string   "commit"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "responsible_id"
   end
 
   create_table "users", :force => true do |t|
