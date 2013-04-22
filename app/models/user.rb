@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :templates
   has_many :libraries
+  has_many :messages
+  has_many :sharedmessages
 
   private
     def init_role

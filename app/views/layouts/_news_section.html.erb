@@ -1,0 +1,7 @@
+<% Sharedmessage.get_new_messages.each do |info| %>
+	<p class="myTitle"><%= info.created_at %>, <%= info.user.name %> wrote:</p>
+	<p><%= info.title %></p>
+
+	<p><%= info.content %></p>
+	<hr>
+<% end %>

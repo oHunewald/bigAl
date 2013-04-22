@@ -1,20 +1,15 @@
 BigAl::Application.routes.draw do
 
-  root to: 'static_pages#home'
-
-  get "libraries/index"
-
-  get "libraries/new"
-
-  get "samples/new"
-
-  devise_for :users
 
   authenticated :user do
     root to: 'static_pages#news'
   end
 
-  
+  root to: 'static_pages#home'
+
+  devise_for :users
+
+  resources :sharedmessages
 
   resources :projects do
     resources :mianes
@@ -36,11 +31,13 @@ BigAl::Application.routes.draw do
   resources :users do
     resources :projects  
     resources :templates
-  end
-  
+    resources :sharedmessages
+  end 
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
+
+
   match '/not_approved_projects' => 'projects#not_approved_projects',
         :as => 'not_approved_projects'
 

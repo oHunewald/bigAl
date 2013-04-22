@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416112844) do
+ActiveRecord::Schema.define(:version => 20130419074640) do
+
+  create_table "information", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "libraries", :force => true do |t|
     t.string   "number"
@@ -27,6 +35,15 @@ ActiveRecord::Schema.define(:version => 20130416112844) do
     t.datetime "updated_at",             :null => false
     t.integer  "user_id"
     t.integer  "template_id"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "sender_id"
+    t.string   "title"
+    t.string   "context"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "mianes", :force => true do |t|
@@ -61,6 +78,15 @@ ActiveRecord::Schema.define(:version => 20130416112844) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "project_id"
+  end
+
+  create_table "sharedmessages", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "archive"
   end
 
   create_table "templates", :force => true do |t|

@@ -1,0 +1,9 @@
+<%= form_for [@user, @sharedmessage] do |f| %>
+	<div class="field">
+		<p>Enter the Title</p>
+		<p><%= f.text_field :title, placeholder: "Title..." %></p>
+		<p>Enter the News</p>
+		<p><%= f.text_area :content, placeholder: "Content..." %></p>
+	</div>
+	<%= f.submit %>
+<% end %>

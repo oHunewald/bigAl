@@ -37,10 +37,36 @@ textarea {
 }
 
 .center {
+
   text-align: center;
   h1 {
     margin-bottom: 10px;
   }
+}
+
+p.myTitle {
+  font-size: 1.0em;
+  letter-spacing: -1px;
+  font-weight: normal;
+  color: $grayLight;  
+}
+
+.myNews {
+
+  aside {
+    text-align: center;
+    with:200px;
+    height:300px;
+    overflow: auto;
+  }
+
+  article {
+    text-align: center;
+    width:600px;
+    height:300px;
+    overflow: auto;
+  }
+  
 }
 
 /* typography */

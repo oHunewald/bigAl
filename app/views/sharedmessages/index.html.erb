@@ -1,0 +1,10 @@
+<div class="center hero-unit">
+	<h2>All News</h2>
+	<% @sharedmessages.each do |m| %>
+		<p class="myTitle"><%= m.created_at %>, <%= m.user.name %> wrote:</p>
+		<p><%= m.title %></p>
+
+		<p><%= m.content %></p>
+		<hr/>
+	<% end %>
+</div>
