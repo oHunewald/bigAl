@@ -13,20 +13,20 @@
 	</article>
 	<hr />
 	<p><%= link_to "Edit Project", edit_project_path(@project) %></p>
-	<p><%= link_to "Create new Sample", new_project_sample_path(@project) %></p>
-	<% if !@project.miane %>
-		<p><%= link_to "Miane Information Wizard", new_project_miane_path(@project) %></p>	
-
-		
+	<%if !@project.miane.nil? and @project.state == "ready" %>
+		<p><%= link_to "Create new Sample", new_project_sample_path(@project) %></p>
 	<% end %>
-	<%else if @project.miane and @project.state == "Incomplete"%>
-			<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>	
+	<% if @project.miane.nil? %>
+		<p><%= link_to "Miane Information Wizard", new_project_miane_path(@project) %></p>			
+	<% end %>
+	
+	<%if !@project.miane.nil? and @project.state == "Incomplete" %>
+			<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>
+	<% elsif !@project.miane.nil? and current_user.role == 'Moderator' %>				<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>
 	<%end%>
-
-	<% if user_signed_in? and current_user.role == 'Moderator' %>	
-	<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>	
-
+	<% if current_user.role == 'Moderator' %>
 	<article>
+		<hr>
 			<h3>Change Project State</h3>
 		<p>
 		<p>
@@ -44,7 +44,7 @@
 		</p>			
 		</p>
 	</article>
-	<% end %>		
+	<% end %>
 </aside>
 <section>
 	<% if @project.miane %>

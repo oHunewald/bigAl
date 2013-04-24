@@ -1,6 +1,51 @@
+<script>
+	$(function() {
+
+		$('#opt_1').checked = false;
+		$('#opt_2').checked = false;
+
+		$('#pool').hide();
+		$('#none_pool').hide();
+
+		$('#myForm').on('click', function() {
+			if ($('#opt_1').is(':checked')) {
+				$('#pool').show();
+				$('#none_pool').hide();
+			}
+			else if ($('#opt_2').is(':checked')) {
+				$('#pool').hide();
+				$('#none_pool').show();	
+			}
+		});
+	});
+</script>
+<div id="myForm">
+	<input id="opt_1" type="radio" name="select" value="pool" > Pool<br>
+	<input id="opt_2" type="radio" name="select" value="none_pool" > No Pool<br>
+</div>
+<hr>
+
 <%= form_for [@user, @template] do |f| %>
+
 	<div id="myTwoColumn">
-		<aside>
+
+			<div id="pool">
+				<p>TDF pool:</p>
+				<p><%= f.text_field :tdf_pool %></p>		
+				<p>pmol/L pool:</p>
+				<p><%= f.text_field :pmol_l_pool %></p>
+				<p>Pooling Date:</p>
+				<p><%= f.text_field :pooling %></p>	
+				<hr>			
+			</div>
+			<div id="none_pool">
+				<p>TDF:</p>
+				<p><%= f.text_field :tdf %></p>
+				<p>pmol/L:</p>
+				<p><%= f.text_field :pmol_l %></p>		
+				<hr>	
+			</div>
+
 			<p>Create Template for:</p>
 			<p>
 			<%= 
@@ -14,22 +59,11 @@
 			</p>			
 			<p>Ot kit used:</p>
 			<p><%= f.text_field :ot_kit_used %></p>
-			<p>pmol/L:</p>
-			<p><%= f.text_field :pmol_l %></p>
-			<p>pmol/L pool:</p>
-			<p><%= f.text_field :pmol_l_pool %></p>
-			<p>Pooling:</p>
-			<p><%= f.text_field :pooling %></p>
-		</aside>
-		<article>
 			<p>Qubit after ES:</p>
 			<p><%= f.text_field :qbit_after_es %></p>
 			<p>Qubit before ES:</p>
 			<p><%= f.text_field :qbit_before_es %></p>		
-			<p>TDF:</p>
-			<p><%= f.text_field :tdf %></p>
-			<p>TDF pool:</p>
-			<p><%= f.text_field :tdf_pool %></p>		
+
 			<p>Comment:</p>
 			<p><%= f.text_area :commit %></p>
 			<p>Select Libraries:</p>
@@ -39,8 +73,11 @@
 			       :multiple => true, :size => 10
 			%>
 			</p>
-		</article>
+
+
+
 	</div>
 	<%= f.submit %>
 <% end %>
+
 

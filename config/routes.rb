@@ -36,7 +36,8 @@ BigAl::Application.routes.draw do
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
-
+  match '/calendar', to: 'static_pages#calendar'
+  match '/gantt', to: 'static_pages#gantt'
 
   match '/not_approved_projects' => 'projects#not_approved_projects',
         :as => 'not_approved_projects'

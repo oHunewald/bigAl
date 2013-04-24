@@ -69,6 +69,13 @@ p.myTitle {
   
 }
 
+.allNews {
+  text-align: center;
+  width:600px;
+  height:300px;
+  overflow: auto;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -236,4 +243,5 @@ aside {
     margin: 0 0 10px 0;
     float: left;
   }  
+
 }

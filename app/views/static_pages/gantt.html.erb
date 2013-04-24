@@ -1,0 +1,32 @@
+<div class="gantt"></div>
+
+<script>
+	$(function(){
+		"use strict"
+
+		$(".gantt").gantt({
+			source: [{
+					name: "Sprint 0",
+					desc: "Analysis",
+					values: [{
+						from: "/Date(1320192000000)/",
+						to: "/Date(1322401600000)/",
+						label: "Requirement Gathering", 
+						customClass: "ganttRed"
+					}]
+			}],
+			navigate: "scroll",
+			scale: "weeks",
+			maxScale: "months",
+			minScale: "days",
+			itemsPerPage: 10,
+			onItemClick: function(data) {
+				alert("Item clicked - show some details");
+			},
+			onAddClick: function(dt, rowId) {
+				alert("Empty space clicked - add an item!");
+			}
+		
+		});
+	});
+</script>
