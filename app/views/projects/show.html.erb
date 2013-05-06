@@ -13,17 +13,18 @@
 	</article>
 	<hr />
 	<p><%= link_to "Edit Project", edit_project_path(@project) %></p>
-	<%if !@project.miane.nil? and @project.state == "ready" %>
+	<%if @project.mianes.any? and @project.state == "ready" %>
 		<p><%= link_to "Create new Sample", new_project_sample_path(@project) %></p>
 	<% end %>
-	<% if @project.miane.nil? %>
+	<% if !@project.mianes.any? %>
 		<p><%= link_to "Miane Information Wizard", new_project_miane_path(@project) %></p>			
 	<% end %>
 	
-	<%if !@project.miane.nil? and @project.state == "Incomplete" %>
-			<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>
-	<% elsif !@project.miane.nil? and current_user.role == 'Moderator' %>				<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>
+	<%if @project.mianes.any? %>
+		<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project, @miane) %></p>
+	<% elsif !@project.mianes.any? and current_user.role == 'Moderator' %>				<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>
 	<%end%>
+	<p><%= link_to "Show miane history", project_mianes_path(@project) %></p>
 	<% if current_user.role == 'Moderator' %>
 	<article>
 		<hr>
@@ -47,9 +48,10 @@
 	<% end %>
 </aside>
 <section>
-	<% if @project.miane %>
+	<% if @miane %>
 	<article>
-		<h2>Miane Information</h2>
+		<h2>latest Miane Information</h2>
+		
 		<table id="miane" class="alternateTable">
 			<tbody class="mytBody">
 
@@ -58,7 +60,7 @@
 						Aim:		
 					</td>
 					<td>
-						<%= @project.miane.aims%>		
+						<%= @miane.aims%>		
 					</td>
 				</tr>
 				<tr>
@@ -66,7 +68,7 @@
 						Expected Result:		
 					</td>
 					<td>
-						<%= @project.miane.expected_result%>		
+						<%= @miane.expected_result%>		
 					</td>
 				</tr>
 				<tr class="alt">
@@ -74,7 +76,7 @@
 						Why do you need NGS:		
 					</td>
 					<td>
-						<%= @project.miane.why_ngs%>		
+						<%= @miane.why_ngs%>		
 					</td>
 				</tr>
 
@@ -83,7 +85,7 @@
 						Is there a possible Alternative:		
 					</td>
 					<td>
-						<%= @project.miane.approach%>		
+						<%= @miane.approach%>		
 					</td>
 				</tr>
 
@@ -92,7 +94,7 @@
 						Approach:		
 					</td>
 					<td>
-						<%= @project.miane.approach%>		
+						<%= @miane.approach%>		
 					</td>
 				</tr>
 
@@ -101,7 +103,7 @@
 						Positive Control:		
 					</td>
 					<td>
-						<%= @project.miane.positive_control%>		
+						<%= @miane.positive_control%>		
 					</td>
 				</tr>	
 
@@ -110,7 +112,7 @@
 						Negative Control:		
 					</td>
 					<td>
-						<%= @project.miane.negative_control%>		
+						<%= @miane.negative_control%>		
 					</td>
 				</tr>
 
@@ -119,7 +121,7 @@
 						Replicates:		
 					</td>
 					<td>
-						<%= @project.miane.replicates%>		
+						<%= @miane.replicates%>		
 					</td>
 				</tr>
 
@@ -128,7 +130,7 @@
 						Possible Pitfalls:		
 					</td>
 					<td>
-						<%= @project.miane.possible_pittfalls%>		
+						<%= @miane.possible_pittfalls%>		
 					</td>
 				</tr>																				
 				<tr>
@@ -136,7 +138,7 @@
 						Needs for Quality Control:		
 					</td>
 					<td>
-						<%= @project.miane.needs_qc%>		
+						<%= @miane.needs_qc%>		
 					</td>
 				</tr>								
 

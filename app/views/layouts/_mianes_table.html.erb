@@ -1,0 +1,36 @@
+<table id="mianes" class="display">
+	<thead>
+		<tr>
+			<th>
+				created at
+			</th>
+			<th>
+				approach
+			</th>
+			<th>
+				replicates
+			</th>
+			<th>
+				positive control
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @mianes.each do |miane| %>
+			<tr>
+				<td>
+					<%= link_to miane.created_at, project_miane_path(@project, miane) %>
+				</td>
+				<td>
+					<%= miane.approach %>
+				</td>
+				<td>
+					<%= miane.replicates %>
+				</td>
+				<td>
+					<%= miane.positive_control %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
