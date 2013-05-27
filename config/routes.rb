@@ -1,6 +1,8 @@
 BigAl::Application.routes.draw do
 
 
+  get "seq_runs/new"
+
   authenticated :user do
     root to: 'static_pages#news'
   end
@@ -34,6 +36,8 @@ BigAl::Application.routes.draw do
     resources :sharedmessages
   end 
 
+  resources :events
+
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/calendar', to: 'static_pages#calendar'
@@ -44,6 +48,9 @@ BigAl::Application.routes.draw do
 
   match '/update_libraries', to: 'templates#update_libraries', 
         :as => 'update_libraries'
+
+  match '/validate_template/:id', to: 'templates#validate_template',
+        :as => 'validate_template'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -2,6 +2,7 @@ class TemplatesController < ApplicationController
 
 	def index
 		@templates = current_user.templates.all
+
 	end
 
 	def new
@@ -15,7 +16,37 @@ class TemplatesController < ApplicationController
 		@template = Template.find(params[:id])
 		@user = User.find(@template.user_id)
 		@responsible = User.find(@template.responsible_id)
-		@libraries = @user.libraries.all
+		#@libraries = @user.libraries.all
+	end
+
+	def edit
+		@template = Template.find(params[:id])
+		@users = User.all
+		@user = User.find(@template.user_id)
+		@updated_library = Library.all
+		@libraries = @template.libraries
+	end
+
+	def update
+		@template = Template.find(params[:id])
+		@library = Library.find(params[:second_select])
+		@user =User.find(params[:first_select])
+		@template.libraries << @library
+
+		#@template.libraries = @libraries
+		@template.user_id = params[:first_select]
+		@template.responsible_id = current_user.id		
+		@template.update_attributes(params[:template])
+		flash[:notice] = "Successfully updated..."
+		redirect_to @template
+	end
+
+	def validate_template
+		@template = Template.find(params[:id])
+		@template.failed = false
+		@template.save
+
+		redirect_to @template
 	end
 
 	def create

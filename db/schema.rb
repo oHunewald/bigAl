@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419074640) do
+ActiveRecord::Schema.define(:version => 20130507114625) do
 
   create_table "information", :force => true do |t|
     t.string   "title"
@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(:version => 20130419074640) do
     t.integer  "project_id"
   end
 
+  create_table "seq_runs", :force => true do |t|
+    t.string   "name"
+    t.string   "kit"
+    t.string   "chip"
+    t.date     "seq_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "sharedmessages", :force => true do |t|
     t.string   "title"
     t.string   "content"
@@ -103,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20130419074640) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "responsible_id"
+    t.boolean  "failed"
   end
 
   create_table "users", :force => true do |t|

@@ -8,4 +8,16 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end  
+
+  def template_name(template)
+  	base_name = " "
+
+  	if template.libraries.any? 
+  		template.libraries.each do |f|
+  			base_name += f.number + " " 
+  		end
+  	end
+  	return base_name
+  end
+
 end

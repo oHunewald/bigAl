@@ -2,6 +2,12 @@
 	<thead>
 		<tr>
 			<th>
+				select:
+			</th>
+			<th>
+				Libraries:
+			</th>
+			<th>
 				Ot kit used:
 			</th>
 			<th>
@@ -26,6 +32,9 @@
 				tdf pool
 			</th>
 			<th>
+				failed
+			</th>
+			<th>
 				comment
 			</th>
 		</tr>
@@ -33,6 +42,12 @@
 	<tbody>
 		<% @templates.each do |template| %>
 			<tr>
+				<td>
+					<%= link_to 'select', template %>
+				</td>
+				<td>
+					<%= template_name(template) %>
+				</td>
 				<td>
 					<%= template.ot_kit_used %>
 				</td>
@@ -56,6 +71,9 @@
 				</td>
 				<td>
 					<%= template.tdf_pool %>
+				</td>
+				<td>
+					<%= template.failed? %>
 				</td>
 				<td>
 					<%= template.commit %>

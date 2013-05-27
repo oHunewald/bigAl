@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.ui.datepicker
 //= require bootstrap
 //= require dataTables/jquery.dataTables
 //= require_tree .
@@ -43,6 +44,6 @@ $(document).ready(function() {
       // append to select
       opt.appendTo(selectbox2);
     });
-  });
+  });  
 
 });

@@ -16,11 +16,10 @@ class ProjectsController < ApplicationController
     @samples = @project.samples
 
     # for multiple mianes, we show only the latest version
-    if @project.mianes.any?      
       @miane = @project.mianes.last
     # else
     #   @miane = @project.mianes.build
-    end
+    #end
   end
   
   def new

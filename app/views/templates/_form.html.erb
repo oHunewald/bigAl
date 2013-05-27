@@ -34,15 +34,18 @@
 				<p><%= f.text_field :tdf_pool %></p>		
 				<p>pmol/L pool:</p>
 				<p><%= f.text_field :pmol_l_pool %></p>
+				
 				<p>Pooling Date:</p>
-				<p><%= f.text_field :pooling %></p>	
+				<p><%= f.date_select :pooling %></p>	
 				<hr>			
 			</div>
 			<div id="none_pool">
 				<p>TDF:</p>
 				<p><%= f.text_field :tdf %></p>
 				<p>pmol/L:</p>
+				
 				<p><%= f.text_field :pmol_l %></p>		
+				
 				<hr>	
 			</div>
 
@@ -73,8 +76,10 @@
 			       :multiple => true, :size => 10
 			%>
 			</p>
-
-
+			<p>Template failed or to be approved</p>
+			<p><%= f.radio_button :failed, 'true' %></p>
+			<p>Template OK</p>
+			<p><%= f.radio_button :failed, 'false' %></p>
 
 	</div>
 	<%= f.submit %>
