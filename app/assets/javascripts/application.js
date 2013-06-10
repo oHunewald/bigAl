@@ -17,7 +17,7 @@
 //= require bootstrap
 //= require dataTables/jquery.dataTables
 //= require_tree .
-
+//= require jquery-fileupload/basic
 
 $(document).ready(function() {
 
