@@ -153,7 +153,9 @@
 	<% end %>
 </section>
 <hr/>
+<%= image_tag @project.ref_document_url(:thumb) if @project.ref_document? %>
 <section>
+	<h2>My Samples:</h2>
 	<%= render 'layouts/samples_table' %>
 </section>
 </div>
