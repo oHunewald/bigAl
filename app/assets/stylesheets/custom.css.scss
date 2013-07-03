@@ -28,7 +28,7 @@ textarea {
   resize: horizontal, vertikal;
 
   width: 500px;
-  height: 80px;
+  height: 100px;
 
 }
 
@@ -54,16 +54,18 @@ p.myTitle {
 .myNews {
 
   aside {
+
     text-align: center;
     with:200px;
-    height:300px;
+    height:400px;
+    margin-right: 10px;
     overflow: auto;
   }
 
   article {
     text-align: center;
-    width:600px;
-    height:300px;
+    width:800px;
+    height:400px;
     overflow: auto;
   }
   
@@ -71,7 +73,7 @@ p.myTitle {
 
 .allNews {
   text-align: center;
-  width:600px;
+  width:800px;
   height:300px;
   overflow: auto;
 }
@@ -165,7 +167,6 @@ aside {
   padding: 0 15px;
   margin: 0 0 10px 0;
   float: left;
-
 
 }
 

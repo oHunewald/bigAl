@@ -2,6 +2,9 @@
 	<thead>
 		<tr>
 			<th>
+				Owner
+			</th>
+			<th>
 				Project Name
 			</th>
 			<th>
@@ -15,6 +18,9 @@
 	<tbody>
 		<% @projects.each do |project| %>
 		<tr>
+			<td>
+				<%= project.user.name %>
+			</td>
 			<td>
 				<%= link_to project.name, project %>		
 			</td>

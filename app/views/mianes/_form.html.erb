@@ -34,7 +34,7 @@ A discussion beforehand is meant to save a lot of time which has to be invested 
 <section>
 
     <%= form_for [@project, @miane], :html => {:id => "SignupForm"} do |f| %>
-
+    <%= render 'shared/error_messages' %>
     <fieldset>
         <legend>Aims of the Project</legend>
         <p><%= f.label "Aim" %></p>

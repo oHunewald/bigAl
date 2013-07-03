@@ -23,7 +23,7 @@ class MianesController < ApplicationController
 			logger.debug "saved"
 			redirect_to [@project]
 		else
-			flash[:alert] = "Failed..."
+			flash[:alert] = "Creation or update failed!"
 			logger.debug "not saved"
 			render :action => "new"
 		end
@@ -42,6 +42,7 @@ class MianesController < ApplicationController
 		#@project.miane.update_attributes(params[:miane])
 		@project.state = "wait for approval"
 		@project.save
+	
 		redirect_to @project
 	end
 

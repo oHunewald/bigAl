@@ -85,7 +85,7 @@
 						Is there a possible Alternative:		
 					</td>
 					<td>
-						<%= @miane.approach%>		
+						<%= @miane.possible_alternative%>		
 					</td>
 				</tr>
 
@@ -153,7 +153,7 @@
 	<% end %>
 </section>
 <hr/>
-<%= image_tag @project.ref_document_url(:thumb) if @project.ref_document? %>
+
 <section>
 	<h2>My Samples:</h2>
 	<%= render 'layouts/samples_table' %>

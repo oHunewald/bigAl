@@ -6,18 +6,18 @@ class Miane < ActiveRecord::Base
 
   belongs_to :project
 
-  validates :aims, presence: true
 
-#  validates :aims, presence: true, length: { minimum: 20 } #  validates :expected_result, presence: true
-#  validates :why_ngs, presence: true
-# validates :possible_alternative, presence: true
-#  validates :approach, presence: true
-#  validates :positive_control, presence: true
-# validates :negative_control, presence: true
-#  validates :replicates, presence: true
-#  validates :reference_dataset, presence: true
-#  validates :possible_pittfalls, presence: true
-#  validates :needs_qc, presence: true
+
+  validates :aims, presence: true, length: { minimum: 20 } #  validates :expected_result, presence: true
+  validates :why_ngs, presence: true
+  validates :possible_alternative, presence: true
+  validates :approach, presence: true
+  validates :positive_control, presence: true
+  validates :negative_control, presence: true
+  validates :replicates, presence: true
+  validates :reference_dataset, presence: true
+  validates :possible_pittfalls, presence: true
+  validates :needs_qc, presence: true
 
 
 
