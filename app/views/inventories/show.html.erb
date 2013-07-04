@@ -1,0 +1,79 @@
+<h2>Item</h2>
+<hr>
+
+<table id="inventory" class="alternateTable">
+	<tbody class="mytBody">
+
+		<tr class="alt">
+			<td width="30%">
+				Item description:		
+			</td>
+			<td>
+				<%= @inventory.item_description %>		
+			</td>
+		</tr>
+		<tr>
+			<td width="30%">
+				Lot number:
+			</td>
+			<td>
+				<%= @inventory.lot_number %>		
+			</td>
+		</tr>
+		<tr class="alt">
+			<td width="30%">
+				Reaction Kit:		
+			</td>
+			<td>
+				<%= @inventory.reaction_kit %>		
+			</td>
+		</tr>
+
+		<tr>
+			<td width="30%">
+				Reactions used:		
+			</td>
+			<td>
+				<%= @inventory.reactions_used %>		
+			</td>
+		</tr>
+
+		<tr class="alt">
+			<td width="30%">
+				Best until:		
+			</td>
+			<td>
+				<%= @inventory.best_till %>		
+			</td>
+		</tr>
+
+		<tr>
+			<td width="30%">
+				Date opened:
+			</td>
+			<td>
+				<%= @inventory.opened %>		
+			</td>
+		</tr>	
+
+		<tr class="alt">
+			<td width="30%">
+				Is empty:		
+			</td>
+			<td>
+				<%= @inventory.empty %>		
+			</td>
+		</tr>
+
+		<tr>
+			<td width="30%">
+				Comment:		
+			</td>
+			<td>
+				<%= @inventory.comment %>		
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<p><%= link_to "Edit Item", edit_inventory_path(@inventory) %></p>

@@ -1,0 +1,22 @@
+<%= form_for @inventory do |f| %>
+	<div class="field">
+		<p>Item description:</p>
+	    <p><%= f.text_field :item_description, placeholder: "Item description" %></p>
+	    <p>Lot number:</p>
+	    <%= f.text_field :lot_number, placeholder: "Lot number"  %>
+	    <p>Reaction kit:</p>
+	    <p><%= f.text_field :reaction_kit, placeholder: "Reaction kit" %></p>
+	    <p>Reactions used:</p>
+	    <p><%= f.text_field :reactions_used, placeholder: "Reactions used" %></p>
+	    <p>Best until:</p>
+	    <p><%= f.date_select :best_till %></p>
+	    <p>Date opened:</p>
+	    <p><%= f.date_select :opened %></p>
+	    <p>Is empty?</p>
+	    <p><%= f.check_box(:empty) %></p>
+	    <p>Comment:</p>
+	    <p><%= f.text_area :comment, placeholder: "Comment" %></p>
+  </div>
+  <%= f.submit %>
+  
+<% end %>

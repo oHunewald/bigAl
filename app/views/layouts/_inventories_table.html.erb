@@ -1,0 +1,54 @@
+<table id="inventories" class="display">
+	<thead>
+		<tr>
+			<th>
+				Item description
+			</th>
+			<th>
+				Lot number
+			</th>
+			<th>
+				Reaction kit
+			</th>
+			<th>
+				Reactions used
+			</th>
+			<th>
+				Best until
+			</th>
+			<th>
+				Date opened
+			</th>
+			<th>
+				Comment
+			</th>						
+		</tr>
+	</thead>
+	<tbody>
+		<% @inventories.each do |inventory| %>
+		<tr>
+			<td>
+				<%= link_to inventory.item_description, inventory %>
+			</td>
+			<td>
+				<%= inventory.lot_number %>		
+			</td>
+			<td>
+				<%= inventory.reaction_kit %>		
+			</td>
+			<td>
+				<%= inventory.reactions_used %>		
+			</td>			
+			<td>
+				<%= inventory.best_till %>
+			</td>
+			<td>
+				<%= inventory.opened %>		
+			</td>
+			<td>
+				<%= inventory.comment %>
+			</td>								
+		</tr>		
+		<%end%>
+	</tbody>
+</table>

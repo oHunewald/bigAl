@@ -27,17 +27,28 @@
           		<% end %>
           	</ul>
           </li>
-          <% if user_signed_in? and current_user.role == 'Admin'%>
+          <% if user_signed_in? and current_user.role == 'Moderator'%>
           <li id="fat-menu" class="dropdown">
           	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          		Administration <b class="caret"></b>
+          		Inventory <b class="caret"></b>
           	</a>
           	<ul class="dropdown-menu">
-          		<li><%= link_to "Show all User", users_path %></li>
-
+          		<li><%= link_to "Show Inventory", inventories_path %></li>
+              <li><%= link_to "New Item", new_inventory_path %></li>
           	</ul>
           </li> 
-          <% end %>         
+          <% end %>  
+          <% if user_signed_in? and current_user.role == 'Admin'%>
+          <li id="fat-menu" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Administration <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Show all User", users_path %></li>
+
+            </ul>
+          </li> 
+          <% end %> 
         </ul>
         <ul class="nav pull-right">
         <% if user_signed_in? %>

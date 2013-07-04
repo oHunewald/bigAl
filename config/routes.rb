@@ -1,8 +1,5 @@
 BigAl::Application.routes.draw do
 
-
-  get "seq_runs/new"
-
   authenticated :user do
     root to: 'static_pages#news'
   end
@@ -37,6 +34,8 @@ BigAl::Application.routes.draw do
   end 
 
   resources :events
+
+  resources :inventories
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
