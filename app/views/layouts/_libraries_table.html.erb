@@ -2,59 +2,101 @@
 	<thead>
 		<tr>
 			<th>
-				Library Number
+				Library Date
 			</th>
 			<th>
-				Size PCR Product
+				Sample name
 			</th>
 			<th>
-				Exp. Size incl. Adaptors
+				Shearing Kit used
+			</th>			
+			
+			<th>
+				Target Size (bp)
 			</th>
 			<th>
-				Size with Adaptors
+				ng/ul
 			</th>
 			<th>
-				pmol/L (run1)
-			</th>
+				ul used
+			</th>			
 			<th>
-				Desired Concentration pmol/L
+				MID
 			</th>
 			<th>	
-				1ul of Sample
+				Shearing in min
 			</th>	
 			<th>
-				5ul of Sample
+				End repair done
 			</th>
+			<th>
+				Number of bands on e-gel
+			</th>			
+			<th>
+				Cycles of amplification
+			</th>
+			<th>
+				Date Bioanalyser
+			</th>				
+			<th>
+				pmol/L before ampl.
+			</th>				
+			<th>
+				pmol/L after ampl.
+			</th>			
+			<th>
+				Comment
+			</th>											
 		</tr>
 	</thead>
 	<tbody>
 		<% @libraries.each do |library| %>
 			<tr>
 				<td>
-					<%= link_to library.number, 
-						project_sample_library_path(@project, @sample, library)%>
+					<%= library.lib_date %>
 				</td>
 				<td>
-					<%= library.size_pcr %>
+					<%= library.sample.name %>
 				</td>
 				<td>
-					<%= library.exp_size_incl_adaptors %>
+					<%= library.shearing_kit %>
 				</td>
 				<td>
-					<%= library.size_with_adaptors %>
+					<%= library.target_size %>
 				</td>
 				<td>
-					<%= library.pmol %>
+					<%= library.quantity %>
 				</td>
 				<td>
-					<%= library.desired_concentration %>
+					<%= library.ul_used %>
 				</td>
 				<td>
-					<%= library.mix_1 %>
+					<%= library.mid %>
 				</td>
 				<td>
-					<%= library.mix_2 %>
+					<%= library.shearing_min %>
 				</td>
+				<td>
+					<%= library.end_repair_done %>
+				</td>				
+				<td>
+					<%= library.number_of_bands_in_eGel %>
+				</td>				
+				<td>
+					<%= library.cycles_of_amplification %>
+				</td>				
+				<td>
+					<%= library.date_bioanalyser %>
+				</td>				
+				<td>
+					<%= library.pmol_before %>
+				</td>				
+				<td>
+					<%= library.pmol_after %>
+				</td>				
+				<td>
+					<%= library.comment %>
+				</td>				
 			</tr>
 		<% end %>
 	</tbody>

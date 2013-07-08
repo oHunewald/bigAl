@@ -20,4 +20,8 @@ module ApplicationHelper
   	return base_name
   end
 
+  def update_stock(params)
+    
+  end  
+
 end

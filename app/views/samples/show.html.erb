@@ -3,8 +3,8 @@
 <aside>
 	
 	<p>Name: <%= @sample.name %></p>
-	<p>Size: <%= @sample.size %></p>
-	<p>Quantity: <%= @sample.quantity %></p>
+	<p>Size (bp): <%= @sample.size %></p>
+	<p>Quantity (ng/ul): <%= @sample.quantity %></p>
 	<p><%= link_to "Edit", edit_project_sample_path(@project, @sample) %></p>
 	<p><%= link_to "Create Library", 
 		new_project_sample_library_path(@project, @sample) %></p>

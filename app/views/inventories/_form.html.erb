@@ -1,7 +1,17 @@
 <%= form_for @inventory do |f| %>
 	<div class="field">
 		<p>Item description:</p>
-	    <p><%= f.text_field :item_description, placeholder: "Item description" %></p>
+		<p><%= f.select :item_description, 
+			[ 'Ion Shear Plus Reagents Kit', 'Ion Plus Fragment Library Kit',
+			 'E-Gel', 'Adapters MID1-16', 'Adapters MID17-32',
+			 'Adapters MID33-48', 'Ion OneTouch 200 v2DL', 'PGM Template OT2 200 kit',
+			 'PGM Template OT2 400 kit', 'Ion sphere quality control kit',
+			 'PGM Enrichment beads', 'PGM Sequencing 200 kit v2',
+			 'PGM Sequencing 400 kit v2', 'Ion 314 chip v2', 'Ion 316 chip',
+			 'Ion 316 v2 chip', 'Ion 318 chip', 'Ion 318 chip v2' ], :prompt => 'Select One' %></p>		
+		<p>Select Category:</p>
+		<p><%= f.select :category, 
+			[ 'Library prep', 'Template prep', 'Sequencing' ], :prompt => 'Select One' %></p>			
 	    <p>Lot number:</p>
 	    <%= f.text_field :lot_number, placeholder: "Lot number"  %>
 	    <p>Reaction kit:</p>
@@ -9,9 +19,9 @@
 	    <p>Reactions used:</p>
 	    <p><%= f.text_field :reactions_used, placeholder: "Reactions used" %></p>
 	    <p>Best until:</p>
-	    <p><%= f.date_select :best_till %></p>
+	    <p><%= f.text_field :best_till %></p>
 	    <p>Date opened:</p>
-	    <p><%= f.date_select :opened %></p>
+	    <p><%= f.text_field :opened %></p>
 	    <p>Is empty?</p>
 	    <p><%= f.check_box(:empty) %></p>
 	    <p>Comment:</p>

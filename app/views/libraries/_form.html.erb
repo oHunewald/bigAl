@@ -1,25 +1,117 @@
 <%= form_for [@project, @sample, @library] do |f| %>
-	<div id="myTwoColumn">
-			<aside>
-				<p>Name:</p>
-				<p><%= f.text_field :number %></p>
-				<p>Size PCR Product:</p>
-				<p><%= f.text_field :size_pcr %></p>
-				<p>Exp. Size including Adaptors:</p>
-				<p><%= f.text_field :exp_size_incl_adaptors %></p>
-				<p>Size with Adaptors:</p>
-				<p><%= f.text_field :size_with_adaptors %></p>			
-			</aside>		
-			<article>
-				<p>pmol/L (run1):</p>
-				<p><%= f.text_field :pmol %></p>
-				<p>Desired concentration pmol/L for pooling:</p>
-				<p><%= f.text_field :desired_concentration %></p>
-				<p>1ul of Sample in x ul low TE:</p>
-				<p><%= f.text_field :mix_1 %></p>
-				<p>5ul of Sample in x ul low TE:</p>
-				<p><%= f.text_field :mix_2 %></p>
-			</article>
-	</div>
+
+<table>
+	<tbody>
+		<tr>
+			<td>
+				<div class="field">
+					<%= f.label "Library Date" %>
+					<%= f.text_field :lib_date %>
+				</div>				
+			</td>
+			<td>			
+				<%= f.label "ul used" %>
+				<%= f.text_field :ul_used %>
+			</td>
+			<td>			
+				<%= f.label "Target size (bp)" %>
+				<%= f.text_field :target_size %>
+			</td>
+			<td>
+				<%= f.label "ng/ul" %>
+				<%= f.text_field :quantity %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.label "MID" %>
+				<%= f.text_field :mid %>
+			</td>
+			<td>
+				<%= f.label "Shearing/min" %>
+				<%= f.text_field :shearing_min %>
+			</td>
+			<td>
+				<%= f.label "End repair done" %>
+				<%= f.check_box :end_repair_done %>
+			</td>	
+		</tr>		
+		<tr>
+			<td>
+				<%= f.label "Number of Bands in Gel" %>
+				<%= f.text_field :number_of_bands_in_eGel %>
+			</td>
+			<td>
+				<%= f.label "Cycles of amplification" %>
+				<%= f.text_field :cycles_of_amplification %>
+			</td>
+			<td>
+				<%= f.label "Date Bioanalyser" %>
+				<%= f.text_field :date_bioanalyser %>
+			</td>								
+		</tr>
+		<tr>
+			<td>
+				<%= f.label "pmol before" %>
+				<%= f.text_field :pmol_before %>
+			</td>
+			<td>
+				<%= f.label "pmol after" %>
+				<%= f.text_field :pmol_after %>
+			</td>
+			<td>
+				<%= f.label "Comment" %>
+				<%= f.text_field :comment %>
+			</td>
+
+		</tr>
+
+</table>
+	<hr>
+	<p>Select the kits used for your Library.</p>
+	<p>Please select only one Kit at a time were needed.</p>
+	<hr>
+	<%= f.label "Select Shearing Kit" %>
+	<div class="myInvTable">
+    <table>  
+      <% @inventories.each do |inventory| %>
+        <tr>
+          <td> <%= check_box_tag('[shear_kit]', inventory.lot_number, false) %> </td>
+          <td> <%= inventory.item_description %> </td>
+          <td>, <%= inventory.lot_number %> </td>
+          <td>, <%= inventory.comment %> </td>
+        </tr>
+      <% end %>
+    </table>	
+    </div>
+	<hr>
+	<%= f.label "Select Fragmentation Kit" %>
+	<div class="myInvTable">
+    <table>  
+      <% @inventories.each do |inventory| %>
+        <tr>
+          <td> <%= check_box_tag('[fragment_kit]', inventory.lot_number, false) %> </td>
+          <td> <%= inventory.item_description %> </td>
+          <td>, <%= inventory.lot_number %> </td>
+          <td>, <%= inventory.comment %> </td>
+        </tr>
+      <% end %>
+    </table>	
+    </div>    
+	<hr>
+	<%= f.label "Select E-Gel Kit" %>
+	<div class="myInvTable">
+    <table>  
+      <% @inventories.each do |inventory| %>
+        <tr>
+          <td> <%= check_box_tag('[e_gel]', inventory.lot_number, false) %> </td>
+          <td> <%= inventory.item_description %> </td>
+          <td>, <%= inventory.lot_number %> </td>
+          <td>, <%= inventory.comment %> </td>
+        </tr>
+      <% end %>
+    </table>	
+    </div>    
+<hr>
 	<%= f.submit %>
 <% end %>

@@ -23,6 +23,7 @@ group :assets do
   gem 'jquery-ui-rails'
 
   gem 'carrierwave'
+  gem 'bootstrap-datepicker-rails'
   
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

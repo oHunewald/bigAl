@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704074928) do
+ActiveRecord::Schema.define(:version => 20130705132625) do
 
   create_table "information", :force => true do |t|
     t.string   "title"
@@ -32,22 +32,32 @@ ActiveRecord::Schema.define(:version => 20130704074928) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.boolean  "empty"
+    t.string   "category"
   end
 
   create_table "libraries", :force => true do |t|
-    t.string   "number"
-    t.string   "size_pcr"
-    t.integer  "exp_size_incl_adaptors"
-    t.integer  "size_with_adaptors"
-    t.integer  "pmol"
-    t.integer  "desired_concentration"
-    t.float    "mix_1"
-    t.float    "mix_2"
     t.integer  "sample_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "user_id"
-    t.integer  "template_id"
+    t.date     "lib_date"
+    t.float    "ul_used"
+    t.integer  "target_size"
+    t.float    "quantity"
+    t.integer  "mid"
+    t.integer  "shearing_min"
+    t.boolean  "end_repair_done"
+    t.string   "number_of_bands_in_eGel"
+    t.integer  "cycles_of_amplification"
+    t.date     "date_bioanalyser"
+    t.string   "pmol_before"
+    t.string   "pmol_after"
+    t.string   "comment"
+    t.string   "lib_number"
+    t.integer  "inventory_id"
+    t.string   "shearing_kit"
+    t.string   "fragment_kit"
+    t.string   "e_gel"
   end
 
   create_table "messages", :force => true do |t|
@@ -74,6 +84,16 @@ ActiveRecord::Schema.define(:version => 20130704074928) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "project_id"
+  end
+
+  create_table "pools", :force => true do |t|
+    t.integer  "template_id"
+    t.integer  "library_id"
+    t.date     "date_pooling"
+    t.float    "pmol_l"
+    t.float    "tdf"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "projects", :force => true do |t|

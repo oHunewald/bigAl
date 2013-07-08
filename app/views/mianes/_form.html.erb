@@ -29,14 +29,14 @@
 
 	We kindly request the information below. 
 	You are happily invited to discuss your project beforehand. <br/>
-A discussion beforehand is meant to save a lot of time which has to be invested afterwards, in case necessary information was missing to start the analysis. Additionally, it would be important to figure out if the data analysis you are looking forward can be accomplished at all by the experiment you are going to do (imagine you make experiments and it turns out afterwards that the analysis you would like to do requires more data or samples – a lot of time, man power and money is lost). Furthermore, the data are existing even if a member of a lab might leave, so that it is absolutely essential to have the basic data documentation as requested below for possible future tasks (e.g. re-analysis).	
+A discussion beforehand is meant to save a lot of time which has to be invested afterwards, in case necessary information was missing to start the analysis. Additionally, it would be important to figure out if the data analysis you are looking forward can be accomplished at all by the experiment you are going to do. It is absolutely essential to have the basic data documentation as requested below for possible future tasks (e.g. re-analysis).	
 <hr/>
 <section>
 
     <%= form_for [@project, @miane], :html => {:id => "SignupForm"} do |f| %>
     <%= render 'shared/error_messages' %>
     <fieldset>
-        <legend>Aims of the Project</legend>
+        <legend>Aim of the Project</legend>
         <p><%= f.label "Aim" %></p>
     	<p><%= f.text_area :aims, placeholder: "Please describe the aim of your project" %></p>
         <p><%= f.label "Expected Result" %></p>

@@ -37,6 +37,10 @@ BigAl::Application.routes.draw do
 
   resources :inventories
 
+  resources :pools
+
+  #resources :libraries
+
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/calendar', to: 'static_pages#calendar'
@@ -50,6 +54,8 @@ BigAl::Application.routes.draw do
 
   match '/validate_template/:id', to: 'templates#validate_template',
         :as => 'validate_template'
+
+  match '/libraries' => 'libraries#user_libraries'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

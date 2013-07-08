@@ -2,6 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $('#inventories').dataTable
+  $('#inventories').dataTable(
     sPaginationType: "full_numbers"
-    bJQueryUI: true
+    bJQueryUI: true);
+
+  $('#inventory_best_till').datepicker
+  	dateFormat: 'yy-mm-dd'
+
+  $('#inventory_opened').datepicker
+  	dateFormat: 'yy-mm-dd'  	

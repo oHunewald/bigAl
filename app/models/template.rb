@@ -3,9 +3,9 @@ class Template < ActiveRecord::Base
   				:pooling, :qbit_after_es, :qbit_before_es, :tdf, 
   				:tdf_pool, :failed,:user_id
 
-	has_many :libraries
+	has_one :pool
 
 	has_many :seq_runs
 
-	validates :libraries, presence: true
+	validates :pool, presence: true
 end
