@@ -14,6 +14,7 @@ class LibrariesController < ApplicationController
   	@project = Project.find(params[:project_id])
   	@sample = @project.samples.find(params[:sample_id])
   	@library = @sample.libraries.build
+    @library.lib_number = get_number
     @inventories = Inventory.where(:category => 'Library prep', :empty => 'f')  	
   end
 
@@ -30,6 +31,7 @@ class LibrariesController < ApplicationController
 
   	@library = @sample.libraries.build(params[:library])  
     @library.user_id = current_user.id	
+    
     @library.shearing_kit = params[:shear_kit]
     @library.fragment_kit = params[:fragment_kit]
     @library.e_gel = params[:e_gel]
@@ -37,6 +39,7 @@ class LibrariesController < ApplicationController
   	if @library.save
       # when kits are used update the inventory
       update_stock(params, 1)
+
   		flash[:notice] = "Successfully created..."
   		redirect_to [@project, @sample]
   	else
@@ -89,5 +92,13 @@ class LibrariesController < ApplicationController
           item.empty = true
         end      
     end
+
+    def get_number()
+
+      datetime = DateTime.current
+      
+      final_number = 'PGM-Lib-' + datetime.to_s(:number)
+    end
+
 
 end
