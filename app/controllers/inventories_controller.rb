@@ -38,4 +38,9 @@ class InventoriesController < ApplicationController
 		redirect_to @inventory
 	end
 
+	def my_inventories
+		@inventories = current_user.inventories.all
+		render :action => 'index'
+	end
+
 end

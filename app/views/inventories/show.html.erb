@@ -3,7 +3,14 @@
 
 <table id="inventory" class="alternateTable">
 	<tbody class="mytBody">
-
+		<tr>
+			<td width="30%">
+				For User:		
+			</td>
+			<td>
+				<%= @inventory.user.name %>		
+			</td>
+		</tr>
 		<tr class="alt">
 			<td width="30%">
 				Item description:		
@@ -76,4 +83,6 @@
 	</tbody>
 </table>
 <br>
-<p><%= link_to "Edit Item", edit_inventory_path(@inventory) %></p>
+<% if current_user.role == 'Moderator' %>
+	<p><%= link_to "Edit Item", edit_inventory_path(@inventory) %></p>
+<% end %>

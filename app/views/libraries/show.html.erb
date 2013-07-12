@@ -1,26 +1,84 @@
 <h2>Library for Sample: <%= @sample.name %></h2>
-<hr/>
-<div id="myTwoColumn">
-		<aside>
-			<p>Name:</p>
-			<p><%= @library.number %></p>
-			<p>Size PCR Product:</p>
-			<p><%= @library.size_pcr %></p>
-			<p>Exp. Size including Adaptors:</p>
-			<p><%= @library.exp_size_incl_adaptors %></p>
-			<p>Size with Adaptors:</p>
-			<p><%= @library.size_with_adaptors %></p>			
-		</aside>		
-		<article>
-			<p>pmol/L (run1):</p>
-			<p><%= @library.pmol %></p>
-			<p>Desired concentration pmol/L for pooling:</p>
-			<p><%= @library.desired_concentration %></p>
-			<p>1ul of Sample in x ul low TE:</p>
-			<p><%= @library.mix_1 %></p>
-			<p>5ul of Sample in x ul low TE:</p>
-			<p><%= @library.mix_2 %></p>
-		</article>
-</div>
+
+<table >
+	<tbody>
+		<tr>
+			<td>
+				<p>Library Date:</p>
+				<%= @library.lib_date %>
+			</td>
+			<td>
+				<p>Sample Name:</p>
+				<%= @library.sample.name %>
+			</td>
+			<td>
+				<p>Library Name:</p>
+				<%= @library.lib_number %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>Library Target Size:</p>
+				<%= @library.target_size %>
+			</td>
+			<td>
+				<p>ng/ul:</p>
+				<%= @library.quantity %>
+			</td>
+			<td>
+				<p>ul used:</p>
+				<%= @library.ul_used %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>MID:</p>
+				<%= @library.mid %>
+			</td>
+			<td>
+				<p>Shearing (min):</p>
+				<%= @library.shearing_min %>
+			</td>
+			<td>
+				<p>Shearing Kit:</p>
+				<%= @library.shearing_kit %>
+			</td>				
+		</tr>
+		<tr>
+			<td>
+				<p>End Repair done?:</p>
+				<%= @library.end_repair_done %>
+			</td>				
+			<td>
+				<p>No.Bands in E-Gel:</p>
+				<%= @library.number_of_bands_in_eGel %>
+			</td>				
+			<td>
+				<p>Cycles Amplification:</p>
+				<%= @library.cycles_of_amplification %>
+			</td>				
+		</tr>			
+		<tr>
+			<td>
+				<p>Date Bionanalyser:</p>
+				<%= @library.date_bioanalyser %>
+			</td>				
+			<td>
+				<p>pmol before:</p>
+				<%= @library.pmol_before %>
+			</td>				
+			<td>
+				<p>pmol after:</p>
+				<%= @library.pmol_after %>
+			</td>				
+		</tr>
+		<tr>
+			<td>
+				<p>Comment:</p>
+				<%= @library.comment %>
+			</td>				
+		</tr>
+	</tbody>
+</table>	
 <p><%= link_to "Edit Library", 
 	edit_project_sample_library_path(@project, @sample, @library) %></p>

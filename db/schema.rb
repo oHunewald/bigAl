@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705132625) do
+ActiveRecord::Schema.define(:version => 20130711122852) do
 
   create_table "information", :force => true do |t|
     t.string   "title"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130705132625) do
     t.datetime "updated_at",                      :null => false
     t.boolean  "empty"
     t.string   "category"
+    t.integer  "user_id"
   end
 
   create_table "libraries", :force => true do |t|
@@ -88,12 +89,12 @@ ActiveRecord::Schema.define(:version => 20130705132625) do
 
   create_table "pools", :force => true do |t|
     t.integer  "template_id"
-    t.integer  "library_id"
     t.date     "date_pooling"
     t.float    "pmol_l"
     t.float    "tdf"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
   end
 
   create_table "projects", :force => true do |t|

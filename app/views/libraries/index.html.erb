@@ -1,2 +1,9 @@
-<h1>My Libraries</h1>
-<%= render 'layouts/libraries_table' %>
+<h3>My Libraries</h3>
+<hr>
+<p>Select at least one or more Libraries for pooling/template preparation.</p>
+<%= form_for('Library', :as => 'libraries', :url => create_pool_path) do |f| %>
+	<%= render 'layouts/libraries_table_2' %>
+	<br>
+	<hr>
+	<%= f.button :submit %>
+<% end %>

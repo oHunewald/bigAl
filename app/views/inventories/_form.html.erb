@@ -1,5 +1,7 @@
-<%= form_for @inventory do |f| %>
+<%= form_for [@inventory] do |f| %>
 	<div class="field">
+	    <p>User:</p>
+	    <p><%= f.collection_select :user_id, User.all, :id, :name, {:include_blank => 'Select User'} %>
 		<p>Item description:</p>
 		<p><%= f.select :item_description, 
 			[ 'Ion Shear Plus Reagents Kit', 'Ion Plus Fragment Library Kit',

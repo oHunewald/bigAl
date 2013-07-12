@@ -2,6 +2,9 @@
 	<thead>
 		<tr>
 			<th>
+				Select
+			</th>
+			<th>
 				Library Date
 			</th>
 			<th>
@@ -49,14 +52,14 @@
 			<th>
 				Comment
 			</th>											
-			<th>
-				Del.
-			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @libraries.each do |library| %>
 			<tr>
+				<td>
+					<%= check_box_tag "lib_ids[]", library.id %>
+				</td>
 				<td>
 					<%= library.lib_date %>
 				</td>
@@ -64,7 +67,7 @@
 					<%= library.sample.name %>
 				</td>
 				<td>
-					<%= link_to library.lib_number, edit_project_sample_library_path(@project, @sample, library) %>
+					<%= library.lib_number %>
 				</td>
 				<td>
 					<%= library.target_size %>
@@ -104,12 +107,7 @@
 				</td>				
 				<td>
 					<%= library.comment %>
-				</td>	
-				<td>
-					<% if library.pool.nil? and current_user == 'Moderator' %>
-					<%= link_to 'Del', project_sample_library_path(@project, @sample, library), :confirm => 'Are you sure?', :method => :delete %>
-					<% end %>
-				</td>			
+				</td>				
 			</tr>
 		<% end %>
 	</tbody>

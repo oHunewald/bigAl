@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :libraries
   has_many :messages
   has_many :sharedmessages
+  has_many :inventories
+  has_many :pools
 
   private
     def init_role

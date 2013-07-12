@@ -1,0 +1,9 @@
+<%= form_for [@user, @pool] do |f| %>
+	<div class="field">
+		<p>Date Pooling:</p>
+		<p><%= f.text_field :date_pooling %></p>
+		<p>Pool name:</p>
+		<p><%= f.label @current_user.name + '-pool-' + Time.now.strftime("%d-%m-%Y") %></p>
+	</div>
+	<%= f.submit %>
+<% end %>

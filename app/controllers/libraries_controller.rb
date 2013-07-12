@@ -1,13 +1,14 @@
 class LibrariesController < ApplicationController
   def index
-	@project = Project.find(params[:project_id])
+	#@project = Project.find(params[:project_id])
   #@libraries = @project.samples.find(params[:sample_id]).libraries
-	@libraries = Sample.find(params[:sample_id]).libraries
-  #@libraries = current_user.libraries.all
+	#@libraries = Sample.find(params[:sample_id]).libraries
+  @libraries = current_user.libraries.all
   end
 
-  def user_libraries
+  def my_libraries
     @libraries = current_user.libraries.all
+    render :action => 'index'
   end
 
   def new
@@ -15,7 +16,7 @@ class LibrariesController < ApplicationController
   	@sample = @project.samples.find(params[:sample_id])
   	@library = @sample.libraries.build
     @library.lib_number = get_number
-    @inventories = Inventory.where(:category => 'Library prep', :empty => 'f')  	
+    @inventories = Inventory.where(:category => 'Library prep', :empty => 'f', :user_id => current_user)  	
   end
 
   def show
@@ -31,7 +32,7 @@ class LibrariesController < ApplicationController
 
   	@library = @sample.libraries.build(params[:library])  
     @library.user_id = current_user.id	
-    
+    @library.lib_number = get_number
     @library.shearing_kit = params[:shear_kit]
     @library.fragment_kit = params[:fragment_kit]
     @library.e_gel = params[:e_gel]
@@ -51,7 +52,8 @@ class LibrariesController < ApplicationController
   def edit
     @project = Project.find(params[:project_id])
     @sample =  @project.samples.find(params[:sample_id])
-    @library = Library.find(params[:id])    
+    @library = Library.find(params[:id])  
+    @inventories = Inventory.where(:category => 'Library prep', :empty => 'f', :user_id => current_user)    
   end
 
   def update
@@ -61,6 +63,13 @@ class LibrariesController < ApplicationController
     @library.update_attributes(params[:library])
     flash[:notice] = "Successfully updated..."
     redirect_to [@project, @sample, @library]
+  end
+
+  def destroy
+    @project = Project.find(params[:project_id])
+    @sample =  @project.samples.find(params[:sample_id])
+    Library.find(params[:id]).destroy  
+    redirect_to [@project, @sample]
   end
 
   private

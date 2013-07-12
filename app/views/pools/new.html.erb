@@ -1,0 +1,25 @@
+<h2>Create a Pool for Template</h2>
+<hr>
+<h3>Selected Libraries:</h3>
+<table>
+	<thead>
+	  <tr>
+	    <th>Lib name:</th>
+	    <th>Sample name:</th>
+	    <th>Target size:</th>
+	    <th>Quantity:</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @libraries.each do |library| %>
+	    <tr>
+	      <td><%= library.lib_number %></td>
+	      <td><%= library.sample.name %></td>
+	      <td><%= library.target_size %></td>
+	      <td><%= library.quantity %></td>
+	    </tr>
+	  <% end %>
+	</tbody>
+</table>
+<hr>
+<%= render "form" %>

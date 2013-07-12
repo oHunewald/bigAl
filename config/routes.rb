@@ -8,6 +8,14 @@ BigAl::Application.routes.draw do
 
   devise_for :users
 
+  resources :users do
+    resources :projects  
+    resources :templates
+    resources :sharedmessages
+    resources :pools
+    resources :libraries
+  end 
+
   resources :sharedmessages
 
   resources :projects do
@@ -24,14 +32,7 @@ BigAl::Application.routes.draw do
   
   resources :states do
     resources :projects
-  end
-    
-  
-  resources :users do
-    resources :projects  
-    resources :templates
-    resources :sharedmessages
-  end 
+  end    
 
   resources :events
 
@@ -39,7 +40,7 @@ BigAl::Application.routes.draw do
 
   resources :pools
 
-  #resources :libraries
+  resources :libraries
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
@@ -49,13 +50,20 @@ BigAl::Application.routes.draw do
   match '/not_approved_projects' => 'projects#not_approved_projects',
         :as => 'not_approved_projects'
 
+  match '/my_inventories' => 'inventories#my_inventories',
+        :as => 'my_inventories'
+
   match '/update_libraries', to: 'templates#update_libraries', 
         :as => 'update_libraries'
 
   match '/validate_template/:id', to: 'templates#validate_template',
         :as => 'validate_template'
 
-  match '/libraries' => 'libraries#user_libraries'
+  match '/my_libraries' => 'libraries#my_libraries',
+        :as => 'my_libraries'
+
+  match '/create_pool' => 'pools#create_pool',
+        :as => 'create_pool'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
