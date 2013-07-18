@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711122852) do
+ActiveRecord::Schema.define(:version => 20130718115154) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "information", :force => true do |t|
     t.string   "title"
@@ -32,14 +38,23 @@ ActiveRecord::Schema.define(:version => 20130711122852) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.boolean  "empty"
-    t.string   "category"
     t.integer  "user_id"
+    t.integer  "category_id"
+    t.float    "price"
+  end
+
+  create_table "lib5uls", :force => true do |t|
+    t.integer  "pool_id"
+    t.integer  "library_id"
+    t.float    "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "libraries", :force => true do |t|
     t.integer  "sample_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.integer  "user_id"
     t.date     "lib_date"
     t.float    "ul_used"
@@ -56,9 +71,12 @@ ActiveRecord::Schema.define(:version => 20130711122852) do
     t.string   "comment"
     t.string   "lib_number"
     t.integer  "inventory_id"
-    t.string   "shearing_kit"
-    t.string   "fragment_kit"
-    t.string   "e_gel"
+    t.integer  "shearing_kit",            :limit => 255
+    t.integer  "fragment_kit",            :limit => 255
+    t.boolean  "failed"
+    t.string   "comment_why"
+    t.integer  "mid_kit"
+    t.integer  "pool_id"
   end
 
   create_table "messages", :force => true do |t|
@@ -92,9 +110,15 @@ ActiveRecord::Schema.define(:version => 20130711122852) do
     t.date     "date_pooling"
     t.float    "pmol_l"
     t.float    "tdf"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.integer  "user_id"
+    t.float    "lib_5ul_low_te_buffer"
+    t.integer  "ul_dilution"
+    t.float    "bioanalyser_qbit"
+    t.float    "tdf_used"
+    t.string   "name"
+    t.boolean  "ready"
   end
 
   create_table "projects", :force => true do |t|

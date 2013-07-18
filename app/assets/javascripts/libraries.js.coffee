@@ -11,3 +11,8 @@ jQuery ->
 
   $('#library_date_bioanalyser').datepicker
   	dateFormat: 'yy-mm-dd'  	
+  
+  	$("#comment_why").hide()
+
+  $("#box_failed").click ->
+  	$("#comment_why").toggle()

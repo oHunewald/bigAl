@@ -1,5 +1,6 @@
 BigAl::Application.routes.draw do
 
+
   authenticated :user do
     root to: 'static_pages#news'
   end
@@ -12,7 +13,9 @@ BigAl::Application.routes.draw do
     resources :projects  
     resources :templates
     resources :sharedmessages
-    resources :pools
+    resources :pools do
+      resources :libraries
+    end
     resources :libraries
   end 
 
@@ -34,13 +37,19 @@ BigAl::Application.routes.draw do
     resources :projects
   end    
 
+  resources :categories
+
   resources :events
 
   resources :inventories
 
-  resources :pools
+  resources :pools do
+    resources :lib5ul
+  end
 
   resources :libraries
+
+  resources :lib5ul
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
@@ -62,7 +71,7 @@ BigAl::Application.routes.draw do
   match '/my_libraries' => 'libraries#my_libraries',
         :as => 'my_libraries'
 
-  match '/create_pool' => 'pools#create_pool',
+  match '/create_pool' => 'pools#new',
         :as => 'create_pool'
 
   # The priority is based upon order of creation:

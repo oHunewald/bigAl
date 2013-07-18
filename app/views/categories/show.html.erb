@@ -1,0 +1,9 @@
+<p>Category name:</p>
+<p><%= @category.name %></p>
+<hr>
+<p><%= link_to "Edit Category", edit_category_path(@category) %></p>
+<p>
+<% if @category.inventories.blank? %>
+<%= link_to 'Delete', category_path(@category), :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
+</p>

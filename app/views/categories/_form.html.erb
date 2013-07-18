@@ -1,0 +1,7 @@
+<%= form_for [@category] do |f| %>
+	<div class="field">
+		<p>New Category:</p>
+		<p><%= f.text_field :name %></p>
+	</div>
+	<%= f.submit %>
+<% end %>

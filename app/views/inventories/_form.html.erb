@@ -4,18 +4,13 @@
 	    <p><%= f.collection_select :user_id, User.all, :id, :name, {:include_blank => 'Select User'} %>
 		<p>Item description:</p>
 		<p><%= f.select :item_description, 
-			[ 'Ion Shear Plus Reagents Kit', 'Ion Plus Fragment Library Kit',
-			 'E-Gel', 'Adapters MID1-16', 'Adapters MID17-32',
-			 'Adapters MID33-48', 'Ion OneTouch 200 v2DL', 'PGM Template OT2 200 kit',
-			 'PGM Template OT2 400 kit', 'Ion sphere quality control kit',
-			 'PGM Enrichment beads', 'PGM Sequencing 200 kit v2',
-			 'PGM Sequencing 400 kit v2', 'Ion 314 chip v2', 'Ion 316 chip',
-			 'Ion 316 v2 chip', 'Ion 318 chip', 'Ion 318 chip v2' ], :prompt => 'Select One' %></p>		
+			[ 'Library prep', 'Template prep', 'Sequencing' ], :prompt => 'Select One' %></p>		
 		<p>Select Category:</p>
-		<p><%= f.select :category, 
-			[ 'Library prep', 'Template prep', 'Sequencing' ], :prompt => 'Select One' %></p>			
+	    <p><%= f.collection_select :category_id, Category.all, :id, :name, {:include_blank => 'Select Category'} %>
 	    <p>Lot number:</p>
 	    <%= f.text_field :lot_number, placeholder: "Lot number"  %>
+	    <p>Price (Euro):</p>
+	    <p><%= f.text_field :price %></p>
 	    <p>Reaction kit:</p>
 	    <p><%= f.text_field :reaction_kit, placeholder: "Reaction kit" %></p>
 	    <p>Reactions used:</p>

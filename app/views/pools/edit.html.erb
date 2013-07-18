@@ -1,0 +1,60 @@
+<h2>Edit Pool</h2>
+<%= form_for [@user, @pool] do |f| %>
+<hr>
+<h3>Selected Libraries:</h3>
+<table>
+	<thead>
+	  <tr>
+	    <th>Lib name:</th>
+	    <th>Sample name:</th>
+	    <th>Target size:</th>
+	    <th>Quantity:</th>
+	    <th>pmol/L (after):</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @libraries.each do |library| %>
+	    <tr>
+	      <td><%= library.lib_number %></td>
+	      <td><%= library.sample.name %></td>
+	      <td><%= library.target_size %></td>
+	      <td><%= library.quantity %></td>
+	      <td><%= library.pmol_after %></td>
+	    </tr>
+	  <% end %>
+	</tbody>
+</table>
+<hr>
+<table >
+	<tbody>
+		<tr>
+			<td>
+				<p>Date Pooling:</p>
+				<%= f.text_field :date_pooling %>
+			</td>
+			<td>
+				<p>Pool Name:</p>
+				<%= f.label @pool.name %>
+			</td>
+			<td>
+				<p>ul Dilution (use 2...5)</p>
+				<%= f.text_field :ul_dilution %>
+			</td>
+		</tr>
+			<td>
+				<p>Bioanalyser Qbit: </p>
+				<%= f.text_field :bioanalyser_qbit %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<hr>
+<p><h3>5ul lib + x ul low TE buffer</h3></p>
+
+<% @lib5uls.each do |lib5ul| %>
+	<p>Library name: <%= lib5ul.library.lib_number %> </p>
+	<p>Value: <%= lib5ul.value %></p>
+<% end %>
+<hr>
+<%= f.submit %>
+<% end %>

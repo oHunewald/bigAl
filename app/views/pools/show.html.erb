@@ -1,7 +1,5 @@
-<%= form_for [@user, @pool] do |f| %>
-<hr>
 <h3>Selected Libraries:</h3>
-<table>
+<table class="display">
 	<thead>
 	  <tr>
 	    <th>Lib name:</th>
@@ -12,7 +10,7 @@
 	  </tr>
 	</thead>
 	<tbody>
-	  <% @libraries.each do |library| %>
+	  <% @pool.libraries.each do |library| %>
 	    <tr>
 	      <td><%= library.lib_number %></td>
 	      <td><%= library.sample.name %></td>
@@ -22,39 +20,43 @@
 	    </tr>
 	  <% end %>
 	</tbody>
-	<% @libraries.each do |lib| %>
-	<%= f.hidden_field :lib_ids, :multiple => true, :value => lib.id %>
-	<% end %>
 </table>
-	<table >
+<hr>
+	<table class="display">
 		<tbody>
 			<tr>
 				<td>
 					<p>Date Pooling:</p>
-					<%= f.text_field :date_pooling %>
+					<p><%= @pool.date_pooling %></p>
 				</td>
 				<td>
 					<p>Pool Name:</p>
-					<%= f.label @current_user.name + '-pool-' + Time.now.strftime("%d-%m-%Y") %>
+					<p><%= @pool.name %></p>
 				</td>
-			</tr>
 				<td>
 					<p>ul Dilution (use 2...5)</p>
-					<%= f.text_field :ul_dilution %>
+					<p><%= @pool.ul_dilution %></p>
+				</td>				
+			</tr>
+			<tr>
+				<td>
+					<p>Bioanalyser Qbit: </p>
+					<p><%= @pool.bioanalyser_qbit %></p>
+				</td>				
+				<td>
+					<p>Pool ready?</p>
+					<p><%= @pool.ready %></p>
 				</td>
 			</tr>
 		</tbody>	
 	</table>
 	<hr>
 	<p><h2>5ul lib + x ul low TE buffer</h2></p>
-	<% dilutions_array = "" %>
-	<% @dilutions.each_pair do |key, value| %>
-		<p>Library name: <%= key %> </p>
-		<p>Value: <%= value %></p>
-		<% dilutions_array += key + "," + value.to_s + "," %>
 
+	<% @lib5uls.each do |lib5ul| %>
+		<p>Library name: <%= lib5ul.library.lib_number %> </p>
+		<p>Value: <%= lib5ul.value %></p>
 	<% end %>
-	<%= f.hidden_field :dilutions, :value => dilutions_array %>
 	<hr>
-	<%= f.submit %>
-<% end %>
+
+<%= link_to 'Edit', edit_pool_path(@pool) %>
