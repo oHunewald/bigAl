@@ -1,0 +1,45 @@
+<table id="poolsTable" class="display">
+	<thead>
+		<tr>
+			<th>
+				Select
+			</th>
+			<th>
+				User
+			</th>
+			<th>
+				Project
+			</th>
+			<th>
+				Libraries
+			</th>		
+			<th>
+				Pool name
+			</th>				
+		</tr>
+	</thead>
+	<tbody>
+		<% @pools.each do |pool| %>
+		<tr>
+			<td>
+				<%= check_box_tag "pool_ids[]", pool.id %>
+			</td>
+			<td>
+				<%= pool.user.name %>
+			</td>
+			<td>
+				<%= get_project_number(pool) %>		
+			</td>
+			<td>
+				<% libraries = pool.libraries %>
+				<% libraries.each do |l| %>		
+					<p><%= l.lib_number %></p>
+				<% end %>
+			</td>
+			<td>
+				<%= link_to pool.name, pool %>
+			</td>										
+		</tr>		
+		<%end%>
+	</tbody>
+</table>

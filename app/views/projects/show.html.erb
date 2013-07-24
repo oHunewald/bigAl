@@ -25,7 +25,7 @@
 	<% elsif !@project.mianes.any? and current_user.role == 'Moderator' %>				<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>
 	<%end%>
 	<p><%= link_to "Show miane history", project_mianes_path(@project) %></p>
-	<% if current_user.role == 'Moderator' %>
+	<% if current_user.role == 'Moderator' || current_user.role == 'Admin' %>
 	<article>
 		<hr>
 			<h3>Change Project State</h3>

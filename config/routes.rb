@@ -74,6 +74,9 @@ BigAl::Application.routes.draw do
   match '/create_pool' => 'pools#new',
         :as => 'create_pool'
 
+  match '/create_template' => 'templates#new',
+        :as => 'create_template'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

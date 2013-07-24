@@ -5,3 +5,6 @@ jQuery ->
   $('#templates').dataTable
     sPaginationType: "full_numbers"
     bJQueryUI: true
+
+  $('#template_date_bioanalyser').datepicker
+	dateFormat: 'yy-mm-dd'	

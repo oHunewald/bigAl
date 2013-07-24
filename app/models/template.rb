@@ -1,11 +1,43 @@
 class Template < ActiveRecord::Base
-  attr_accessible :commit, :ot_kit_used, :pmol_l, :pmol_l_pool, 
-  				:pooling, :qbit_after_es, :qbit_before_es, :tdf, 
-  				:tdf_pool, :failed,:user_id
+  attr_accessible :comment, :qbit_after_es, :qbit_before_es, 
+  				  :failed, :user_id, :date_bioanalyser, :pool_id
 
 	has_one :pool
 
-	has_many :seq_runs
+	belongs_to :user
 
-	validates :pool, presence: true
+	has_many :seq_runs
+	has_and_belongs_to_many :inventories
+
+	def get_project
+
+		pool = Pool.where(:id => self.pool_id).first
+		library = Library.where(:pool_id => pool.id).first
+		puts library.lib_number
+		sample = Sample.where(:id => library.sample_id).first
+		puts sample.name
+		project = sample.project
+
+		return project.name
+	end
+
+	def get_lib_name
+		pool = Pool.where(:id => self.pool_id).first
+
+		library = Library.where(:pool_id => pool.id).first
+		return library.lib_number
+	end
+
+	def get_for_user_name
+		pool = Pool.where(:id => self.pool_id).first
+
+		library = Library.where(:pool_id => pool.id).first
+		return library.user.name
+	end	
+
+	def get_lib
+		pool = Pool.where(:id => self.pool_id).first
+
+		library = Library.where(:pool_id => pool.id).first		
+	end
 end

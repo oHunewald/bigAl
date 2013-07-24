@@ -1,13 +1,12 @@
 <%= form_for [@project, @sample, @library] do |f| %>
 <p>Library Name: <%= @library.lib_number %></p>
-<table>
+<table class="display">
 	<tbody>
 		<tr>
 			<td>
-				<div class="field">
-					<%= f.label "Library Date" %>
-					<%= f.text_field :lib_date %>
-				</div>				
+				<%= f.label "Library Date" %>
+				<%= f.text_field :lib_date %>
+
 			</td>
 			<td>			
 				<%= f.label "ul used" %>
@@ -45,8 +44,7 @@
 			<td>
 				<%= f.label "Cycles of amplification" %>
 				<%= f.text_field :cycles_of_amplification %>
-			</td>
-			
+			</td>			
 		</tr>
 		<tr>
 			<td>
@@ -61,93 +59,29 @@
 				<%= f.label "pmol after" %>
 				<%= f.text_field :pmol_after %>
 			</td>
-
-
 		</tr>
 		<tr>
 			<td>
 				<%= f.label "Comment" %>
 				<%= f.text_field :comment %>
 			</td>
-
-
 		</tr>
+	</tbody>
 </table>
 <hr>
 	<p id="box_failed">
-				<%= f.label "Library failed?" %>
-				<%= f.check_box :failed %>				
+		<%= f.label "Library failed?" %>
+		<%= f.check_box :failed %>				
 	</p>
 	<p id="comment_why">
 		<%= f.label "Failed why?" %>
 		<%= f.text_area :comment_why %>
 	</p>
 	<hr>
-	<p>Select the kits used for your Library.</p>
-	<p>Please select only one Kit at a time were needed.</p>
-	<hr>
-	<%= f.label "Select Shearing Kit" %>
-	<div class="myInvTable">
-    <table>  
-	  <% if !@shearing_kits.blank? %>
-	      <% @shearing_kits.each do |shearing_kit| %>
-	        <tr>
-	          <td> <%= check_box_tag('[shearing_kit]', shearing_kit.id, false) %> </td>
-	          <td> <%= shearing_kit.category.name %> </td>
-	          <td>| <%= shearing_kit.lot_number %> </td>          
-	        </tr>
-	      <% end %>
-      <% end %>
-    </table>	
-    </div>
-	<hr>
-	<%= f.label "Select Fragmentation Kit" %>
-	<div class="myInvTable">
-    <table>
-      <% if !@fragment_kits.blank? %>  
-	      <% @fragment_kits.each do |fragment_kit| %>
-	        <tr>
-	          <td> <%= check_box_tag('[fragment_kit]', fragment_kit.id, false) %> </td>
-	          <td> <%= fragment_kit.category.name %> </td>
-	          <td>| LotNo. <%= fragment_kit.lot_number %> </td>
-	        </tr>
-	      <% end %>
-      <% end %>
-    </table>	
-    </div>    
-	<hr>
-	<%= f.label "Select MID Kit" %>
-	<div class="myInvTable">
-    <table>
-      <% if !@mid_kits_1_16.blank? %>  
-	      <% @mid_kits_1_16.each do |kit_1_16| %>
-	        <tr>
-	          <td> <%= check_box_tag('[mid_kit]', kit_1_16.id, false) %> </td>
-	          <td> <%= kit_1_16.category.name %> </td>
-	          <td>| LotNo. <%= kit_1_16.lot_number %> </td>
-	        </tr>
-	      <% end %>
-      <% end %>
-      <% if !@mid_kits_17_32.blank? %>  
-	      <% @mid_kits_17_32.each do |kit_17_32| %>
-	        <tr>
-	          <td> <%= check_box_tag('[mid_kit]', kit_17_32.id, false) %> </td>
-	          <td> <%= kit_17_32.category.name %> </td>
-	          <td>| LotNo. <%= kit_17_32.lot_number %> </td>
-	        </tr>
-	      <% end %>
-      <% end %>
-      <% if !@mid_kits_33_48.blank? %>  
-	      <% @mid_kits_33_48.each do |kit_33_48| %>
-	        <tr>
-	          <td> <%= check_box_tag('[mid_kit]', kit_33_48.id, false) %> </td>
-	          <td> <%= kit_33_48.category.name %> </td>
-	          <td>| LotNo. <%= kit_33_48.lot_number %> </td>
-	        </tr>
-	      <% end %>
-      <% end %>            
-    </table>	
-    </div>    
+	<p>Select the kits used for your Library:</p>
+	<div class="mySelectTag">
+	<%= select_tag :inventories, options_from_collection_for_select(@inventories, 'id', 'combined_name' ), :multiple => true %>
+  	</div>
 <hr>
 	<%= f.submit %>
 <% end %>

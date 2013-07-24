@@ -1,5 +1,11 @@
 class PoolsController < ApplicationController
 
+
+	def index
+		@pools  = Pool.where(:ready => 't')
+		#@inv
+	end
+
 	def new
 		@pool = current_user.pools.build
 		@libraries = Library.find(params[:lib_ids])
@@ -24,10 +30,6 @@ class PoolsController < ApplicationController
 			end
 
 		end
-		puts '"""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
-		puts @dilutions
-		puts @libraries
-		puts '""""""""""""""""""""""""""""""""""""""""""""""""""""""""""'
 	end
 
 	# the create method must calculate the dilution of each library based

@@ -6,8 +6,12 @@ class Inventory < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :category
+  has_and_belongs_to_many :templates
+  has_and_belongs_to_many :libraries
 
-
-
+  def combined_name
+    #category = Category.find(self.category_id)
+  	self.lot_number + '|' + self.category.name
+  end
 
 end

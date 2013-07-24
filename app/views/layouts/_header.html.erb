@@ -22,7 +22,6 @@
                 <% if current_user.role == 'Moderator' %>
                   <li class="divider"></li>
                   <li><%= link_to "Approve Projects", not_approved_projects_path %></li>
-                  <li><%= link_to "Create Template" , new_template_path %></li>
                 <% end %>
           		<% end %>
           	</ul>
@@ -33,7 +32,10 @@
               Template prep <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">              
-                <li><%= link_to "Select Lib for Template", user_libraries_path(current_user) %></li>              
+                <li><%= link_to "Select Lib for Template", user_libraries_path(current_user) %></li>
+                <% if current_user.role == 'Moderator' || current_user.role == 'Admin' %>
+                  <li><%= link_to "Create Template", pools_path %></li>
+                <% end %>             
             </ul>           
           </li>
           <% end %>          
@@ -42,7 +44,7 @@
           		Inventory <b class="caret"></b>
           	</a>
           	<ul class="dropdown-menu">
-              <% if user_signed_in? and current_user.role == 'Moderator'%>          
+              <% if user_signed_in? and current_user.role == 'Moderator' || current_user.role == 'Admin' %>          
             		<li><%= link_to "Show Inventory", inventories_path %></li>
                 <li><%= link_to "New Item", new_inventory_path %></li>
               <% end %>

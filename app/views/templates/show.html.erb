@@ -1,40 +1,45 @@
 <h2>Template</h2>
 <hr/>
-<div id="myTwoColumn">
-	<aside>
-		<p>Template for user:</p>
-		<p><%= @user.name %></p>
-		<p>Ot kit used:</p>
-		<p><%= @template.ot_kit_used %></p>
-		<p>pmol/L:</p>
-		<p><%= @template.pmol_l%></p>
-		<p>pmol/L pool:</p>
-		<p><%= @template.pmol_l_pool %></p>
-		<p>Pooling:</p>
-		<p><%= @template.pooling %></p>
-	</aside>
-	<article>
-		<p>Qubit after ES:</p>
-		<p><%= @template.qbit_after_es %></p>
-		<p>Qubit before ES:</p>
-		<p><%= @template.qbit_before_es %></p>		
-		<p>TDF:</p>
-		<p><%= @template.tdf %></p>
-		<p>TDF pool:</p>
-		<p><%= @template.tdf_pool %></p>		
-		<p>Comment:</p>
-		<p><%= @template.commit %></p>
-		<p>Done by:</p>
-		<p><%= @responsible.name %></p>
-	</article>
-	<hr/>	
-	<% if @template.failed? %>
-		<p>Template has failed or has not been approved!</p>
-		<%= link_to 'Validate this Template', validate_template_path(@template) %>
-	<% else %>
-		<p>Template is ready </p>
-		<%= link_to 'Create Sequencing Run', '#' %>
-	<% end %>	
-	<hr>
-	<%= link_to 'Edit Template', edit_template_path(@template) %>
-</div>
+
+<table class="display">
+	<tbody>
+		<tr>
+			<td>
+				<p>Date Bioanalyser:</p>
+				<p><%= @template.date_bioanalyser %></p>
+			</td>
+			<td>
+				<p>For User:</p>
+				<p><%= @template.get_for_user_name %></p>
+			</td>
+			<td>
+				<p>Library name:</p>
+				<p><%= @template.get_lib_name %></p>
+			</td>
+			<td>
+				<p>Project:</p>
+				<p><%= @template.get_project %></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<hr>
+<h3>Template Kits used:</h3>
+<% @template.inventories.each do |i| %>
+	<p><%= i.category.name %> | <%= i.lot_number %></p>
+<% end %>
+<hr>
+<h3>Library Kits used:</h3>
+<% @template.get_lib.inventories.each do |inv| %>
+	<p><%= inv.category.name %>  | <%= inv.lot_number %></p>
+<% end %>
+<hr>
+<% if @template.failed? %>
+	<p>Template has failed or has not been approved!</p>
+	<%= link_to 'Validate this Template', validate_template_path(@template) %>
+<% else %>
+	<p>Template is ready </p>
+	<%= link_to 'Create Sequencing Run', '#' %>
+<% end %>	
+<hr>
+<%= link_to 'Edit Template', edit_template_path(@template) %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718115154) do
+ActiveRecord::Schema.define(:version => 20130722144045) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -42,6 +42,20 @@ ActiveRecord::Schema.define(:version => 20130718115154) do
     t.integer  "category_id"
     t.float    "price"
   end
+
+  create_table "inventories_libraries", :id => false, :force => true do |t|
+    t.integer "library_id"
+    t.integer "inventory_id"
+  end
+
+  add_index "inventories_libraries", ["library_id", "inventory_id"], :name => "index_libraries_inventories_on_library_id_and_inventory_id"
+
+  create_table "inventories_templates", :id => false, :force => true do |t|
+    t.integer "inventory_id"
+    t.integer "template_id"
+  end
+
+  add_index "inventories_templates", ["inventory_id", "template_id"], :name => "index_inventories_templates_on_inventory_id_and_template_id"
 
   create_table "lib5uls", :force => true do |t|
     t.integer  "pool_id"
@@ -157,20 +171,15 @@ ActiveRecord::Schema.define(:version => 20130718115154) do
   end
 
   create_table "templates", :force => true do |t|
-    t.string   "ot_kit_used"
-    t.float    "pmol_l"
-    t.string   "tdf"
-    t.date     "pooling"
-    t.float    "pmol_l_pool"
-    t.string   "tdf_pool"
     t.string   "qbit_before_es"
     t.string   "qbit_after_es"
-    t.string   "commit"
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.integer  "responsible_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.boolean  "failed"
+    t.string   "comment"
+    t.date     "date_bioanalyser"
+    t.integer  "pool_id"
   end
 
   create_table "users", :force => true do |t|

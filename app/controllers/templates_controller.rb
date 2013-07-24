@@ -1,21 +1,21 @@
 class TemplatesController < ApplicationController
 
-	def index
-		@templates = current_user.templates.all
-
-	end
 
 	def new
-		@users = User.all
+		
 		@template = Template.new
-		@updated_library = Library.all
-		@libraries = @template.libraries.build
+		@pool = Pool.find(params[:pool_ids]).first
+		@kits = Inventory.where(:item_description => 'Template prep', :empty => 'f')
+
+		puts @kits
+		#@updated_library = Library.all
+		#@libraries = @template.libraries.build
 	end
 
 	def show
 		@template = Template.find(params[:id])
 		@user = User.find(@template.user_id)
-		@responsible = User.find(@template.responsible_id)
+		#@responsible = User.find(@template.responsible_id)
 		#@libraries = @user.libraries.all
 	end
 
@@ -53,22 +53,18 @@ class TemplatesController < ApplicationController
 		
 		@template = Template.new(params[:template])
 
-		@user =User.find(params[:first_select])
-		#@libraries = @user.libraries.all
+		@pool = Pool.find(params[:template][:pool_id])
 
+		@template.user_id = current_user.id
+		inventories = params[:inventories]
 
-
-		# params[:second_select] do |p|
-		# 	@library = Library.find(p)
-		# 	@template.libraries << @library
-		# end
-
-		@library = Library.find(params[:second_select])
-		@template.libraries << @library
-
-		#@template.libraries = @libraries
-		@template.user_id = params[:first_select]
-		@template.responsible_id = current_user.id
+		inventories.each do |i|
+			inv = Inventory.find(i)
+			puts inv
+			if !inv.blank?
+				@template.inventories << inv
+			end
+		end
 
 		if @template.save
 			flash[:notice] = "Successfully created..."

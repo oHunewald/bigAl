@@ -1,86 +1,28 @@
-<script>
-	$(function() {
-
-		$('#opt_1').checked = false;
-		$('#opt_2').checked = false;
-
-		$('#pool').hide();
-		$('#none_pool').hide();
-
-		$('#myForm').on('click', function() {
-			if ($('#opt_1').is(':checked')) {
-				$('#pool').show();
-				$('#none_pool').hide();
-			}
-			else if ($('#opt_2').is(':checked')) {
-				$('#pool').hide();
-				$('#none_pool').show();	
-			}
-		});
-	});
-</script>
-<div id="myForm">
-	<input id="opt_1" type="radio" name="select" value="pool" > Pool<br>
-	<input id="opt_2" type="radio" name="select" value="none_pool" > No Pool<br>
-</div>
-<hr>
 
 <%= form_for [@user, @template] do |f| %>
 
 	<div id="myTwoColumn">
 
-			<div id="pool">
-				<p>TDF pool:</p>
-				<p><%= f.text_field :tdf_pool %></p>		
-				<p>pmol/L pool:</p>
-				<p><%= f.text_field :pmol_l_pool %></p>
-				
-				<p>Pooling Date:</p>
-				<p><%= f.date_select :pooling %></p>	
-				<hr>			
-			</div>
-			<div id="none_pool">
-				<p>TDF:</p>
-				<p><%= f.text_field :tdf %></p>
-				<p>pmol/L:</p>
-				
-				<p><%= f.text_field :pmol_l %></p>		
-				
-				<hr>	
-			</div>
+	<p>Date Bioanalyser:</p>
+	<%= f.text_field :date_bioanalyser %>
+	<p>Qubit after ES:</p>
+	<p><%= f.text_field :qbit_after_es %></p>
+	<p>Qubit before ES:</p>
+	<p><%= f.text_field :qbit_before_es %></p>		
 
-			<p>Create Template for:</p>
-			<p>
-			<%= 
-			  select_tag :first_select, 
-			      options_from_collection_for_select(@users, "id", "name"), # your options for this select box
-			      :'data-remote' => 'true', # important for UJS
-			      :'data-url' => url_for(:controller => 'templates', :action => 'update_libraries'), # we get the data from here!
-			      :'data-type' => 'json', # tell jQuery to parse the response as JSON!
-			      :'prompt' => 'Please select User'
-			%>
-			</p>			
-			<p>Ot kit used:</p>
-			<p><%= f.text_field :ot_kit_used %></p>
-			<p>Qubit after ES:</p>
-			<p><%= f.text_field :qbit_after_es %></p>
-			<p>Qubit before ES:</p>
-			<p><%= f.text_field :qbit_before_es %></p>		
+	<p>Comment:</p>
+	<p><%= f.text_area :comment %></p>
+	<hr>
+	<p>Select Kits:</p>
 
-			<p>Comment:</p>
-			<p><%= f.text_area :commit %></p>
-			<p>Select Libraries:</p>
-			<%= 
-			   select_tag :second_select, # name of selectbox
-			       "<option>Please select something from first select!</option>",
-			       :multiple => true, :size => 10
-			%>
-			</p>
-			<p>Template failed or to be approved</p>
-			<p><%= f.radio_button :failed, 'true' %></p>
-			<p>Template OK</p>
-			<p><%= f.radio_button :failed, 'false' %></p>
+	<%= select_tag :inventories, options_from_collection_for_select(Inventory.where(:item_description => 'Template prep'), 'id', 'combined_name' ), :multiple => true %>
 
+	<hr>
+	<p>Template failed</p>
+	<p><%= f.radio_button :failed, 'true' %></p>
+	<p>Template OK</p>
+	<p><%= f.radio_button :failed, 'false' %></p>
+	<%= f.hidden_field :pool_id, :value => @pool.id %>
 	</div>
 	<%= f.submit %>
 <% end %>

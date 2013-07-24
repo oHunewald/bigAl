@@ -52,23 +52,24 @@ p.myTitle {
 }
 
 .myNews {
-
   aside {
-
     text-align: center;
     with:200px;
     height:400px;
     margin-right: 10px;
     overflow: auto;
   }
-
   article {
     text-align: center;
     width:800px;
     height:400px;
     overflow: auto;
   }
-  
+}
+
+.mySelectTag select {
+  width:400px;
+  height:200px;
 }
 
 .allNews {

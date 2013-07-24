@@ -16,42 +16,14 @@ class LibrariesController < ApplicationController
   	@sample = @project.samples.find(params[:sample_id])
   	@library = @sample.libraries.build
     @library.lib_number = get_number
-    #@inventories = Inventory.where(:category => 'Library prep', :empty => 'f', :user_id => current_user)  	
-    cat1 = Category.where(:name => 'Ion Shear Plus Reagents Kit').first
-    cat2 = Category.where(:name => 'Ion Plus Fragment Library Kit').first
-    cat3 = Category.where(:name => 'Ion Xpress Barcode Adapters MID1-16').first
-    cat4 = Category.where(:name => 'Ion Xpress Barcode Adapters MID17-32').first
-    cat5 = Category.where(:name => 'Ion Xpress Barcode Adapters MID33-48').first
-    
-    @shearing_kits = Inventory.where(:category_id => cat1.id,
-                                    :empty => 'f', 
-                                    :user_id => current_user.id)
-
-    @fragment_kits = Inventory.where(:category_id => cat2.id,
-                                    :empty => 'f', 
-                                    :user_id => current_user.id)
-
-    @mid_kits_1_16 = Inventory.where(:category_id => cat3.id,
-                                    :empty => 'f',
-                                    :user_id => current_user.id)
-
-    @mid_kits_17_32 = Inventory.where(:category_id => cat4.id,
-                                    :empty => 'f',
-                                    :user_id => current_user.id)
-
-    @mid_kits_33_48 = Inventory.where(:category_id => cat5.id,
-                                    :empty => 'f',
-                                    :user_id => current_user.id)
-
+    @inventories = Inventory.where(
+      :item_description => 'Library prep', :empty => 'f', :user_id => current_user) 
   end
 
   def show
     @project = Project.find(params[:project_id])
     @sample =  @project.samples.find(params[:sample_id])
     @library = Library.find(params[:id])
-    #@library.shearing_kit = params[:shearing_kit]
-    #@library.fragment_kit = params[:fragment_kit]
-    #@library = @sample.find(params[:id])
   end
 
   def create
@@ -61,15 +33,15 @@ class LibrariesController < ApplicationController
   	@library = @sample.libraries.build(params[:library])  
     @library.user_id = current_user.id	
     @library.lib_number = get_number
-    # load inventory items
-    @library.shearing_kit = params[:shearing_kit]
-    @library.fragment_kit = params[:fragment_kit]
-    @library.mid_kit = params[:mid_kit]
 
+    inventories = Inventory.find(params[:inventories])
+    if !inventories.blank?
+      @library.inventories = inventories
+    end  
 
   	if @library.save
       # when kits are used update the inventory
-      update_stock(params, 1)
+      #update_stock(params, 1)
 
   		flash[:notice] = "Successfully created..."
   		redirect_to [@project, @sample]
@@ -83,14 +55,21 @@ class LibrariesController < ApplicationController
     @project = Project.find(params[:project_id])
     @sample =  @project.samples.find(params[:sample_id])
     @library = Library.find(params[:id])  
-  
+    @inventories = Inventory.where(
+      :item_description => 'Library prep', :empty => 'f', :user_id => current_user)    
   end
 
   def update
+    puts params
     @project = Project.find(params[:project_id])
     @sample =  @project.samples.find(params[:sample_id])
     @library = Library.find(params[:id])
+
+    inventories = Inventory.find(params[:inventories])
+
+    @library.inventories = inventories
     @library.update_attributes(params[:library])
+    
     flash[:notice] = "Successfully updated..."
     redirect_to [@project, @sample, @library]
   end
