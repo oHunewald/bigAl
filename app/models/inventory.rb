@@ -14,4 +14,11 @@ class Inventory < ActiveRecord::Base
   	self.lot_number + '|' + self.category.name
   end
 
+  def update_stock(value)
+    if self.reactions_used >= 0
+      self.reactions_used += value
+      self.save
+    end
+  end
+
 end

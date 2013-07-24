@@ -1,0 +1,116 @@
+<table id="librariesTable" class="display">
+	<thead>
+		<tr>
+			<th>
+				Library Date
+			</th>
+			<th>
+				Sample name
+			</th>
+			<th>
+				Library Name
+			</th>			
+			<th>
+				Target Size (bp)
+			</th>
+			<th>
+				ng/ul
+			</th>
+			<th>
+				ul used
+			</th>			
+			<th>
+				MID
+			</th>
+			<th>	
+				Shearing in min
+			</th>
+			<th>
+				Shearing Kit used
+			</th>							
+			<th>
+				End repair done
+			</th>
+			<th>
+				Number of bands on e-gel
+			</th>			
+			<th>
+				Cycles of amplification
+			</th>
+			<th>
+				Date Bioanalyser
+			</th>				
+			<th>
+				pmol/L before ampl.
+			</th>				
+			<th>
+				pmol/L after ampl.
+			</th>			
+			<th>
+				Comment
+			</th>											
+			<th>
+				Del.
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @libraries.each do |library| %>
+			<tr>
+				<td>
+					<%= library.lib_date %>
+				</td>
+				<td>
+					<%= library.sample.name %>
+				</td>
+				<td>
+					<%= link_to library.lib_number, edit_project_sample_library_path(@project, @sample, library) %>
+				</td>
+				<td>
+					<%= library.target_size %>
+				</td>
+				<td>
+					<%= library.quantity %>
+				</td>
+				<td>
+					<%= library.ul_used %>
+				</td>
+				<td>
+					<%= library.mid %>
+				</td>
+				<td>
+					<%= library.shearing_min %>
+				</td>
+				<td>
+					<%= library.shearing_kit %>
+				</td>				
+				<td>
+					<%= library.end_repair_done %>
+				</td>				
+				<td>
+					<%= library.number_of_bands_in_eGel %>
+				</td>				
+				<td>
+					<%= library.cycles_of_amplification %>
+				</td>				
+				<td>
+					<%= library.date_bioanalyser %>
+				</td>				
+				<td>
+					<%= library.pmol_before %>
+				</td>				
+				<td>
+					<%= library.pmol_after %>
+				</td>				
+				<td>
+					<%= library.comment %>
+				</td>	
+				<td>
+					<% if library.pool.nil? and current_user == 'Moderator' %>
+					<%= link_to 'Del', project_sample_library_path(@project, @sample, library), :confirm => 'Are you sure?', :method => :delete %>
+					<% end %>
+				</td>			
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -80,5 +80,11 @@
 		</tr>
 	</tbody>
 </table>	
+<h3>Library Kits used:</h3>
+<% @library.inventories.each do |inv| %>
+	<p><%= inv.category.name %>  | <%= inv.lot_number %></p>
+<% end %>
+
+<hr>
 <p><%= link_to "Edit Library", 
 	edit_project_sample_library_path(@project, @sample, @library) %></p>

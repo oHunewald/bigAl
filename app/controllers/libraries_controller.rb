@@ -41,7 +41,7 @@ class LibrariesController < ApplicationController
 
   	if @library.save
       # when kits are used update the inventory
-      #update_stock(params, 1)
+      delete_from_stock(params)
 
   		flash[:notice] = "Successfully created..."
   		redirect_to [@project, @sample]
@@ -60,16 +60,30 @@ class LibrariesController < ApplicationController
   end
 
   def update
-    puts params
+
     @project = Project.find(params[:project_id])
     @sample =  @project.samples.find(params[:sample_id])
     @library = Library.find(params[:id])
+    # when updating release the former selected stock
+    # its has to be selected again
+    add_to_stock(@library.inventories)
 
-    inventories = Inventory.find(params[:inventories])
-
-    @library.inventories = inventories
+    if !params[:inventories].blank?
+      inventories = Inventory.find(params[:inventories])
+      @library.inventories = inventories
+    else
+      @library.inventories.destroy_all
+    end
+        
     @library.update_attributes(params[:library])
-    
+    puts '""""""""""""""""""""""""""""""""""""'
+    puts 'the non selected '
+    # re-organise the stock
+    puts '?????????????????????????????????'
+    puts 'the params before delete from stock'
+    puts params
+    puts '?????????????????????????????????'
+    delete_from_stock(params)
     flash[:notice] = "Successfully updated..."
     redirect_to [@project, @sample, @library]
   end
@@ -82,32 +96,26 @@ class LibrariesController < ApplicationController
   end
 
   private
-    def update_stock(params, value)
+    def delete_from_stock(params)
 
-      if !params[:shearing_kit].blank?
-        item = Inventory.find(params[:shearing_kit])
-        set_values(item, value)
-        item.save
-      end
-
-      if !params[:fragment_kit].blank?
-        item = Inventory.find(params[:fragment_kit])
-        set_values(item, value)
-        item.save
-      end
-
-      if !params[:mid_kit].blank?
-        item = Inventory.find(params[:mid_kit])
-        set_values(item, value)
-        item.save
+      if !params[:inventories].blank?
+        params[:inventories].each do |i|
+          item = Inventory.find(i)
+          puts '********************************'
+          puts 'now deleting from stock'
+          puts item.lot_number
+          item.update_stock(1)
+        end
       end
     end
 
-    def set_values(item, value)
-        item.reactions_used += value
-        if item.reactions_used >= item.reaction_kit
-          item.empty = true
-        end      
+    def add_to_stock(inventories)
+      inventories.each do |l|
+        puts '********************************'
+        puts 'now adding to stock'
+        puts l.lot_number
+        l.update_stock(-1)
+      end      
     end
 
     def get_number()

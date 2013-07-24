@@ -6,6 +6,10 @@ jQuery ->
     sPaginationType: "full_numbers"
     bJQueryUI: true
 
+  $('#libraries2').dataTable
+    sPaginationType: "full_numbers"
+    bJQueryUI: true
+
   $('#library_lib_date').datepicker
   	dateFormat: 'yy-mm-dd'
 
