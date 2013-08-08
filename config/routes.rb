@@ -29,7 +29,7 @@ BigAl::Application.routes.draw do
   end
 
   resources :templates do
-    resources :libraries
+    resources :pgmruns
 
   end
   
@@ -50,6 +50,8 @@ BigAl::Application.routes.draw do
   resources :libraries
 
   resources :lib5ul
+
+  resources :pgmruns
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
@@ -76,6 +78,9 @@ BigAl::Application.routes.draw do
 
   match '/create_template' => 'templates#new',
         :as => 'create_template'
+
+  match '/create_pgmrun' => 'pgmruns#new',
+        :as => 'create_pgmrun'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,54 @@
+<table id="pgmrunsTable" class="display">
+	<thead>
+		<tr>
+			<th>
+				Run date
+			</th>
+			<th>
+				Run number
+			</th>
+			<th>
+				User
+			</th>
+			<th>
+				Project
+			</th>
+			<th>
+				OT date
+			</th>
+			<th>
+				Mean read length
+			</th>
+			<th>
+				Comment
+			</th>						
+		</tr>
+	</thead>
+	<tbody>
+		<% @pgmruns.each do |pgmrun| %>
+			<tr>
+				<td>
+					<%= pgmrun.run_date %>
+				</td>
+				<td>
+					<%= link_to pgmrun.run_number, pgmrun %>		
+				</td>
+				<td>
+					<%= pgmrun.get_for_user_name(pgmrun) %>		
+				</td>
+				<td>
+					<%= pgmrun.get_template.get_project %>		
+				</td>			
+				<td>
+					<%= pgmrun.ot_date %>
+				</td>
+				<td>
+					<%= pgmrun.mean_read_length %>		
+				</td>
+				<td>
+					<%= pgmrun.comment %>
+				</td>								
+			</tr>		
+		<%end%>
+	</tbody>
+</table>

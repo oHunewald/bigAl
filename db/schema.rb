@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722144045) do
+ActiveRecord::Schema.define(:version => 20130724113535) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -117,6 +117,26 @@ ActiveRecord::Schema.define(:version => 20130722144045) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "project_id"
+  end
+
+  create_table "pgmruns", :force => true do |t|
+    t.integer  "template_id"
+    t.date     "run_date"
+    t.date     "ot_date"
+    t.string   "initialisation"
+    t.string   "run_number"
+    t.string   "pgm_number"
+    t.integer  "mean_read_length"
+    t.integer  "perc_loading"
+    t.integer  "keysignal"
+    t.integer  "final_lib_reads"
+    t.integer  "perc_low_quality"
+    t.string   "testfragment"
+    t.string   "ts_version"
+    t.string   "comment"
+    t.integer  "user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "pools", :force => true do |t|

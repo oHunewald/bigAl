@@ -6,7 +6,7 @@ class Template < ActiveRecord::Base
 
 	belongs_to :user
 
-	has_many :seq_runs
+	has_many :pgmruns
 	has_and_belongs_to_many :inventories
 
 	def get_project
@@ -26,6 +26,12 @@ class Template < ActiveRecord::Base
 
 		library = Library.where(:pool_id => pool.id).first
 		return library.lib_number
+	end
+
+	def get_pool_name
+		pool = Pool.where(:id => self.pool_id).first
+
+		return pool.name		
 	end
 
 	def get_for_user_name

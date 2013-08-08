@@ -1,10 +1,8 @@
-<h2>Select Pool</h2>
-
-
+<h2>Select Template</h2>
 <hr>
-<p>Select one Pool for template preparation.</p>
-<%= form_for('Pool', :as => 'pools', :url => create_template_path) do |f| %>
-	<%= render 'layouts/pools_table' %>
+<p>Select a Template for Sequencing</p>
+<%= form_for('Template', :as => 'templates', :url => create_pgmrun_path ) do |f| %>
+	<%= render 'layouts/templates_table' %>
 	<br>
 	<hr>
 	<%= f.button :submit %>

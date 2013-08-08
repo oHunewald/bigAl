@@ -1,0 +1,87 @@
+<h2>PGM run</h2>
+<hr/>
+
+<table class="display">
+	<tbody>
+		<tr>
+			<td>
+				<p>Run date:</p>
+				<p><%= @pgmrun.run_date %></p>
+			</td>
+			<td>
+				<p>For User:</p>
+				<p><%= @template.get_for_user_name %></p>
+			</td>
+			<td>
+				<p>Library name:</p>
+				<p><%= @template.get_lib_name %></p>
+			</td>
+			<td>
+				<p>Project:</p>
+				<p><%= @template.get_project %></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>OT date:</p>
+				<p><%= @pgmrun.ot_date %></p>
+			</td>
+			<td>
+				<p>Run numer:</p>
+				<p><%= @pgmrun.run_number %></p>
+			</td>
+			<td>
+				<p>Mean Read length:</p>
+				<p><%= @pgmrun.mean_read_length %></p>
+			</td>
+			<td>
+				<p>Percent loading:</p>
+				<p><%= @pgmrun.perc_loading %></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>Keysignal:</p>
+				<p><%= @pgmrun.keysignal %></p>
+			</td>
+			<td>
+				<p>Final Library reads:</p>
+				<p><%= @pgmrun.final_lib_reads %></p>
+			</td>
+			<td>
+				<p>Percent low quality:</p>
+				<p><%= @pgmrun.perc_low_quality %></p>
+			</td>
+			<td>
+				<p>Testfragment:</p>
+				<p><%= @pgmrun.testfragment %></p>
+			</td>			
+		</tr>
+		<tr>
+			<td>
+				<p>Torrent Suite:</p>
+				<p><%= @pgmrun.ts_version %></p>
+			</td>
+			<td>
+				<p>Comment:</p>
+				<p><%= @pgmrun.comment %></p>
+			</td>
+			<td>
+				<p>Done by:</p>
+				<p><%= @pgmrun.user.name %></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<hr>
+<h3>Template Kits used:</h3>
+<% @template.inventories.each do |i| %>
+	<p><%= i.category.name %> | <%= i.lot_number %></p>
+<% end %>
+<hr>
+<h3>Library Kits used:</h3>
+<% @template.get_lib.inventories.each do |inv| %>
+	<p><%= inv.category.name %>  | <%= inv.lot_number %></p>
+<% end %>	
+<hr>
+<%= link_to 'Edit PGM run', edit_template_pgmrun_path(@template, @pgmrun) %>

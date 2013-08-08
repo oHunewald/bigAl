@@ -2,40 +2,16 @@
 	<thead>
 		<tr>
 			<th>
-				select:
+				Select:
 			</th>
 			<th>
-				Libraries:
+				For User:
 			</th>
 			<th>
-				Ot kit used:
+				Project:
 			</th>
 			<th>
-				pmol/L
-			</th>
-			<th>
-				pmol/L pool
-			</th>
-			<th>
-				pooling
-			</th>
-			<th>
-				qbit before es
-			</th>
-			<th>
-				qbit after es
-			</th>
-			<th>
-				tdf
-			</th>
-			<th>
-				tdf pool
-			</th>
-			<th>
-				failed
-			</th>
-			<th>
-				comment
+				Pool-Name:
 			</th>
 		</tr>
 	</thead>
@@ -43,40 +19,16 @@
 		<% @templates.each do |template| %>
 			<tr>
 				<td>
-					<%= link_to 'select', template %>
+					<%= check_box_tag "template_ids[]", template.id %>
 				</td>
 				<td>
-					<%= template_name(template) %>
+					<%= template.get_for_user_name %>
 				</td>
 				<td>
-					<%= template.ot_kit_used %>
+					<%= template.get_project %>
 				</td>
 				<td>
-					<%= template.pmol_l %>
-				</td>
-				<td>
-					<%= template.pmol_l_pool %>
-				</td>
-				<td>
-					<%= template.pooling %>
-				</td>
-				<td>
-					<%= template.qbit_before_es %>
-				</td>
-				<td>
-					<%= template.qbit_after_es %>
-				</td>
-				<td>
-					<%= template.tdf %>
-				</td>
-				<td>
-					<%= template.tdf_pool %>
-				</td>
-				<td>
-					<%= template.failed? %>
-				</td>
-				<td>
-					<%= template.commit %>
+					<%= template.get_pool_name %>
 				</td>
 			</tr>
 		<% end %>

@@ -1,0 +1,70 @@
+<%= form_for [@template, @pgmrun] do |f| %>
+	<p>Pool Name: <%= @template.get_pool_name %></p>
+	<p>User : <%= @template.get_for_user_name %></p>
+	<hr>
+	<table class="display">
+		<tbody>
+			<tr>
+				<td>
+					<p>Enter scheduled run date:</p>
+					<%= f.text_field :run_date %>
+				</td>
+				<td>
+					<p>OT date:</p>
+					<%= f.text_field :ot_date %>
+				</td>
+				<td>
+					<p>Initialisation:</p>
+			        <p><%= f.label "Ok" %></p>
+			        <p><%= f.radio_button :initialisation, 'ok' %></p>
+			        <p><%= f.label "not_Ok" %></p>
+			        <p><%= f.radio_button :initialisation, 'not_ok' %></p>
+				</td>				
+			</tr>
+			<tr>
+				<td>
+					<p>Run number:</p>
+					<%= f.text_field :run_number %>
+				</td>
+				<td>
+					<p>Mean read length:</p>
+					<%= f.text_field :mean_read_length %>
+				</td>
+				<td>
+					<p>Percent loading:</p>
+					<%= f.text_field :perc_loading %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Keysignal:</p>
+					<%= f.text_field :keysignal %>
+				</td>
+				<td>
+					<p>Final Library reads:</p>
+					<%= f.text_field :final_lib_reads %>
+				</td>
+				<td>
+					<p>Percent low quality:</p>
+					<%= f.text_field :perc_low_quality %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p>Test fragment:</p>
+					<%= f.text_field :testfragment %>
+				</td>
+				<td>
+					<p>Torrent Suite version:</p>
+					<%= f.text_field :ts_version %>
+				</td>
+				<td>
+					<p>Comment:</p>
+					<%= f.text_field :comment %>
+				</td>
+			</tr>
+		</tbody>	
+	</table>
+	<hr>	
+	<%= f.submit %>
+<% end %>
