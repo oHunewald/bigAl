@@ -10,7 +10,8 @@ gem 'cancan'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
+  #gem 'sqlite3', '1.3.5'
+  gem 'pg'
   gem 'rspec-rails', '2.11.0'
 end
 
@@ -43,7 +44,7 @@ end
 gem 'devise', '1.5.4'
 
 group :production do
-  gem 'pg', '0.12.2'
+  gem 'pg'
 end
 
 gem 'will_paginate'

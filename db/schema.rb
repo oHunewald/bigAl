@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20130724113535) do
     t.string   "lot_number"
     t.integer  "reaction_kit",     :limit => 255
     t.integer  "reactions_used",   :limit => 255
-    t.date     "best_till",        :limit => 255
-    t.date     "opened",           :limit => 255
+    t.date     "best_till"#,        :limit => 255
+    t.date     "opened"#,           :limit => 255
     t.string   "comment"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
