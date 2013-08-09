@@ -55,6 +55,9 @@ A discussion beforehand is meant to save a lot of time which has to be invested 
         <p><%= f.radio_button :approach, 'genome' %></p>
         <p><%= f.label "Amplicon" %></p>
         <p><%= f.radio_button :approach, 'amplicon' %></p>
+        <p><%= f.label "If Amplicon, please insert your construct e.g.:" %></p>
+        <p><%= f.label "TAG-ADAPTER-FORWARDPRIMER-SEQUENCE-REVPRIMER-ADAPTER-TAG" %></p>
+        <p><%= f.text_area :construct, placeholder: "Construct..." %></p>
     </fieldset> 
     <fieldset>
         <legend>Controls</legend>    	

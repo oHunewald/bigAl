@@ -2,7 +2,7 @@ class Miane < ActiveRecord::Base
   attr_accessible :aims, :expected_result, :why_ngs,
   				:possible_alternative, :approach, :positive_control,
   				:negative_control, :replicates, :reference_dataset,
-  				:possible_pittfalls, :needs_qc, :project_id
+  				:possible_pittfalls, :needs_qc, :project_id, :construct
 
   belongs_to :project
 

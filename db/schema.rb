@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130724113535) do
+ActiveRecord::Schema.define(:version => 20130809133021) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -30,13 +30,13 @@ ActiveRecord::Schema.define(:version => 20130724113535) do
   create_table "inventories", :force => true do |t|
     t.string   "item_description"
     t.string   "lot_number"
-    t.integer  "reaction_kit",     :limit => 255
-    t.integer  "reactions_used",   :limit => 255
-    t.date     "best_till"#,        :limit => 255
-    t.date     "opened"#,           :limit => 255
+    t.integer  "reaction_kit"
+    t.integer  "reactions_used"
+    t.date     "best_till"
+    t.date     "opened"
     t.string   "comment"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.boolean  "empty"
     t.integer  "user_id"
     t.integer  "category_id"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20130724113535) do
 
   create_table "libraries", :force => true do |t|
     t.integer  "sample_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "user_id"
     t.date     "lib_date"
     t.float    "ul_used"
@@ -85,8 +85,8 @@ ActiveRecord::Schema.define(:version => 20130724113535) do
     t.string   "comment"
     t.string   "lib_number"
     t.integer  "inventory_id"
-    t.integer  "shearing_kit",            :limit => 255
-    t.integer  "fragment_kit",            :limit => 255
+    t.integer  "shearing_kit"
+    t.integer  "fragment_kit"
     t.boolean  "failed"
     t.string   "comment_why"
     t.integer  "mid_kit"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20130724113535) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "project_id"
+    t.string   "construct"
   end
 
   create_table "pgmruns", :force => true do |t|
