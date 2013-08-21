@@ -11,9 +11,6 @@ class TemplatesController < ApplicationController
 		@pool = Pool.find(params[:pool_ids]).first
 		@inventories = Inventory.where(:item_description => 'Template prep', :empty => 'f')
 
-		
-		#@updated_library = Library.all
-		#@libraries = @template.libraries.build
 	end
 
 	def show
@@ -26,8 +23,6 @@ class TemplatesController < ApplicationController
 	def edit
 		@template = Template.find(params[:id])
 		@pool = Pool.find(@template.pool_id)
-		puts '*********************************************'
-		puts @pool
 		#@users = User.all
 		#@user = User.find(@template.user_id)
 		#@updated_library = Library.all

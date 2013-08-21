@@ -13,6 +13,7 @@ group :development, :test do
   #gem 'sqlite3', '1.3.5'
   gem 'pg'
   gem 'rspec-rails', '2.11.0'
+  gem 'railroady'
 end
 
 # Gems used only for assets and not required

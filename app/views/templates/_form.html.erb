@@ -15,8 +15,10 @@
 	<hr>
 	<p>Select Kits:</p>
 
-	<%= select_tag :inventories, options_from_collection_for_select(Inventory.where(:item_description => 'Template prep'), 'id', 'combined_name' ), :multiple => true %>
-
+  <%= select_tag :inventories, options_from_collection_for_select(Inventory.where(
+  :item_description => 'Template prep'), 'id', 'combined_name' ), 
+  :multiple => true %>
+ 
 	<hr>
 	<p>Template failed</p>
 	<p><%= f.radio_button :failed, 'true' %></p>

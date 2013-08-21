@@ -65,6 +65,10 @@
 			</tr>
 		</tbody>	
 	</table>
-	<hr>	
+  <hr>
+  <%= select_tag :inventories, options_from_collection_for_select(Inventory.where(
+  :item_description => 'Sequencing'),'id','combined_name'),
+  :multiple => true %>
+  <hr>
 	<%= f.submit %>
 <% end %>

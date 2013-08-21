@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809133021) do
+ActiveRecord::Schema.define(:version => 20130819151438) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(:version => 20130809133021) do
   end
 
   add_index "inventories_libraries", ["library_id", "inventory_id"], :name => "index_libraries_inventories_on_library_id_and_inventory_id"
+
+  create_table "inventories_pgmruns", :id => false, :force => true do |t|
+    t.integer "inventory_id"
+    t.integer "pgmrun_id"
+  end
+
+  add_index "inventories_pgmruns", ["inventory_id", "pgmrun_id"], :name => "index_inventories_pgmruns_on_inventory_id_and_pgmrun_id"
 
   create_table "inventories_templates", :id => false, :force => true do |t|
     t.integer "inventory_id"

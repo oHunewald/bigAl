@@ -3,11 +3,14 @@ class Inventory < ActiveRecord::Base
   					:best_till, :opened, :comment, :empty, :price,
   					:user_id, :category_id
 
+  validates :item_description, presence: true
+  validates :lot_number, presence: true
 
   belongs_to :user
   belongs_to :category
   has_and_belongs_to_many :templates
   has_and_belongs_to_many :libraries
+  has_and_belongs_to_many :pgmruns
 
   def combined_name
     #category = Category.find(self.category_id)

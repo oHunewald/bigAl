@@ -84,4 +84,9 @@
 	<p><%= inv.category.name %>  | <%= inv.lot_number %></p>
 <% end %>	
 <hr>
+<h3>Sequencing Kits used:</h3>
+<% @pgmrun.inventories.each do |i| %>
+	<p><%= i.category.name %> | <%= i.lot_number %> </p>
+<% end %>
+<hr>
 <%= link_to 'Edit PGM run', edit_template_pgmrun_path(@template, @pgmrun) %>
