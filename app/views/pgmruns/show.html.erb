@@ -89,4 +89,6 @@
 	<p><%= i.category.name %> | <%= i.lot_number %> </p>
 <% end %>
 <hr>
-<%= link_to 'Edit PGM run', edit_template_pgmrun_path(@template, @pgmrun) %>
+<% if current_user.role == 'Moderator' || current_user.role == 'Admin' %>
+	<%= link_to 'Edit PGM run', edit_template_pgmrun_path(@template, @pgmrun) %>	
+<% end %>
