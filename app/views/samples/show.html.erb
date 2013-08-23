@@ -1,14 +1,29 @@
 <h2>Sample</h2>
 <hr/>
+
+
 <aside>
-	<p>Name: <%= @sample.name %></p>
-	<p>Size (bp): <%= @sample.size %></p>
-	<p>Quantity (ng/ul): <%= @sample.quantity %></p>
-	<p><%= link_to "Edit", edit_project_sample_path(@project, @sample) %></p>
-	<p><%= link_to "Create Library", 
-		new_project_sample_library_path(@project, @sample) %></p>
-	<p><%= link_to "Back to Project", @project %></p>
+<ul class="nav nav-pills">
+	<ul class="nav nav-tabs nav-stacked">
+	  <li>
+		<%= link_to "Edit Sample", edit_project_sample_path(@project, @sample) %>
+	  </li>
+	  <li>	
+		<%= link_to "Create Library", new_project_sample_library_path(@project, @sample) %>
+	</li>
+	  <li>
+		<%= link_to "Back to Project", @project %>
+	  </li>
+	</ul>
+</ul>
 </aside>
-<article>
+<div class="container">
+<p>Name: <%= @sample.name %></p>
+<p>Size (bp): <%= @sample.size %></p>
+<p>Quantity (ng/ul): <%= @sample.quantity %></p>
+</div>
+<div class="container">
+	<span class="label label-info">Libraries:</span>
 	<%= render 'layouts/librariesTable_table' %>
-</article>
+
+</div>

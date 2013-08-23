@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'bootstrap-sass', '2.1'
+gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'cancan'
-
-
+gem 'paperclip'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

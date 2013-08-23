@@ -1,15 +1,23 @@
-<div>
-	<h2>Welcome <%= current_user.name %></h2>
-	<div class="myNews">
-		<aside>
-			<p>News</p>
-			<%= render '/layouts/news_section' %>
-			<%= link_to 'See more', sharedmessages_path %>
-		</aside>
-		<article>
-			<div class="center">
-				<%= render 'layouts/projects_table' %>
-			</div>
-		</article>
-	</div>
+<h2>Welcome <%= current_user.name %></h2>
+
+<p>News</p>
+
+<%= render '/layouts/news_section' %>
+<%= link_to 'See more', sharedmessages_path %>
+
+
+<hr>
+
+<p>My Projects</p>
+<div class="center">
+	<%= render 'layouts/projects_table' %>
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    Basic panel example
+  </div>
 </div>

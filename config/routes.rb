@@ -1,6 +1,5 @@
 BigAl::Application.routes.draw do
 
-
   authenticated :user do
     root to: 'static_pages#news'
   end
@@ -23,6 +22,7 @@ BigAl::Application.routes.draw do
 
   resources :projects do
     resources :mianes
+    resources :myfiles
     resources :samples do
       resources :libraries
     end
@@ -52,6 +52,8 @@ BigAl::Application.routes.draw do
   resources :lib5ul
 
   resources :pgmruns
+
+  resources :tags
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'

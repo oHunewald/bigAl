@@ -1,7 +1,8 @@
 class PgmrunsController < ApplicationController
   def index
   	@pgmruns = Pgmrun.all
-  	
+  	@pgmruns_by_date = @pgmruns.group_by(&:run_date)
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
   def new

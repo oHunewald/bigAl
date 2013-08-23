@@ -1,0 +1,36 @@
+<table id="myfileTable">
+	<thead>
+		<tr>
+			<th>
+				File Name:
+			</th>
+			<th>
+				Category:
+			</th>
+			<th>
+				Tags:
+			</th>					
+		</tr>
+	</thead>
+	<tbody>
+		<% @myfiles.each do |myfile| %>
+			<tr>
+				<td>
+					<p><%= myfile.attachment_file_name %>, </p>
+				</td>
+				<td>
+					<p><%= myfile.category %>, </p>
+				</td>
+				<td>
+					<div class="my_tags">
+						<% myfile.tags.each do |t| %>
+							
+								<%= link_to t.name, t %>,
+						
+						<% end %>
+					</div>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

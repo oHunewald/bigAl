@@ -26,5 +26,15 @@ class Pgmrun < ActiveRecord::Base
 		library = Library.where(:pool_id => pool.id).first
 		return library.user.name
 	end
+
+	def combined_name
+		user = User.find(self.user_id)
+		template = Template.find(self.template_id)
+		project = template.get_project
+		
+		combi_name = user.name + '-' + project
+
+		#return combi_name
+	end
 	
 end

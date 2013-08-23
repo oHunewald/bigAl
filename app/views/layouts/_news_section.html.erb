@@ -1,7 +1,16 @@
-<% Sharedmessage.get_new_messages.each do |info| %>
-	<p class="myTitle"><%= info.created_at %>, <%= info.user.name %> wrote:</p>
-	<p><%= info.title %></p>
+<div class="shortNews">
+	<div class="panel panel-info">
+		<div class="panel-body">
+		<% Sharedmessage.get_new_messages.each do |info| %>
 
-	<p><%= info.content %></p>
-	<hr>
-<% end %>
+			<h4 class="list-group-item-heading">
+			<%= link_to(info) do %>
+				<%= info.title %> </h4> 
+			<% end %>
+			by: <%= info.user.name %>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-primary">...</div>

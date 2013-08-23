@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @samples = @project.samples
+    @myfiles = @project.myfiles
 
     # for multiple mianes, we show only the latest version
       @miane = @project.mianes.last

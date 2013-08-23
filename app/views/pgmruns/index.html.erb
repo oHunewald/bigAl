@@ -1,2 +1,23 @@
-<h2>All PGM runs</h2>
-<%= render 'layouts/pgmruns_table' %>
+<div id="pgmruns">
+	<div class="pager">
+	<li><%= link_to 'prev', date: @date.prev_month %></li>
+	<li>NGS planning: <%= @date.strftime("%B %Y") %></li>
+	<li><%= link_to "next", date: @date.next_month %></li>
+	</div>
+
+	<%= calendar @date do |date| %>
+		<%= date.day %>
+		<% if @pgmruns_by_date[date] %>
+			<ul>
+				<% @pgmruns_by_date[date].each do |pgmrun| %>
+					<li> <%= link_to pgmrun.combined_name, pgmrun %> </li>
+				<% end %>
+			</ul>
+		<% end %>
+	<% end %>	
+	<hr>
+	<% if current_user.role == 'Moderator' || current_user.role == 'Admin' %>
+		<%= link_to "New Sequencing Run", templates_path %>	
+	<% end %>
+	
+</div>

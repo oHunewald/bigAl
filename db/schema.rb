@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130819151438) do
+ActiveRecord::Schema.define(:version => 20130823084022) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -127,6 +127,27 @@ ActiveRecord::Schema.define(:version => 20130819151438) do
     t.string   "construct"
   end
 
+  create_table "myfiles", :force => true do |t|
+    t.string   "name"
+    t.string   "path"
+    t.integer  "project_id"
+    t.string   "category"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "tagfield"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
+  create_table "myfiles_tags", :id => false, :force => true do |t|
+    t.integer "myfile_id"
+    t.integer "tag_id"
+  end
+
+  add_index "myfiles_tags", ["myfile_id", "tag_id"], :name => "index_myfiles_tags_on_myfile_id_and_tag_id"
+
   create_table "pgmruns", :force => true do |t|
     t.integer  "template_id"
     t.date     "run_date"
@@ -196,6 +217,12 @@ ActiveRecord::Schema.define(:version => 20130819151438) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "archive"
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "templates", :force => true do |t|

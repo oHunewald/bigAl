@@ -2,33 +2,54 @@
 
 <aside class="myAside">
 
-	<article>
-		<hgroup>
-			<h2>Project details:</h2>
-		</hgroup>		
+	<article>		
 		<p>Name: <%= @project.name %></p>
 		<p>State: <%= @project.state %></p>
 		<p>Owner: <%= @project.user.name %></p>
 		<p>Created at: <%= @project.created_at.to_date %></p>	
 	</article>
 	<hr />
-	<p><%= link_to "Edit Project", edit_project_path(@project) %></p>
-	<%if @project.mianes.any? and @project.state == "ready" %>
-		<p><%= link_to "Create new Sample", new_project_sample_path(@project) %></p>
-	<% end %>
-	<% if !@project.mianes.any? %>
-		<p><%= link_to "Miane Information Wizard", new_project_miane_path(@project) %></p>			
-	<% end %>
-	
-	<%if @project.mianes.any? %>
-		<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project, @miane) %></p>
-	<% elsif !@project.mianes.any? and current_user.role == 'Moderator' %>				<p><%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %></p>
-	<%end%>
-	<p><%= link_to "Show miane history", project_mianes_path(@project) %></p>
+
+	<ul class="nav nav-pills">
+		<ul class="nav nav-tabs nav-stacked">
+		  <li>
+			<%= link_to "Edit Project", edit_project_path(@project) %>  
+		  </li>
+		  <li>	
+		  	<%if @project.mianes.any? and @project.state == "ready" %>
+				<%= link_to "Create new Sample", new_project_sample_path(@project) %>
+			<% end %>
+			</li>
+		  <li>
+			<%if @project.mianes.any? and @project.state == "ready" %>
+				<%= link_to "Create new Sample", new_project_sample_path(@project) %>
+			<% end %>
+		  </li>
+		  <li>
+			<% if !@project.mianes.any? %>
+				<%= link_to "Miane Information Wizard", new_project_miane_path(@project) %>		
+			<% end %>
+		  </li>
+		  <li>
+			<%if @project.mianes.any? %>
+				<%= link_to "Edit Miane Sheet", edit_project_miane_path(@project, @miane) %>
+			<% elsif !@project.mianes.any? and current_user.role == 'Moderator' %>				
+				<%= link_to "Edit Miane Sheet", edit_project_miane_path(@project) %>
+			<%end%>
+		  </li>
+		  <li>
+			<%= link_to "Show miane history", project_mianes_path(@project) %>
+		  </li>
+		  <li>
+		  	<%= link_to "Upload File", new_project_myfile_path(@project) %>
+		  </li>
+		</ul>
+	</ul>	
+
 	<% if current_user.role == 'Moderator' || current_user.role == 'Admin' %>
 	<article>
 		<hr>
-			<h3>Change Project State</h3>
+			<h4>Change Project State</h4>
 		<p>
 		<p>
 			<%= form_for [@project] do |f| %>
@@ -44,14 +65,16 @@
 			<% end %>
 		</p>			
 		</p>
+		<hr>
 	</article>
 	<% end %>
 </aside>
+
 <section>
 	<% if @miane %>
 	<article>
-		<h2>latest Miane Information</h2>
-		
+		<span class="label">Latest MIANE Information:</span>
+
 		<table id="miane" class="alternateTable">
 			<tbody class="mytBody">
 
@@ -162,7 +185,12 @@
 <hr/>
 
 <section>
-	<h2>My Samples:</h2>
+	<span class="label">My Samples:</span>
 	<%= render 'layouts/samples_table' %>
+</section>
+
+<section>
+	<span class="label">My Documents:</span>
+	<%= render 'layouts/myfiles_table' %>
 </section>
 </div>

@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :mianes
   has_many :samples
+  has_many :myfiles
   validates :user_id, presence: true
   validates :name, presence: true
 

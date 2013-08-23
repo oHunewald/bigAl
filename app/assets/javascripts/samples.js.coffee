@@ -5,5 +5,8 @@ jQuery ->
   $('#samples').dataTable
     sPaginationType: "full_numbers"
     bJQueryUI: true
-    bAutoWidth: false 
-    sScrollX: "100%"
+    bAutoWidth: false,
+    sScrollY: "300",
+    sScrollX: "50%",
+    sScrollXInner: "100%",
+    bScrollCollapse: true

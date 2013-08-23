@@ -1,5 +1,13 @@
 @import "bootstrap";
 
+.container{
+          width: 1024px ;
+          }
+
+.label{
+  padding-bottom: 5px;
+}
+
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
@@ -76,6 +84,12 @@ p.myTitle {
   text-align: center;
   width:800px;
   height:300px;
+  overflow: auto;
+}
+
+.shortNews {
+
+  height:150px;
   overflow: auto;
 }
 
@@ -262,3 +276,21 @@ aside {
   }  
 
 }
+
+.my_tags {
+  font-size: 0.8em;
+}
+
+#myfileTable {
+
+
+border-collapse:collapse;
+width:100%;
+  table,th, td
+{
+  border: 1px solid #C0C0C0;
+  padding-left: 8px;
+}
+ 
+}
+
