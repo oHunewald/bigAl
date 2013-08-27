@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130823084022) do
+ActiveRecord::Schema.define(:version => 20130827133443) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20130823084022) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.integer  "pool_id"
   end
 
   create_table "myfiles_tags", :id => false, :force => true do |t|
@@ -182,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20130823084022) do
     t.float    "tdf_used"
     t.string   "name"
     t.boolean  "ready"
+    t.boolean  "used"
   end
 
   create_table "projects", :force => true do |t|
@@ -210,6 +212,17 @@ ActiveRecord::Schema.define(:version => 20130823084022) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "seqfiles", :force => true do |t|
+    t.string   "category"
+    t.integer  "pool_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
   create_table "sharedmessages", :force => true do |t|
     t.string   "title"
     t.string   "content"
@@ -235,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20130823084022) do
     t.string   "comment"
     t.date     "date_bioanalyser"
     t.integer  "pool_id"
+    t.boolean  "used"
   end
 
   create_table "users", :force => true do |t|

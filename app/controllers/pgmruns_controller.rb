@@ -36,6 +36,8 @@ class PgmrunsController < ApplicationController
   def create
   	@pgmrun = Pgmrun.new(params[:pgmrun])
   	@template = Template.find(params[:template_id])
+    @template.used = true
+    @template.save
   	@pgmrun.template_id = @template.id
   	@pgmrun.user_id = current_user.id
 

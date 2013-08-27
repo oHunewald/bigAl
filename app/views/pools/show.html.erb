@@ -1,5 +1,5 @@
 <h3>Selected Libraries:</h3>
-<table class="display">
+<table id="myfileTable">
 	<thead>
 	  <tr>
 	    <th>Lib name:</th>
@@ -22,7 +22,7 @@
 	</tbody>
 </table>
 <hr>
-	<table class="display">
+	<table id="myfileTable">
 		<tbody>
 			<tr>
 				<td>
@@ -60,3 +60,41 @@
 	<hr>
 
 <%= link_to 'Edit', edit_pool_path(@pool) %>
+<hr>
+<%= form_for [@pool, @seqfile], :html => { :multipart => true } do |f| %>
+	<div class="field">
+		<ul>
+		<p><%= f.file_field :attachment %></p>
+		<p><%= f.label "Select Category:" %></p>
+		<p><%= f.select :category, 
+			[ 'Bioanalyser', 'Qbit', 'Other' ], :prompt => 'Select One' %>
+		</p>			
+		</ul>		
+	</div>
+	<%= f.submit %>
+<% end %>
+<hr>
+<table id="myfileTable">
+	<thead>
+		<tr>
+			<th>
+				File Name:
+			</th>
+			<th>
+				Category:
+			</th>					
+		</tr>
+	</thead>
+	<tbody>
+		<% @seqfiles.each do |myfile| %>
+			<tr>
+				<td>
+					<p><%= myfile.attachment_file_name %>, </p>
+				</td>
+				<td>
+					<p><%= myfile.category %>, </p>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

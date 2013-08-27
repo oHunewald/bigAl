@@ -14,6 +14,7 @@ BigAl::Application.routes.draw do
     resources :sharedmessages
     resources :pools do
       resources :libraries
+      resources :myfiles
     end
     resources :libraries
   end 
@@ -30,7 +31,6 @@ BigAl::Application.routes.draw do
 
   resources :templates do
     resources :pgmruns
-
   end
   
   resources :states do
@@ -44,6 +44,7 @@ BigAl::Application.routes.draw do
   resources :inventories
 
   resources :pools do
+    resources :seqfiles
     resources :lib5ul
   end
 
@@ -54,6 +55,7 @@ BigAl::Application.routes.draw do
   resources :pgmruns
 
   resources :tags
+
 
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
@@ -73,7 +75,13 @@ BigAl::Application.routes.draw do
         :as => 'validate_template'
 
   match '/my_libraries' => 'libraries#my_libraries',
-        :as => 'my_libraries'
+        :as => 'my_libraries'        
+
+  match '/userpools' => 'pools#userpools',
+        :as => 'userpools'
+
+  match '/usertemplates' => 'templates#usertemplates',      
+        :as => 'usertemplates'
 
   match '/create_pool' => 'pools#new',
         :as => 'create_pool'

@@ -10,19 +10,21 @@
 			</td>
 			<td>
 				<p>For User:</p>
-				<p><%= @template.get_for_user_name %></p>
-			</td>
-			<td>
-				<p>Library name:</p>
-				<p><%= @template.get_lib_name %></p>
+				<p><%= @user.name %></p>
 			</td>
 			<td>
 				<p>Project:</p>
-				<p><%= @template.get_project %></p>
+				<p><%= @template.pool %></p>
 			</td>
 		</tr>
 	</tbody>
 </table>
+<hr>
+<% @template.pool.libraries.each do |lib| %>
+	<%= lib.lib_number %>
+	<%= lib.comment %>
+<% end %>
+hello
 <hr>
 <h3>Template Kits used:</h3>
 <% @template.inventories.each do |i| %>
@@ -30,7 +32,8 @@
 <% end %>
 <hr>
 <h3>Library Kits used:</h3>
-<% @template.get_lib.inventories.each do |inv| %>
+<%= @template.pool.nil? ?  "pool is nil" : @template.pool.tdf_used.to_s %>
+<% @template.inventories.each do |inv| %>
 	<p><%= inv.category.name %>  | <%= inv.lot_number %></p>
 <% end %>
 <hr>

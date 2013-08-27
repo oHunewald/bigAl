@@ -2,9 +2,6 @@
 	<thead>
 		<tr>
 			<th>
-				Select:
-			</th>
-			<th>
 				Project:
 			</th>
 			<th>
@@ -15,9 +12,6 @@
 	<tbody>
 		<% @templates.each do |template| %>
 			<tr>
-				<td>
-					<%= check_box_tag "template_ids[]", template.id %>
-				</td>
 				<td>
 					<%= template.get_project %>
 				</td>

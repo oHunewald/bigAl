@@ -3,7 +3,7 @@
 <% if @user.role == 'Admin' %>
 <p><%= link_to "Edit User", edit_user_path(@user) %></p>
 <% end %>
-<h2>My NGS Projects</h2>
+<h2>Select Project:</h2>
 
 <%= render 'layouts/projects_table' %>
 

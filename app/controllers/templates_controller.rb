@@ -1,7 +1,14 @@
 class TemplatesController < ApplicationController
 
 	def index
-		@templates = Template.all
+		
+		# show the not used templates for selection
+		# of PGM run
+		@templates = Template.where(:used => 'false')
+	end
+
+	def usertemplates
+		@templates = Template.where(:user_id => current_user.id)
 	end
 
 
@@ -61,7 +68,13 @@ class TemplatesController < ApplicationController
 		
 		@template = Template.new(params[:template])
 		@pool = Pool.find(params[:template][:pool_id])
-		@template.user_id = current_user.id
+		@template.pool = @pool
+		@template.used = false
+		
+		@pool.used = true
+		@pool.save
+		#@template.user_id = current_user.id
+		current_user.templates << @template
 		
 	    inventories = Inventory.find(params[:inventories])
 	    if !inventories.blank?

@@ -6,5 +6,9 @@ jQuery ->
 		sPaginationType: "full_numbers"
 		bJQueryUI: true
 
+	$('#userpools_table').dataTable
+		sPaginationType: "full_numbers"
+		bJQueryUI: true
+
 	$('#pool_date_pooling').datepicker
 		dateFormat: 'yy-mm-dd'	

@@ -2,12 +2,17 @@ class PoolsController < ApplicationController
 
 
 	def index
-		@pools  = Pool.where(:ready => 't')
+		@pools  = Pool.where(:ready => 't', :used => 'false')
 		#@inv
+	end
+
+	def userpools
+		@pools = Pool.where(:user_id => current_user.id)
 	end
 
 	def new
 		@pool = current_user.pools.build
+		@pool.used = false
 		@libraries = Library.find(params[:lib_ids])
 		pmol_array = Array.new
 		@libraries.each do |lib|
@@ -69,7 +74,8 @@ class PoolsController < ApplicationController
 	def show
 		@pool = Pool.find(params[:id])
 		@lib5uls = Lib5ul.where(:pool_id => @pool.id)
-		
+		@seqfile = Seqfile.new
+		@seqfiles = @pool.seqfiles
 	end
 
 	def edit

@@ -14,7 +14,8 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @samples = @project.samples
-    @myfiles = @project.myfiles
+    @myfiles = @project.myfiles.where(:category => 'Ref Literature')
+    @all_templates = current_user.templates.all
 
     # for multiple mianes, we show only the latest version
       @miane = @project.mianes.last
@@ -53,4 +54,5 @@ class ProjectsController < ApplicationController
   def destroy
     
   end
+
 end
