@@ -32,7 +32,7 @@ class LibrariesController < ApplicationController
 
   	@library = @sample.libraries.build(params[:library])  
     @library.user_id = current_user.id	
-    @library.lib_number = get_number
+    #@library.lib_number = get_number
 
     inventories = Inventory.find(params[:inventories])
     if !inventories.blank?

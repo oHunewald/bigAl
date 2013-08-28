@@ -1,7 +1,13 @@
 <%= form_for [@project, @sample, @library] do |f| %>
-<p>Library Name: <%= @library.lib_number %></p>
+
 <table class="display">
 	<tbody>
+		<tr>
+			<td>
+				<%= f.label "Library Name" %>
+				<%= f.text_field :lib_number %>
+			</td>
+		</tr>
 		<tr>
 			<td>
 				<%= f.label "Library Date" %>

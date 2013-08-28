@@ -44,7 +44,7 @@ class PoolsController < ApplicationController
 		@pool.date_pooling = params[:pool][:date_pooling]
 		@pool.ul_dilution = params[:pool][:ul_dilution]
 		date_time = DateTime.current
-		@pool.name = @current_user.name + '-pool-' + date_time.to_s(:number)
+		@pool.name = params[:pool][:name]
 		@pool.ready = false
 		@libraries = Library.find(params[:pool][:lib_ids])
 		#@pool.libraries = @libraries
