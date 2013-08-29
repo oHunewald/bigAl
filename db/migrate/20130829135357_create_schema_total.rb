@@ -39,22 +39,22 @@ class CreateSchemaTotal < ActiveRecord::Migration
 
 	add_index "inventories_libraries", ["library_id", "inventory_id"], 
 	:name => "index_libraries_inventories_on_library_id_and_inventory_id"
-        
-  end
 
   create_table "inventories_pgmruns", :id => false, :force => true do |t|
     t.integer "inventory_id"
     t.integer "pgmrun_id"
   end
 
-  add_index "inventories_pgmruns", ["inventory_id", "pgmrun_id"], :name => "index_inventories_pgmruns_on_inventory_id_and_pgmrun_id"
+  add_index "inventories_pgmruns", ["inventory_id", "pgmrun_id"], 
+  :name => "index_inventories_pgmruns_on_inventory_id_and_pgmrun_id"
 
   create_table "inventories_templates", :id => false, :force => true do |t|
     t.integer "inventory_id"
     t.integer "template_id"
   end
 
-  add_index "inventories_templates", ["inventory_id", "template_id"], :name => "index_inventories_templates_on_inventory_id_and_template_id"
+  add_index "inventories_templates", ["inventory_id", "template_id"], 
+  :name => "index_inventories_templates_on_inventory_id_and_template_id"
 
   create_table "lib5uls", :force => true do |t|
     t.integer  "pool_id"
@@ -139,7 +139,8 @@ class CreateSchemaTotal < ActiveRecord::Migration
     t.integer "tag_id"
   end
 
-  add_index "myfiles_tags", ["myfile_id", "tag_id"], :name => "index_myfiles_tags_on_myfile_id_and_tag_id"
+  add_index "myfiles_tags", ["myfile_id", "tag_id"], 
+  :name => "index_myfiles_tags_on_myfile_id_and_tag_id"
 
   create_table "pgmruns", :force => true do |t|
     t.integer  "template_id"
