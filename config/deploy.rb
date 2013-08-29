@@ -25,6 +25,16 @@ namespace :deploy do
     end
   end
 
+  task :cold do       # Overriding the default deploy:cold
+    update
+    load_schema       # My own step, replacing migrations.
+    start
+  end
+
+  task :load_schema, :roles => :app do
+    run "cd #{current_path}; rake db:schema:load"
+  end  
+
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
