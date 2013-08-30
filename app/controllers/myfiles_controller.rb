@@ -9,7 +9,6 @@ class MyfilesController < ApplicationController
 
 		@project = Project.find(params[:project_id])
 
-		end
 		@myfile = Myfile.new(params[:myfile])
 		
 		# when tagging put also the category as tagging field
