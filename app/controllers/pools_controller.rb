@@ -46,6 +46,7 @@ class PoolsController < ApplicationController
 		date_time = DateTime.current
 		@pool.name = params[:pool][:name]
 		@pool.ready = false
+		@pool.used = false
 		@libraries = Library.find(params[:pool][:lib_ids])
 		#@pool.libraries = @libraries
 		dilutions = params[:pool][:dilutions]

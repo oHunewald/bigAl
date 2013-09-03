@@ -19,21 +19,21 @@ after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
 
-  # task :start do; end
-  # task :stop do; end
+  task :start do; end
+  task :stop do; end
   task :restart, roles: :app, except: {no_release: true} do
     run "touch #{deploy_to}/current/tmp/restart.txt"
   end
 #--------------------------------------------------------
 # comment out for test
 #--------------------------------------------------------
-  # task :setup_config, roles: :app do
-  #   sudo "ln -nfs #{current_path}/config/apache.conf /etc/apache2/sites-available/#{application}"
-  #   run "mkdir -p #{shared_path}/config"
-  #   put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-  #   puts "Now edit the config files in #{shared_path}."
-  # end
-  # after "deploy:setup", "deploy:setup_config"
+  task :setup_config, roles: :app do
+    sudo "ln -nfs #{current_path}/config/apache.conf /etc/apache2/sites-available/#{application}"
+    run "mkdir -p #{shared_path}/config"
+    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
+    puts "Now edit the config files in #{shared_path}."
+  end
+  after "deploy:setup", "deploy:setup_config"
 #---------------------------------------------------------  
   	
   # %w[start stop restart].each do |command|
