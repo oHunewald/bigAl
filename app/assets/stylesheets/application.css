@@ -12,5 +12,4 @@
  *= require jquery.ui.all
  *= require dataTables/src/demo_table_jui
  *= require_tree .
- *= require fullcalendar
  */

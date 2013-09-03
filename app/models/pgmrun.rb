@@ -22,7 +22,7 @@ class Pgmrun < ActiveRecord::Base
 		template = Template.where(:id => self.template_id).first
 		puts template
 		pool = Pool.where(:id => template.pool_id).first
-		puts pool
+
 		library = Library.where(:pool_id => pool.id).first
 		return library.user.name
 	end

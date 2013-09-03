@@ -2,7 +2,7 @@
 
 .container{
           width: 1024px ;
-          }
+}
 
 .label{
   padding-bottom: 5px;
@@ -190,7 +190,7 @@ footer {
   @include box_sizing;
 }
 
-/* SIDEBAR ------------------------------------------ */
+/* SIDEBAR */
  
 aside {
   width: 200px;
@@ -215,7 +215,7 @@ aside {
   padding: 0 10px;
   margin: 0 0 10px 0;
   float: left;
-  color: #696969  
+  color: #696969;
 }
 
 #error_explanation {
@@ -246,7 +246,7 @@ aside {
 
 .td[value="Incomplete"] {
       color: red;
-  }
+}
 
 
 .alternateTable {
@@ -267,7 +267,6 @@ aside {
 
 #myTwoColumn {
 
-
   aside {
     width: 300px;
     padding: 0 15px;
@@ -283,14 +282,14 @@ aside {
 
 #myfileTable {
 
-
-border-collapse:collapse;
-width:100%;
+  border-collapse:collapse;
+  width:100%;
+  
   table,th, td
-{
-  border: 1px solid #C0C0C0;
-  padding-left: 8px;
-}
+  {
+    border: 1px solid #C0C0C0;
+    padding-left: 8px;
+  }
  
 }
 

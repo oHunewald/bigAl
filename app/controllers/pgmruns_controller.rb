@@ -77,9 +77,7 @@ class PgmrunsController < ApplicationController
       if !params[:inventories].blank?
         params[:inventories].each do |i|
           item = Inventory.find(i)
-          puts '********************************'
-          puts 'now deleting from stock'
-          puts item.lot_number
+
           item.update_stock(1)
         end
       end
@@ -87,9 +85,7 @@ class PgmrunsController < ApplicationController
 
     def add_to_stock(inventories)
       inventories.each do |l|
-        puts '********************************'
-        puts 'now adding to stock'
-        puts l.lot_number
+
         l.update_stock(-1)
       end      
     end   
