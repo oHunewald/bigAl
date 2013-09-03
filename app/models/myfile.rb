@@ -8,5 +8,5 @@ class Myfile < ActiveRecord::Base
   has_and_belongs_to_many :tags
   belongs_to :project
 
-  has_attached_file :attachment, :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+  has_attached_file :attachment, :path => ":rails_root/docs/:id/:style/:basename.:extension"
 end
