@@ -1,15 +1,2 @@
 <h2>Create a new Sample</h2>
-<%= form_for [@project, @sample] do |f| %>
-	<div class="field">
-		<p>Name:</p>
-		<p><%= f.text_field :name, placeholder: "Sample Name..." %></p>
-		<p>Size: (bp)</p>
-		<p><%= f.text_field :size, placeholder: "Sample Size..." %></p>
-		<p>Quantity (ng/ul):</p>
-		<p><%= f.text_field :quantity, placeholder: "Quantity..." %></p>		
-		<p>Number of Samples:</p>
-		<p><%= text_field_tag 'amount' %></p>
-		<!--<p><%= hidden_field_tag 'extraparam', 'amount' %></p>-->
-	</div>
-	<%= f.submit %>
-<% end %>
+<%= render "form" %>

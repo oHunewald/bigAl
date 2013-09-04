@@ -20,34 +20,14 @@ class SamplesController < ApplicationController
 	def create
 		 @project = Project.find(params[:project_id])
 		 
-		 #@number = params[:extraparam.value]
-
-		 # if params[:extraparam] =="amount"
-		 # 	logger.debug "it works"
-		 # else
-		 # 	logger.debug "it doesn't work"
-
-		 # end
-
-		 # if params[:name] == "46464"
-		 # 	@number = params[:name].to_i
-		 # 	logger.debug "it works with text fields directly"
-		 # 	logger.debug @number
-		 # else
-		 # 	logger.debug "it doesn't work"
-
-		 # end
-
-		 @number = params[:amount].to_i
-
-		 for n in 1..@number do
-		 	@sample =  @project.samples.build(params[:sample])
-		 	@sample.name = @sample.name + "_" + n.to_s
-		 	@sample.save
+		 @sample = @project.samples.build(params[:sample])
+		 if @sample.save
+		 	flash[:notice] = "Sample has been created"
+		 	redirect_to [@project]
+		 else
+		 	flash[:alert] = "Sample has not been created!"
+		 	render :action => 'new'
 		 end
-
-		 redirect_to [@project]
-
 		 # if @sample.save
 		 # 	flash[:notice] = "Sample has been created!"
 		 # 	redirect_to [@project]
