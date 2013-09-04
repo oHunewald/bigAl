@@ -1,0 +1,10 @@
+2013-08-08 14:44:59 ERROR  : Error connecting to the server: fe_sendauth: no password supplied
+
+2013-08-08 14:45:21 ERROR  : Error connecting to the server: FATAL:  password authentication failed for user "ohunewald"
+FATAL:  password authentication failed for user "ohunewald"
+
+2013-08-08 14:45:32 ERROR  : Error connecting to the server: fe_sendauth: no password supplied
+
+2013-08-08 14:49:07 ERROR  : Error connecting to the server: FATAL:  password authentication failed for user "ohunewald"
+FATAL:  password authentication failed for user "ohunewald"
+

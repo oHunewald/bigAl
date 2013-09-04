@@ -4,6 +4,7 @@
 
 	<article>		
 		<p>Name: <%= @project.name %></p>
+		<p>Description: <%= @project.description %>
 		<p>State: <%= @project.state %></p>
 		<p>Owner: <%= @project.user.name %></p>
 		<p>Created at: <%= @project.created_at.to_date %></p>	
