@@ -56,7 +56,7 @@ class LibrariesController < ApplicationController
     @sample =  @project.samples.find(params[:sample_id])
     @library = Library.find(params[:id])  
     @inventories = Inventory.where(
-      :item_description => 'Library prep', :empty => 'f'    
+      :item_description => 'Library prep', :empty => 'f')    
   end
 
   def update
