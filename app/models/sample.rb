@@ -1,5 +1,5 @@
 class Sample < ActiveRecord::Base
-  attr_accessible :name, :quantity, :size, :project_id
+  attr_accessible :name, :quantity, :size, :project_id, :description
 
   belongs_to :project
 

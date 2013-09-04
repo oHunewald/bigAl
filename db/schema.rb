@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904092924) do
+ActiveRecord::Schema.define(:version => 20130904135608) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -199,9 +199,10 @@ ActiveRecord::Schema.define(:version => 20130904092924) do
     t.string   "name"
     t.integer  "size"
     t.float    "quantity"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "project_id"
+    t.string   "description"
   end
 
   create_table "seq_runs", :force => true do |t|
