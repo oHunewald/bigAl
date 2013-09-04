@@ -1,0 +1,1541 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.9
+-- Dumped by pg_dump version 9.1.9
+-- Started on 2013-08-12 16:19:12 CEST
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 194 (class 3079 OID 11681)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2088 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 162 (class 1259 OID 16804)
+-- Dependencies: 5
+-- Name: categories; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.categories OWNER TO ohunewald;
+
+--
+-- TOC entry 161 (class 1259 OID 16802)
+-- Dependencies: 5 162
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categories_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2089 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- TOC entry 164 (class 1259 OID 16812)
+-- Dependencies: 5
+-- Name: information; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE information (
+    id integer NOT NULL,
+    title character varying(255),
+    content character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.information OWNER TO ohunewald;
+
+--
+-- TOC entry 163 (class 1259 OID 16810)
+-- Dependencies: 164 5
+-- Name: information_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE information_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.information_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2090 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: information_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE information_id_seq OWNED BY information.id;
+
+
+--
+-- TOC entry 166 (class 1259 OID 16823)
+-- Dependencies: 5
+-- Name: inventories; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE inventories (
+    id integer NOT NULL,
+    item_description character varying(255),
+    lot_number character varying(255),
+    reaction_kit integer,
+    reactions_used integer,
+    best_till date,
+    opened date,
+    comment character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    empty boolean,
+    user_id integer,
+    category_id integer,
+    price double precision
+);
+
+
+ALTER TABLE public.inventories OWNER TO ohunewald;
+
+--
+-- TOC entry 165 (class 1259 OID 16821)
+-- Dependencies: 166 5
+-- Name: inventories_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE inventories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.inventories_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2091 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: inventories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE inventories_id_seq OWNED BY inventories.id;
+
+
+--
+-- TOC entry 167 (class 1259 OID 16832)
+-- Dependencies: 5
+-- Name: inventories_libraries; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE inventories_libraries (
+    library_id integer,
+    inventory_id integer
+);
+
+
+ALTER TABLE public.inventories_libraries OWNER TO ohunewald;
+
+--
+-- TOC entry 168 (class 1259 OID 16836)
+-- Dependencies: 5
+-- Name: inventories_templates; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE inventories_templates (
+    inventory_id integer,
+    template_id integer
+);
+
+
+ALTER TABLE public.inventories_templates OWNER TO ohunewald;
+
+--
+-- TOC entry 170 (class 1259 OID 16842)
+-- Dependencies: 5
+-- Name: lib5uls; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE lib5uls (
+    id integer NOT NULL,
+    pool_id integer,
+    library_id integer,
+    value double precision,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.lib5uls OWNER TO ohunewald;
+
+--
+-- TOC entry 169 (class 1259 OID 16840)
+-- Dependencies: 170 5
+-- Name: lib5uls_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE lib5uls_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lib5uls_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2092 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: lib5uls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE lib5uls_id_seq OWNED BY lib5uls.id;
+
+
+--
+-- TOC entry 172 (class 1259 OID 16850)
+-- Dependencies: 5
+-- Name: libraries; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE libraries (
+    id integer NOT NULL,
+    sample_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer,
+    lib_date date,
+    ul_used double precision,
+    target_size integer,
+    quantity double precision,
+    mid integer,
+    shearing_min integer,
+    end_repair_done boolean,
+    "number_of_bands_in_eGel" character varying(255),
+    cycles_of_amplification integer,
+    date_bioanalyser date,
+    pmol_before character varying(255),
+    pmol_after character varying(255),
+    comment character varying(255),
+    lib_number character varying(255),
+    inventory_id integer,
+    shearing_kit integer,
+    fragment_kit integer,
+    failed boolean,
+    comment_why character varying(255),
+    mid_kit integer,
+    pool_id integer
+);
+
+
+ALTER TABLE public.libraries OWNER TO ohunewald;
+
+--
+-- TOC entry 171 (class 1259 OID 16848)
+-- Dependencies: 5 172
+-- Name: libraries_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE libraries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.libraries_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2093 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: libraries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE libraries_id_seq OWNED BY libraries.id;
+
+
+--
+-- TOC entry 174 (class 1259 OID 16861)
+-- Dependencies: 5
+-- Name: messages; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE messages (
+    id integer NOT NULL,
+    user_id integer,
+    sender_id integer,
+    title character varying(255),
+    context character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.messages OWNER TO ohunewald;
+
+--
+-- TOC entry 173 (class 1259 OID 16859)
+-- Dependencies: 5 174
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE messages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.messages_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2094 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
+
+
+--
+-- TOC entry 176 (class 1259 OID 16872)
+-- Dependencies: 5
+-- Name: mianes; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE mianes (
+    id integer NOT NULL,
+    aims character varying(255),
+    expected_result character varying(255),
+    why_ngs character varying(255),
+    possible_alternative character varying(255),
+    approach character varying(255),
+    positive_control character varying(255),
+    negative_control character varying(255),
+    replicates character varying(255),
+    reference_dataset character varying(255),
+    possible_pittfalls character varying(255),
+    needs_qc character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    project_id integer,
+    construct character varying(255)
+);
+
+
+ALTER TABLE public.mianes OWNER TO ohunewald;
+
+--
+-- TOC entry 175 (class 1259 OID 16870)
+-- Dependencies: 5 176
+-- Name: mianes_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE mianes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.mianes_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2095 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: mianes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE mianes_id_seq OWNED BY mianes.id;
+
+
+--
+-- TOC entry 178 (class 1259 OID 16883)
+-- Dependencies: 5
+-- Name: pgmruns; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE pgmruns (
+    id integer NOT NULL,
+    template_id integer,
+    run_date date,
+    ot_date date,
+    initialisation character varying(255),
+    run_number character varying(255),
+    pgm_number character varying(255),
+    mean_read_length integer,
+    perc_loading integer,
+    keysignal integer,
+    final_lib_reads integer,
+    perc_low_quality integer,
+    testfragment character varying(255),
+    ts_version character varying(255),
+    comment character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.pgmruns OWNER TO ohunewald;
+
+--
+-- TOC entry 177 (class 1259 OID 16881)
+-- Dependencies: 5 178
+-- Name: pgmruns_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE pgmruns_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pgmruns_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2096 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: pgmruns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE pgmruns_id_seq OWNED BY pgmruns.id;
+
+
+--
+-- TOC entry 180 (class 1259 OID 16894)
+-- Dependencies: 5
+-- Name: pools; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE pools (
+    id integer NOT NULL,
+    template_id integer,
+    date_pooling date,
+    pmol_l double precision,
+    tdf double precision,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer,
+    lib_5ul_low_te_buffer double precision,
+    ul_dilution integer,
+    bioanalyser_qbit double precision,
+    tdf_used double precision,
+    name character varying(255),
+    ready boolean
+);
+
+
+ALTER TABLE public.pools OWNER TO ohunewald;
+
+--
+-- TOC entry 179 (class 1259 OID 16892)
+-- Dependencies: 180 5
+-- Name: pools_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE pools_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pools_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2097 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: pools_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE pools_id_seq OWNED BY pools.id;
+
+
+--
+-- TOC entry 182 (class 1259 OID 16902)
+-- Dependencies: 5
+-- Name: projects; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE projects (
+    id integer NOT NULL,
+    name character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    state character varying(255)
+);
+
+
+ALTER TABLE public.projects OWNER TO ohunewald;
+
+--
+-- TOC entry 181 (class 1259 OID 16900)
+-- Dependencies: 182 5
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.projects_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2098 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE projects_id_seq OWNED BY projects.id;
+
+
+--
+-- TOC entry 184 (class 1259 OID 16913)
+-- Dependencies: 5
+-- Name: samples; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE samples (
+    id integer NOT NULL,
+    name character varying(255),
+    size integer,
+    quantity double precision,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    project_id integer
+);
+
+
+ALTER TABLE public.samples OWNER TO ohunewald;
+
+--
+-- TOC entry 183 (class 1259 OID 16911)
+-- Dependencies: 5 184
+-- Name: samples_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE samples_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.samples_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2099 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: samples_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE samples_id_seq OWNED BY samples.id;
+
+
+--
+-- TOC entry 193 (class 1259 OID 16968)
+-- Dependencies: 5
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO ohunewald;
+
+--
+-- TOC entry 186 (class 1259 OID 16921)
+-- Dependencies: 5
+-- Name: seq_runs; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE seq_runs (
+    id integer NOT NULL,
+    name character varying(255),
+    kit character varying(255),
+    chip character varying(255),
+    seq_date date,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.seq_runs OWNER TO ohunewald;
+
+--
+-- TOC entry 185 (class 1259 OID 16919)
+-- Dependencies: 5 186
+-- Name: seq_runs_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE seq_runs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seq_runs_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2100 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: seq_runs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE seq_runs_id_seq OWNED BY seq_runs.id;
+
+
+--
+-- TOC entry 188 (class 1259 OID 16932)
+-- Dependencies: 5
+-- Name: sharedmessages; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE sharedmessages (
+    id integer NOT NULL,
+    title character varying(255),
+    content character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    archive boolean
+);
+
+
+ALTER TABLE public.sharedmessages OWNER TO ohunewald;
+
+--
+-- TOC entry 187 (class 1259 OID 16930)
+-- Dependencies: 5 188
+-- Name: sharedmessages_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE sharedmessages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sharedmessages_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2101 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: sharedmessages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE sharedmessages_id_seq OWNED BY sharedmessages.id;
+
+
+--
+-- TOC entry 190 (class 1259 OID 16943)
+-- Dependencies: 5
+-- Name: templates; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE templates (
+    id integer NOT NULL,
+    qbit_before_es character varying(255),
+    qbit_after_es character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    failed boolean,
+    comment character varying(255),
+    date_bioanalyser date,
+    pool_id integer
+);
+
+
+ALTER TABLE public.templates OWNER TO ohunewald;
+
+--
+-- TOC entry 189 (class 1259 OID 16941)
+-- Dependencies: 5 190
+-- Name: templates_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.templates_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2102 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE templates_id_seq OWNED BY templates.id;
+
+
+--
+-- TOC entry 192 (class 1259 OID 16954)
+-- Dependencies: 2010 2011 2012 5
+-- Name: users; Type: TABLE; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255) DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying(128) DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying(255),
+    role character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO ohunewald;
+
+--
+-- TOC entry 191 (class 1259 OID 16952)
+-- Dependencies: 5 192
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: ohunewald
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO ohunewald;
+
+--
+-- TOC entry 2103 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ohunewald
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- TOC entry 1995 (class 2604 OID 16807)
+-- Dependencies: 161 162 162
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- TOC entry 1996 (class 2604 OID 16815)
+-- Dependencies: 164 163 164
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY information ALTER COLUMN id SET DEFAULT nextval('information_id_seq'::regclass);
+
+
+--
+-- TOC entry 1997 (class 2604 OID 16826)
+-- Dependencies: 165 166 166
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY inventories ALTER COLUMN id SET DEFAULT nextval('inventories_id_seq'::regclass);
+
+
+--
+-- TOC entry 1998 (class 2604 OID 16845)
+-- Dependencies: 170 169 170
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY lib5uls ALTER COLUMN id SET DEFAULT nextval('lib5uls_id_seq'::regclass);
+
+
+--
+-- TOC entry 1999 (class 2604 OID 16853)
+-- Dependencies: 172 171 172
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY libraries ALTER COLUMN id SET DEFAULT nextval('libraries_id_seq'::regclass);
+
+
+--
+-- TOC entry 2000 (class 2604 OID 16864)
+-- Dependencies: 173 174 174
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- TOC entry 2001 (class 2604 OID 16875)
+-- Dependencies: 176 175 176
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY mianes ALTER COLUMN id SET DEFAULT nextval('mianes_id_seq'::regclass);
+
+
+--
+-- TOC entry 2002 (class 2604 OID 16886)
+-- Dependencies: 177 178 178
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY pgmruns ALTER COLUMN id SET DEFAULT nextval('pgmruns_id_seq'::regclass);
+
+
+--
+-- TOC entry 2003 (class 2604 OID 16897)
+-- Dependencies: 179 180 180
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY pools ALTER COLUMN id SET DEFAULT nextval('pools_id_seq'::regclass);
+
+
+--
+-- TOC entry 2004 (class 2604 OID 16905)
+-- Dependencies: 182 181 182
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
+
+
+--
+-- TOC entry 2005 (class 2604 OID 16916)
+-- Dependencies: 184 183 184
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY samples ALTER COLUMN id SET DEFAULT nextval('samples_id_seq'::regclass);
+
+
+--
+-- TOC entry 2006 (class 2604 OID 16924)
+-- Dependencies: 186 185 186
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY seq_runs ALTER COLUMN id SET DEFAULT nextval('seq_runs_id_seq'::regclass);
+
+
+--
+-- TOC entry 2007 (class 2604 OID 16935)
+-- Dependencies: 187 188 188
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY sharedmessages ALTER COLUMN id SET DEFAULT nextval('sharedmessages_id_seq'::regclass);
+
+
+--
+-- TOC entry 2008 (class 2604 OID 16946)
+-- Dependencies: 189 190 190
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY templates ALTER COLUMN id SET DEFAULT nextval('templates_id_seq'::regclass);
+
+
+--
+-- TOC entry 2009 (class 2604 OID 16957)
+-- Dependencies: 192 191 192
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ohunewald
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2049 (class 0 OID 16804)
+-- Dependencies: 162 2081
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY categories (id, name, created_at, updated_at) FROM stdin;
+1	Ion OneTouch 200 v2DL	2013-08-09 08:35:21.436507	2013-08-09 08:35:21.436507
+2	Ion PGM Enrichment beads	2013-08-09 08:35:31.972827	2013-08-09 08:35:31.972827
+3	Ion PGM Template OT2 200 kit	2013-08-09 08:35:40.794527	2013-08-09 08:35:40.794527
+4	Ion PGM Template OT2 400 kit	2013-08-09 08:35:49.096208	2013-08-09 08:35:49.096208
+5	Ion sphere quality control kit	2013-08-09 08:35:57.305607	2013-08-09 08:35:57.305607
+6	Ion Plus Fragment Library Kit	2013-08-09 08:36:05.563672	2013-08-09 08:36:05.563672
+7	Ion Shear Plus Reagents Kit	2013-08-09 08:36:19.111271	2013-08-09 08:36:19.111271
+8	Ion Xpress Barcode Adapters MID1-16	2013-08-09 08:36:27.10482	2013-08-09 08:36:27.10482
+\.
+
+
+--
+-- TOC entry 2104 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('categories_id_seq', 8, true);
+
+
+--
+-- TOC entry 2051 (class 0 OID 16812)
+-- Dependencies: 164 2081
+-- Data for Name: information; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY information (id, title, content, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2105 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: information_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('information_id_seq', 1, false);
+
+
+--
+-- TOC entry 2053 (class 0 OID 16823)
+-- Dependencies: 166 2081
+-- Data for Name: inventories; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY inventories (id, item_description, lot_number, reaction_kit, reactions_used, best_till, opened, comment, created_at, updated_at, empty, user_id, category_id, price) FROM stdin;
+3	Sequencing	897	20	1	\N	\N		2013-08-09 08:38:11.321918	2013-08-09 08:38:11.321918	f	1	8	150
+1	Library prep	xx34-00	20	1	2013-08-07	2013-08-07		2013-08-09 08:37:05.336261	2013-08-09 08:39:02.815653	f	1	6	180
+2	Template prep	1170160	10	1	\N	\N		2013-08-09 08:37:35.873761	2013-08-09 08:41:02.127842	f	1	3	122
+\.
+
+
+--
+-- TOC entry 2106 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: inventories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('inventories_id_seq', 3, true);
+
+
+--
+-- TOC entry 2054 (class 0 OID 16832)
+-- Dependencies: 167 2081
+-- Data for Name: inventories_libraries; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY inventories_libraries (library_id, inventory_id) FROM stdin;
+1	1
+\.
+
+
+--
+-- TOC entry 2055 (class 0 OID 16836)
+-- Dependencies: 168 2081
+-- Data for Name: inventories_templates; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY inventories_templates (inventory_id, template_id) FROM stdin;
+2	1
+\.
+
+
+--
+-- TOC entry 2057 (class 0 OID 16842)
+-- Dependencies: 170 2081
+-- Data for Name: lib5uls; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY lib5uls (id, pool_id, library_id, value, created_at, updated_at) FROM stdin;
+1	1	1	0	2013-08-09 08:39:30.993205	2013-08-09 08:39:30.993205
+\.
+
+
+--
+-- TOC entry 2107 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: lib5uls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('lib5uls_id_seq', 1, true);
+
+
+--
+-- TOC entry 2059 (class 0 OID 16850)
+-- Dependencies: 172 2081
+-- Data for Name: libraries; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY libraries (id, sample_id, created_at, updated_at, user_id, lib_date, ul_used, target_size, quantity, mid, shearing_min, end_repair_done, "number_of_bands_in_eGel", cycles_of_amplification, date_bioanalyser, pmol_before, pmol_after, comment, lib_number, inventory_id, shearing_kit, fragment_kit, failed, comment_why, mid_kit, pool_id) FROM stdin;
+1	1	2013-08-09 08:39:02.799201	2013-08-09 08:39:31.002793	1	2013-07-08	3	1	5	5	1	f	5	5	2013-08-14	5	5	jufghfjhg	PGM-Lib-20130809083902	\N	\N	\N	f		\N	1
+\.
+
+
+--
+-- TOC entry 2108 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: libraries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('libraries_id_seq', 1, true);
+
+
+--
+-- TOC entry 2061 (class 0 OID 16861)
+-- Dependencies: 174 2081
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY messages (id, user_id, sender_id, title, context, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2109 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('messages_id_seq', 1, false);
+
+
+--
+-- TOC entry 2063 (class 0 OID 16872)
+-- Dependencies: 176 2081
+-- Data for Name: mianes; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY mianes (id, aims, expected_result, why_ngs, possible_alternative, approach, positive_control, negative_control, replicates, reference_dataset, possible_pittfalls, needs_qc, created_at, updated_at, project_id, construct) FROM stdin;
+1	sdfjh sghj lö wörhj lkjdfsg kljh	 jsdhtgö h jh	kjhsrt jhjhkjh	kljhdfj lkjdt h kljdfgkj hlkjds \r\nsdr jkhdsfkjh lkjh	genome	lkjhfdjh kjcfg ölkjc öl fds\r\ns kjhdsf jjjfd\r\n	j jdfk jkd l	kjghhkg	jhghgh	jhgfgh	hgfhg	2013-08-09 08:33:12.62017	2013-08-09 08:33:12.62017	1	\N
+2	sdfjh sghj lö wörhj lkjdfsg kljh	 jsdhtgö h jh	kjhsrt jhjhkjh	kljhdfj lkjdt h kljdfgkj hlkjds \r\nsdr jkhdsfkjh lkjh	genome	lkjhfdjh kjcfg ölkjc öl fds\r\ns kjhdsf jjjfd\r\n	j jdfk jkd l	kjghhkg	jhghgh	jhgfgh	hgfhg	2013-08-09 13:37:55.872216	2013-08-09 13:37:55.872216	1	ACGT-GGATT-AGGTACCTGATA-AAGTT-ACGT
+\.
+
+
+--
+-- TOC entry 2110 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: mianes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('mianes_id_seq', 2, true);
+
+
+--
+-- TOC entry 2065 (class 0 OID 16883)
+-- Dependencies: 178 2081
+-- Data for Name: pgmruns; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY pgmruns (id, template_id, run_date, ot_date, initialisation, run_number, pgm_number, mean_read_length, perc_loading, keysignal, final_lib_reads, perc_low_quality, testfragment, ts_version, comment, user_id, created_at, updated_at) FROM stdin;
+1	1	2013-08-05	2013-08-05	ok	jjkkkk	\N	400	60	6	80	8			this is my comment	1	2013-08-09 08:41:54.146405	2013-08-09 08:41:54.146405
+\.
+
+
+--
+-- TOC entry 2111 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: pgmruns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('pgmruns_id_seq', 1, true);
+
+
+--
+-- TOC entry 2067 (class 0 OID 16894)
+-- Dependencies: 180 2081
+-- Data for Name: pools; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY pools (id, template_id, date_pooling, pmol_l, tdf, created_at, updated_at, user_id, lib_5ul_low_te_buffer, ul_dilution, bioanalyser_qbit, tdf_used, name, ready) FROM stdin;
+1	\N	2013-08-07	\N	\N	2013-08-09 08:39:30.950637	2013-08-09 08:39:49.405126	1	\N	3	2013	\N	ohunewald-pool-20130809083930	t
+\.
+
+
+--
+-- TOC entry 2112 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: pools_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('pools_id_seq', 1, true);
+
+
+--
+-- TOC entry 2069 (class 0 OID 16902)
+-- Dependencies: 182 2081
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY projects (id, name, user_id, created_at, updated_at, state) FROM stdin;
+1	prj0001	1	2013-08-09 08:32:26.267282	2013-08-09 13:44:37.342025	ready
+\.
+
+
+--
+-- TOC entry 2113 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('projects_id_seq', 1, true);
+
+
+--
+-- TOC entry 2071 (class 0 OID 16913)
+-- Dependencies: 184 2081
+-- Data for Name: samples; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY samples (id, name, size, quantity, created_at, updated_at, project_id) FROM stdin;
+1	xx011-445_1	400	1	2013-08-09 08:33:42.072474	2013-08-09 08:33:42.072474	1
+\.
+
+
+--
+-- TOC entry 2114 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: samples_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('samples_id_seq', 1, true);
+
+
+--
+-- TOC entry 2080 (class 0 OID 16968)
+-- Dependencies: 193 2081
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY schema_migrations (version) FROM stdin;
+20130724113535
+20130718083955
+20130507114625
+20130416112844
+20130710092711
+20130710135248
+20130719122829
+20130718115154
+20130204130748
+20130415091131
+20130716125415
+20130716140757
+20130722113100
+20130717085520
+20130418140227
+20130419074640
+20130711122852
+20130718091041
+20130717085847
+20130717084332
+20130408074039
+20130704113950
+20130722113642
+20130716141110
+20130722144045
+20130507074644
+20130610123707
+20130220144412
+20130715122514
+20130719133011
+20130205085954
+20130715125125
+20130715135059
+20130416085330
+20130715121747
+20130719123655
+20130704141151
+20130312143450
+20130712140808
+20130716140348
+20130403073155
+20130226094449
+20130704131048
+20130201153604
+20130514094812
+20130418114027
+20130704143522
+20130716130631
+20130705115553
+20130705132625
+20130704074928
+20130712141211
+20130703135048
+20130712140935
+20130412122652
+20130325154202
+20130716142259
+20130225160353
+20130809133021
+\.
+
+
+--
+-- TOC entry 2073 (class 0 OID 16921)
+-- Dependencies: 186 2081
+-- Data for Name: seq_runs; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY seq_runs (id, name, kit, chip, seq_date, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2115 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: seq_runs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('seq_runs_id_seq', 1, false);
+
+
+--
+-- TOC entry 2075 (class 0 OID 16932)
+-- Dependencies: 188 2081
+-- Data for Name: sharedmessages; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY sharedmessages (id, title, content, user_id, created_at, updated_at, archive) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2116 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: sharedmessages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('sharedmessages_id_seq', 1, false);
+
+
+--
+-- TOC entry 2077 (class 0 OID 16943)
+-- Dependencies: 190 2081
+-- Data for Name: templates; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY templates (id, qbit_before_es, qbit_after_es, user_id, created_at, updated_at, failed, comment, date_bioanalyser, pool_id) FROM stdin;
+1	8	8	1	2013-08-09 08:41:02.113249	2013-08-09 08:41:02.113249	f	lkjdfrlkj lkjs jh dkjdlkj sdrrtlkjh 	2013-08-07	1
+\.
+
+
+--
+-- TOC entry 2117 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: templates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('templates_id_seq', 1, true);
+
+
+--
+-- TOC entry 2079 (class 0 OID 16954)
+-- Dependencies: 192 2081
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: ohunewald
+--
+
+COPY users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, created_at, updated_at, name, role) FROM stdin;
+1	o.hunewald@gmail.com	$2a$10$S0VqKxm8a3bPXOhvkSUs9OSlv9gjVkBjlGrynOOWflFXzQHQyCaaC	\N	\N	\N	1	2013-08-09 08:31:32.462905	2013-08-09 08:31:32.462905	127.0.0.1	127.0.0.1	2013-08-09 08:31:32.456271	2013-08-09 08:32:05.240895	ohunewald	Admin
+\.
+
+
+--
+-- TOC entry 2118 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ohunewald
+--
+
+SELECT pg_catalog.setval('users_id_seq', 1, true);
+
+
+--
+-- TOC entry 2014 (class 2606 OID 16809)
+-- Dependencies: 162 162 2082
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2016 (class 2606 OID 16820)
+-- Dependencies: 164 164 2082
+-- Name: information_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY information
+    ADD CONSTRAINT information_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2018 (class 2606 OID 16831)
+-- Dependencies: 166 166 2082
+-- Name: inventories_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY inventories
+    ADD CONSTRAINT inventories_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2022 (class 2606 OID 16847)
+-- Dependencies: 170 170 2082
+-- Name: lib5uls_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY lib5uls
+    ADD CONSTRAINT lib5uls_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2024 (class 2606 OID 16858)
+-- Dependencies: 172 172 2082
+-- Name: libraries_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY libraries
+    ADD CONSTRAINT libraries_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2026 (class 2606 OID 16869)
+-- Dependencies: 174 174 2082
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2028 (class 2606 OID 16880)
+-- Dependencies: 176 176 2082
+-- Name: mianes_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY mianes
+    ADD CONSTRAINT mianes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2030 (class 2606 OID 16891)
+-- Dependencies: 178 178 2082
+-- Name: pgmruns_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY pgmruns
+    ADD CONSTRAINT pgmruns_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2032 (class 2606 OID 16899)
+-- Dependencies: 180 180 2082
+-- Name: pools_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY pools
+    ADD CONSTRAINT pools_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2034 (class 2606 OID 16910)
+-- Dependencies: 182 182 2082
+-- Name: projects_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2036 (class 2606 OID 16918)
+-- Dependencies: 184 184 2082
+-- Name: samples_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY samples
+    ADD CONSTRAINT samples_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2038 (class 2606 OID 16929)
+-- Dependencies: 186 186 2082
+-- Name: seq_runs_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY seq_runs
+    ADD CONSTRAINT seq_runs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2040 (class 2606 OID 16940)
+-- Dependencies: 188 188 2082
+-- Name: sharedmessages_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY sharedmessages
+    ADD CONSTRAINT sharedmessages_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2042 (class 2606 OID 16951)
+-- Dependencies: 190 190 2082
+-- Name: templates_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY templates
+    ADD CONSTRAINT templates_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2046 (class 2606 OID 16965)
+-- Dependencies: 192 192 2082
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2020 (class 1259 OID 16839)
+-- Dependencies: 168 168 2082
+-- Name: index_inventories_templates_on_inventory_id_and_template_id; Type: INDEX; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE INDEX index_inventories_templates_on_inventory_id_and_template_id ON inventories_templates USING btree (inventory_id, template_id);
+
+
+--
+-- TOC entry 2019 (class 1259 OID 16835)
+-- Dependencies: 167 167 2082
+-- Name: index_libraries_inventories_on_library_id_and_inventory_id; Type: INDEX; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE INDEX index_libraries_inventories_on_library_id_and_inventory_id ON inventories_libraries USING btree (library_id, inventory_id);
+
+
+--
+-- TOC entry 2043 (class 1259 OID 16966)
+-- Dependencies: 192 2082
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+
+
+--
+-- TOC entry 2044 (class 1259 OID 16967)
+-- Dependencies: 192 2082
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- TOC entry 2047 (class 1259 OID 16971)
+-- Dependencies: 193 2082
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: ohunewald; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- TOC entry 2087 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2013-08-12 16:19:13 CEST
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -17,7 +17,7 @@ class LibrariesController < ApplicationController
   	@library = @sample.libraries.build
     @library.lib_number = get_number
     @inventories = Inventory.where(
-      :item_description => 'Library prep', :empty => 'f', :user_id => current_user) 
+      :item_description => 'Library prep', :empty => 'f') 
   end
 
   def show

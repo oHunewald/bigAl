@@ -71,8 +71,7 @@ class TemplatesController < ApplicationController
 		@template.pool = @pool
 		@template.used = false
 		
-		@pool.used = true
-		@pool.save
+
 		#@template.user_id = current_user.id
 		current_user.templates << @template
 		
@@ -81,8 +80,10 @@ class TemplatesController < ApplicationController
 	      @template.inventories = inventories
 	    end  
 
-		if @template.save
+		if @template.save		
 			delete_from_stock(params)
+			@pool.used = true
+			@pool.save				
 			flash[:notice] = "Successfully created..."
 			redirect_to [@template]
 		else
@@ -109,6 +110,7 @@ class TemplatesController < ApplicationController
 
       if !params[:inventories].blank?
         params[:inventories].each do |i|
+
           item = Inventory.find(i)
 
           item.update_stock(1)

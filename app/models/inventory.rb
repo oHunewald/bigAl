@@ -18,6 +18,10 @@ class Inventory < ActiveRecord::Base
   end
 
   def update_stock(value)
+    puts '+++++++++++++++++++++++++++++++++++'
+    puts 'in Item inventory'
+    puts value
+    puts self
     if self.reactions_used >= 0
       self.reactions_used += value
       self.save

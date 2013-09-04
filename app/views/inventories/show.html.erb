@@ -99,6 +99,6 @@
 	</tbody>
 </table>
 <br>
-<% if current_user.role == 'Moderator' %>
+<% if current_user.role == 'Moderator' || current_user.role == 'Admin' %>
 	<p><%= link_to "Edit Item", edit_inventory_path(@inventory) %></p>
 <% end %>

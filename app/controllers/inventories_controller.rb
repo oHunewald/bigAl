@@ -17,6 +17,9 @@ class InventoriesController < ApplicationController
 	def create
 		@inventory = Inventory.new(params[:inventory])
 
+		if @inventory.reactions_used.blank?
+			@inventory.reactions_used = 0
+		end
 		if @inventory.save
 			flash[:notice] = "Successfully created..."
 			redirect_to [@inventory]
