@@ -66,4 +66,5 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+  after 'deploy:update_code', 'deploy:migrate'
 end

@@ -11,13 +11,9 @@ class Template < ActiveRecord::Base
 	has_and_belongs_to_many :inventories
 
 	def get_project
-		puts '*************************'
-
 		pool = self.pool
 		puts pool
 		library = pool.libraries.first
-		puts '++++++++++++++++++++++++++++++++++++++++++++++'
-		puts library
 
 		sample = library.sample
 		project = sample.project
