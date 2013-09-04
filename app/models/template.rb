@@ -1,6 +1,7 @@
 class Template < ActiveRecord::Base
   attr_accessible :comment, :qbit_after_es, :qbit_before_es, 
-  				  :failed, :user_id, :date_bioanalyser, :pool_id, :used
+  				  :failed, :user_id, :date_bioanalyser, 
+  				  :pool_id, :used, :user_id
 
 	has_one :pool
 
@@ -10,9 +11,13 @@ class Template < ActiveRecord::Base
 	has_and_belongs_to_many :inventories
 
 	def get_project
+		puts '*************************'
 
 		pool = self.pool
+		puts pool
 		library = pool.libraries.first
+		puts '++++++++++++++++++++++++++++++++++++++++++++++'
+		puts library
 
 		sample = library.sample
 		project = sample.project

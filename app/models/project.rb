@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :mianes
   has_many :samples
   has_many :myfiles
+  has_many :templates
   validates :user_id, presence: true
   validates :name, presence: true
 

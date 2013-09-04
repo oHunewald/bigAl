@@ -65,6 +65,10 @@ class TemplatesController < ApplicationController
 	end
 
 	def create
+		puts '****************************33'
+		puts 'template params'
+		puts params
+		puts '*******************************'
 		
 		@template = Template.new(params[:template])
 		@pool = Pool.find(params[:template][:pool_id])

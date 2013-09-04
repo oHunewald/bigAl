@@ -14,7 +14,7 @@
 			</td>
 			<td>
 				<p>Project:</p>
-				<p><%= @template.pool %></p>
+				<p><%= @template.get_project %></p>
 			</td>
 		</tr>
 	</tbody>
@@ -42,7 +42,6 @@ hello
 	<%= link_to 'Validate this Template', validate_template_path(@template) %>
 <% else %>
 	<p>Template is ready </p>
-	<%= link_to 'Create Sequencing Run', '#' %>
 <% end %>	
 <hr>
 <%= link_to 'Edit Template', edit_template_path(@template) %>

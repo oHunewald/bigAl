@@ -9,7 +9,7 @@ BigAl::Application.routes.draw do
   devise_for :users
 
   resources :users do
-    resources :projects  
+    resources :projects
     resources :templates
     resources :sharedmessages
     resources :pools do
