@@ -5,7 +5,7 @@ gem 'bootstrap-sass', '~> 2.3.2.1'
 #gem 'cancan'
 gem 'paperclip'
 gem 'jquery-rails', '2.0.2'
-
+gem 'bootstrap-wysihtml5-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

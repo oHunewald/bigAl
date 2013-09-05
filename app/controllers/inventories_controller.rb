@@ -20,6 +20,7 @@ class InventoriesController < ApplicationController
 		if @inventory.reactions_used.blank?
 			@inventory.reactions_used = 0
 		end
+		
 		if @inventory.save
 			flash[:notice] = "Successfully created..."
 			redirect_to [@inventory]

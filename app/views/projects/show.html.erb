@@ -84,7 +84,7 @@
 						Aim:		
 					</td>
 					<td>
-						<%= @miane.aims%>		
+						<%= h @miane.aims.html_safe %>		
 					</td>
 				</tr>
 				<tr>
@@ -92,7 +92,7 @@
 						Expected Result:		
 					</td>
 					<td>
-						<%= @miane.expected_result%>		
+						<%= @miane.expected_result.html_safe %>		
 					</td>
 				</tr>
 				<tr class="alt">
@@ -100,7 +100,7 @@
 						Why do you need NGS:		
 					</td>
 					<td>
-						<%= @miane.why_ngs%>		
+						<%= @miane.why_ngs.html_safe %>		
 					</td>
 				</tr>
 
@@ -109,7 +109,7 @@
 						Is there a possible Alternative:		
 					</td>
 					<td>
-						<%= @miane.possible_alternative%>		
+						<%= @miane.possible_alternative.html_safe %>		
 					</td>
 				</tr>
 
@@ -126,7 +126,7 @@
 						Construct:		
 					</td>
 					<td>
-						<%= @miane.construct %>		
+						<%= @miane.construct.html_safe %>		
 					</td>
 				</tr>
 				<tr>
@@ -134,7 +134,7 @@
 						Positive Control:		
 					</td>
 					<td>
-						<%= @miane.positive_control%>		
+						<%= @miane.positive_control.html_safe %>		
 					</td>
 				</tr>	
 
@@ -143,7 +143,7 @@
 						Negative Control:		
 					</td>
 					<td>
-						<%= @miane.negative_control%>		
+						<%= @miane.negative_control.html_safe %>		
 					</td>
 				</tr>
 
@@ -152,7 +152,7 @@
 						Replicates:		
 					</td>
 					<td>
-						<%= @miane.replicates%>		
+						<%= @miane.replicates.html_safe %>		
 					</td>
 				</tr>
 
@@ -161,7 +161,7 @@
 						Possible Pitfalls:		
 					</td>
 					<td>
-						<%= @miane.possible_pittfalls%>		
+						<%= @miane.possible_pittfalls.html_safe %>		
 					</td>
 				</tr>																				
 				<tr>
@@ -169,7 +169,7 @@
 						Needs for Quality Control:		
 					</td>
 					<td>
-						<%= @miane.needs_qc%>		
+						<%= @miane.needs_qc.html_safe %>		
 					</td>
 				</tr>								
 

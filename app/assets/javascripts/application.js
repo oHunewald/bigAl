@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require dataTables/jquery.dataTables
+//= require bootstrap-wysihtml5
 //= require_tree .
