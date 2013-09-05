@@ -3,7 +3,7 @@
 <p>News</p>
 
 <%= render '/layouts/news_section' %>
-<%= link_to 'See more', sharedmessages_path %>
+<%= link_to 'See more', sharedmessages_path, class: "btn" %>
 
 
 <hr>
@@ -11,13 +11,4 @@
 <p>My Projects</p>
 <div class="center">
 	<%= render 'layouts/projects_table' %>
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    Basic panel example
-  </div>
 </div>
